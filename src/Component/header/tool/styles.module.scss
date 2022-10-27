@@ -1,0 +1,17 @@
+.wrapper {
+    display: flex;
+}
+
+.icon-bag,
+.icon-search {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    font-size: 20px;
+    cursor: pointer;
+}
+.icon-bag {
+    margin-right: 20px;
+}
+
+

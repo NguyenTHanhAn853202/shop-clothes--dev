@@ -1,0 +1,47 @@
+.wrapper{
+    display: flex;
+    background-color:rgb(240,228,221);
+    height: 700px;
+    overflow: hidden;
+    // z-index: -1;
+}
+
+.img-model{
+    width: 50%;
+    display: flex;
+    .img{
+        width: 100%;
+        object-fit: cover;
+    }
+}
+.contain{
+    display: flex;
+    align-items: center;
+    width: 40%;
+    position: relative;
+    top:70px;
+    // left:-50px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    font-weight: 600;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-style: oblique;
+}
+
+.sale{
+    font-size: 7rem;
+    margin:10px 0;
+    line-height: 8rem;
+}
+
+.description{
+    font-size: 1.4rem;
+    font-weight:500;
+    max-height: 65px;
+    margin-bottom: 20px;
+}

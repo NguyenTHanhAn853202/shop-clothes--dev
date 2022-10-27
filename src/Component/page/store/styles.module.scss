@@ -1,0 +1,15 @@
+.header {
+    padding: 30px 0;
+}
+
+.layout {
+    display: flex;
+}
+.SideBar-layout {
+    width: 25%;
+    padding-right: 15px;
+}
+.content-layout {
+    padding-left: 15px;
+    flex: 1;
+}

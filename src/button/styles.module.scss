@@ -1,0 +1,18 @@
+.btn {
+    height:40px;
+    width: 150px;
+    padding: 5px 20px;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 20px;
+    border-radius:7px;
+    background-color:var(--primary);
+    color: rgb(218, 214, 214);
+    cursor: pointer;
+    transition:  .1s ease-in-out;
+    &:hover{
+        transform: translateY(-1.5px);
+        box-shadow: 5px 5px  10px #999;
+    }
+}
+

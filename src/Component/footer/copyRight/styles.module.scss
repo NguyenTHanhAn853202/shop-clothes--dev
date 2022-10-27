@@ -1,0 +1,31 @@
+.wrapper{
+    h3{
+        color:var(--background);
+        font-weight:400;
+        font-size: 1.4rem;
+        span{
+            display: block;
+        }
+    }
+}
+.logo{}
+.img{
+    display: block;
+    width: 100px;
+    // height: 100px;
+    object-fit: cover;
+}
+.copy-right{
+    padding: 15px 0;
+}
+.btn-contact{
+    background-color:transparent;
+    color: var(--background);
+    font-size: 2rem;
+    padding-right: 7px ;
+    cursor: pointer;
+
+    &:hover{
+        color: rgb(63, 63, 184);
+    }
+}

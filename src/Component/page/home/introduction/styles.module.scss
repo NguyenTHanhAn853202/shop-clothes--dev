@@ -1,0 +1,46 @@
+.wrapper{
+    height:440px;
+    background-color:rgb(218,227,229);
+}
+
+.contain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo{
+    position: absolute;
+    height: 250px;
+    user-select: none;
+}
+
+.info{
+    z-index: 9;
+    width: 70%;
+}
+
+.title{
+    font-weight: 600;
+    font-style: italic;
+    padding: 10px 0;
+}
+.name-shop{
+    font-weight: 600;
+    font-size: 3.5rem;
+    padding: 10px 0;
+}
+.description{
+    padding: 10px 0;
+}
+.link{
+    display: block;
+    color: var(--primary);
+    font-weight: 600;
+    padding-top: 20px;
+    cursor: pointer;
+    span{
+        margin-left:20px;
+    }
+}

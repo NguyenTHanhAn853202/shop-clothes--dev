@@ -1,0 +1,40 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10px;
+    position: relative;
+
+    &::before {
+        content: ' ';
+        position: absolute;
+        border-width: 10px 15px;
+        border-style: solid;
+        border-color: transparent transparent var(--background) transparent;
+        right: 7px;
+        top: -30px;
+    }
+}
+
+.search-ip {
+    flex: 1;
+    border: 1px solid #999;
+    width: 185px;
+    height: 35px;
+    font-size: 1.6rem;
+    padding: 0 5px;
+    &:focus-within {
+        border: 1px solid #555;
+    }
+    &:not(:placeholder-shown) ~ .search-btn {
+        opacity: 1;
+    }
+}
+
+.search-btn {
+    background-color: var(--primary);
+    width: 36px;
+    height: 35px;
+    font-size: 20px;
+    color: var(--background);
+    opacity: 0.6;
+}

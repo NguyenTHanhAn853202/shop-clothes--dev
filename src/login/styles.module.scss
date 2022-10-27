@@ -1,0 +1,100 @@
+.wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(109, 109, 109, 0.2);
+    transition: 0.7s ease;
+}
+
+
+.close {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: 20px;
+    top: 10px;
+    background-color: transparent;
+    color: var(--background);
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.8;
+    animation: inTop ease 0.7s;
+    &:hover {
+        opacity: 1;
+        font-size: 22px;
+    }
+}
+
+@keyframes inTop{
+    from {
+        opacity: 0;
+        transform: translateY(10px)
+    }
+    to {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+}
+.contain {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    animation: inBottom ease 0.7s;
+}
+@keyframes inBottom{
+    from {
+        opacity: 0;
+        transform: translateY(-10px)
+    }
+    to {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+}
+.box {
+    position: relative;
+    width: auto;
+}
+
+.form {
+    // position: relative;
+    display: flex;
+    padding: 10px;
+}
+.login,
+.register {
+    width: 50%;
+}
+.wall {
+    position: relative;
+    width: 100%;
+    &::after {
+        content: '';
+        position: absolute;
+        height: calc(100% + 35px);
+        top: 50%;
+        transform: translateY(-50%);
+        margin-top: 30px;
+        border: 1px solid #999;
+        background-clip: content-box;
+        opacity: 0.2;
+    }
+}
+.login {
+    margin-right: 30px;
+}
+
+.register {
+    margin-left: 30px;
+}
+
+.forget-password {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    color:var(--primary);
+}

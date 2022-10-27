@@ -1,0 +1,20 @@
+.contain{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.contain-img{
+    width: 20%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.img{
+    display: block;
+    transition:0.5s ease;
+    width: 100%;
+    object-fit:cover;
+    &:hover{
+        transform: scale(1.1);
+        object-fit: center;
+    }
+}

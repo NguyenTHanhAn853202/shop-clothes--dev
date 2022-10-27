@@ -1,0 +1,49 @@
+.wrapper{
+    
+    h1,p{
+        color: var(--background);
+    }
+}
+
+.title{
+    font-weight:500;
+    font-size:2rem;
+    font-style: italic;
+    padding: 0;
+}
+.description{
+    font-weight:400;
+    font-size: 1.4rem;
+    padding: 10px 0;
+}
+.contain-input{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background-color: var(--background);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.input{
+    padding: 0 10px ;
+    width: 80%;
+    font-size: 1.4rem;
+}
+.btn{
+    display: block;
+    min-width: 20%;
+    position:absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color:transparent;
+    font-weight:600;
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    &:hover{
+        opacity: 0.8;
+    }
+}

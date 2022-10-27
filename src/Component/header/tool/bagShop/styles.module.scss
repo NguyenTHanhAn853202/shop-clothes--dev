@@ -1,0 +1,101 @@
+.wrapper {
+    padding:30px 20px;
+    &::before {
+        content: ' ';
+        position: absolute;
+        border-width: 10px 15px;
+        border-style: solid;
+        border-color: transparent transparent var(--background) transparent;
+        right: 13px;
+        top: -20px;
+    }
+}
+
+.list-product {
+    max-height: 280px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-bottom: 1px solid rgb(180, 180, 180);
+}
+.product {
+    padding-top: 10px ;
+    border-bottom: 1px solid rgb(180, 180, 180);
+}
+
+.contain-product {
+    display: flex;
+}
+.link-contain-product{
+    display: flex;
+}
+
+.img {
+    display: block;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    &:hover ~ .name{
+        opacity: 1;
+    }
+}
+.name{
+    font-weight: 400;
+    font-size: 1.4rem;
+    opacity: 0.8;
+    padding: 0 10px;
+    &:hover{
+        opacity: 1;
+    }
+}
+
+.btn-delete-product{
+    height:2rem;
+    cursor: pointer;
+    font-size:2rem;
+    opacity: 0.4;
+    background-color:transparent ;
+    &:hover{
+        opacity: 1;
+    }
+}
+
+.info-sell{
+    display: flex;
+    justify-content:center;
+    padding: 5px 0;
+}
+.amount, .price{
+    font-size: 1.3rem;
+}
+.amount{
+    opacity: 0.6;
+}
+
+.handle{
+    padding-top: 15px;
+}
+
+.sum-money{
+    font-weight: 400;
+    font-size: 1.6rem;
+    opacity: 0.8;
+    text-align: center;
+
+    .money-paid{
+        font-weight: 700;
+    }
+}
+
+.btn{
+    display: flex;
+    .btn-goto-bag,.btn-paid{
+        margin-top: 15px;
+        height:70px;
+        border-radius: 0;
+        font-size: 1.6rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+    
+}

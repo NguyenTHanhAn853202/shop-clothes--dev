@@ -1,0 +1,54 @@
+.wrapper-slider {
+    // width: 50vw;
+}
+
+.wrapper {
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // width:0%;
+}
+
+.avatar {
+    display: block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.feedback{
+    display: block;
+    padding: 20px 0;
+    text-align: center;
+}
+.description {
+    text-align: center;
+    display: -webkit-box;
+    max-height: 6rem;
+    height: 8rem;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    line-height: 2rem;
+    font-size: 1.6rem;
+  
+}
+.contain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    user-select: none;
+    cursor: grab;
+}
+
+.name-of-feedbacker {
+    font-weight: 600;
+    span {
+        font-weight: 500;
+    }
+}

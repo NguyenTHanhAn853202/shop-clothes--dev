@@ -1,0 +1,17 @@
+.wrapper{
+    display: flex;
+}
+.feature{
+    padding: 0 30px;
+}
+.title{
+    display: block;
+    color: var(--background);
+    font-weight: 500;
+    font-size: 1.4rem;
+    padding: 5px 0;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.7;
+    }
+}
