@@ -1,0 +1,99 @@
+.wrapper {
+    width: 100%;
+    th {
+        font-size: 1.6rem;
+        border-bottom: 2px solid #ccc;
+    }
+
+    td {
+        border-bottom: 1px solid #ccc;
+    }
+    table {
+        border-collapse: collapse;
+    }
+}
+.table-pay {
+    width: 100%;
+}
+.table-body {
+    td {
+        padding: 15px 0;
+    }
+    font-size: 1.4rem;
+}
+.delivery {
+    opacity: 0.8;
+    transition: 0.5s ease-in-out;
+}
+.address {
+    text-align: right;
+    span,
+    p {
+        display: block;
+        padding: 5px 0;
+    }
+}
+.destination {
+    font-weight: 500;
+    span {
+        display: inline-block;
+        font-weight: 600;
+    }
+}
+.update {
+    padding: 5px 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+.form-update {
+    input {
+        padding: 5px;
+        width: 60%;
+        border: 1px solid #999;
+        margin-right: 5px;
+    }
+    button {
+        padding: 5px;
+        cursor: pointer;
+        background-color: #999;
+        &:hover {
+            background-color: #777;
+        }
+    }
+}
+.left {
+    text-align: left;
+}
+.right {
+    text-align: right;
+}
+.discount-code {
+    display: flex;
+    align-items: center;
+    span {
+        display: block;
+    }
+    padding-top: 20px;
+    .title-discount {
+        padding: 0 10px;
+        font-weight: 500;
+        font-size: 1.6rem;
+    }
+}
+
+.contain-input-discount-code {
+    border-bottom: none !important;
+    .input-discount-code {
+        margin-bottom: 0;
+        &:not(:placeholder-shown) ~ .confirm-discount-code {
+            cursor: pointer;
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+}
+.confirm-discount-code {
+    opacity: 0.4;
+    cursor:default;
+    pointer-events: none;
+}

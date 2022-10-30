@@ -70,10 +70,10 @@ function Bag() {
                     Tổng phụ: <span className={cx('money-paid')}>{`$${total}`}</span>
                 </h2>
                 <div className={cx('btn')}>
-                    <Button to={'/gio-hang'} classNames={cx('btn-goto-bag')}>
+                    <Button ishover to={'/gio-hang'} classNames={cx('btn-goto-bag')}>
                         <span>XEM GIỎ HÀNG</span>
                     </Button>
-                    <Button to={'/thanh-toan'} classNames={cx('btn-paid')}>
+                    <Button ishover to={'/thanh-toan'} classNames={cx('btn-paid')}>
                         <span>THANH TOÁN</span>
                     </Button>
                 </div>

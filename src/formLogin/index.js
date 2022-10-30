@@ -16,7 +16,7 @@ function FormLogin({ title, placeholder = '', type, titleAccount, titleButton, t
                     <label for="check-box-form-login" className={cx('title-checkbox')}>Ghi nhớ mật khẩu</label>
                 </>
             )}
-            <Button classNames={cx('btn')}>{titleButton}</Button>
+            <Button ishover classNames={cx('btn')}>{titleButton}</Button>
         </div>
     );
 }

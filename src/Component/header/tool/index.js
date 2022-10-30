@@ -7,6 +7,7 @@ import Render from '~/renderTippy';
 import 'tippy.js/dist/tippy.css';
 import Bag from './bagShop';
 import Search from './search';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +19,7 @@ function Tool() {
                     offset={[15, 15]}
                     interactive
                     // visible
-                    hideOnClick={false}
+                    // hideOnClick={false}
                     placement="bottom-end"
                     interactiveBorder={0}
                     render={(attrs) => (
@@ -27,9 +28,9 @@ function Tool() {
                         </Render>
                     )}
                 >
-                    <button className={cx('icon-bag')}>
+                    <Link to={'gio-hang'} className={cx('icon-bag')}>
                         <FontAwesomeIcon icon={faBagShopping} />
-                    </button>
+                    </Link>
                 </Tippy>
             </div>
             <div>

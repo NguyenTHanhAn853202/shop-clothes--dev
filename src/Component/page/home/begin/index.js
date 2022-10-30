@@ -23,7 +23,7 @@ function Begin() {
                         tincidunt ut laoreet dolore magna aliquam erat volutpat.
                     </h2>
                     
-                        <Button to={'/cua-hang'}>Mua Ngay</Button>
+                        <Button ishover to={'/cua-hang'}>Mua Ngay</Button>
                 </div>
             </div>
         </div>

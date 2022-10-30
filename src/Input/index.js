@@ -14,14 +14,14 @@ function Input({
     type = 'text',
 }) {
     return (
-        <div className={cx('wrapper')}>
+        <>
             {title && <h2 className={cx('title')}>{title}</h2>}
             <input
                 className={cx('input', { [classNames]: classNames, gold, w100, w50, w30 })}
                 placeholder={placeholder}
                 type={type}
             />
-        </div>
+        </>
     );
 }
 

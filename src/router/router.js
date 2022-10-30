@@ -4,6 +4,7 @@ import Contact from '~/Component/page/contact';
 import Brand from '~/Component/page/brand';
 import Collection from '~/Component/page/collection';
 import Store from '~/Component/page/store';
+import Cart from '~/Component/page/cart';
 const layout = [
     {
         element: Home,
@@ -28,7 +29,11 @@ const layout = [
     {
         element: Store,
         path: '/cua-hang',
-        slug:true
+        slug: true,
+    },
+    {
+        element: Cart,
+        path: '/gio-hang',
     },
 ];
 

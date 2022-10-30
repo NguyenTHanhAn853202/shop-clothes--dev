@@ -33,7 +33,7 @@ function InfoContact() {
                     </div>
                 </div>
                 <textarea placeholder={'Lời nhắn'} ></textarea>
-                <Button classNames={cx('btn-send')}>Gửi</Button>
+                <Button ishover classNames={cx('btn-send')}>Gửi</Button>
             </div>
         </div>
     );
