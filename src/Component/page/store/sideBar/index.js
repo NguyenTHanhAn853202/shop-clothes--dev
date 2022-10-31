@@ -32,6 +32,7 @@ function SideBar() {
                 <h2 className={cx('title-product')}>SẢN PHẨM</h2>
                 {product.map((item, index) => (
                     <Product
+                        key={index}
                         // classNames={cx('item-product')}
                         src={productImg}
                         nameProduct="Bộ áo thun và áo khoát kết hợp váy điệu đà"

@@ -30,7 +30,7 @@ function Func() {
                                       {more.map((item, index) => {
                                         const slug = handleSlug(item.name);
                                         return (
-                                          <Link to={`/cua-hang/${slug}`} key={index} className={cx('more-name')}>
+                                          <Link to={`cua-hang/${slug}`} key={index} className={cx('more-name')}>
                                               {item.name}
                                           </Link>
                                       )})}

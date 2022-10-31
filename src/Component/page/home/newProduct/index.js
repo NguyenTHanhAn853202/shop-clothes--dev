@@ -76,7 +76,7 @@ function NewProduct() {
                     <Products />
                 </div>
                 <div className={cx('more-product')}>
-                    <Link to={'/cua-hang'} className={cx('title')}>
+                    <Link to={'cua-hang'} className={cx('title')}>
                         Xem thêm sản phẩm
                         <span>
                             <FontAwesomeIcon icon={faLongArrowAltRight} />

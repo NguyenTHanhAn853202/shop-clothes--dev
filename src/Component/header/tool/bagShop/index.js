@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { handleSlug } from '~/handleSlug';
 
+
 const cx = classNames.bind(styles);
 const data = [
     {
@@ -49,7 +50,7 @@ function Bag() {
                     return (
                         <li key={index} className={cx('product')}>
                             <div className={cx('contain-product')}>
-                                <Link to={`/san-pham/${slug}`} className={cx('link-contain-product')}>
+                                <Link to={`san-pham/${slug}`} className={cx('link-contain-product')}>
                                     <img className={cx('img')} src={item.img} alt={item.name} />
                                     <h4 className={cx('name')}>{item.name}</h4>
                                 </Link>

@@ -15,7 +15,7 @@ function Card({ title, icon, description, isIcon }) {
             <p className={cx('description')}>{description}</p>
             {isIcon && (
                 <div className={cx('icon-footer')}>
-                    <Link className={cx('link')} to={'/gioi-thieu'}>
+                    <Link className={cx('link')} to={'gioi-thieu'}>
                         <FontAwesomeIcon icon={faLongArrowAltRight} />
                     </Link>
                 </div>

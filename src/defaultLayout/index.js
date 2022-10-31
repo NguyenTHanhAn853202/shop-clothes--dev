@@ -3,10 +3,12 @@ import Footer from '~/Component/footer';
 import styles from './styles.module.scss';
 import Begin from '~/begin';
 import classNames from 'classnames/bind';
+import { Outlet } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
+   
     return (
         <div className={cx('wrapper-contain')}>
             <div className={cx('begin')}>
@@ -15,7 +17,7 @@ function DefaultLayout({ children }) {
             <div className={cx('wrapper')}>
                 <div className={cx('contain')}>
                     <Header />
-                    <div>{children}</div>
+                    <div>{<Outlet />}</div>
                     <Footer />
                 </div>
             </div>

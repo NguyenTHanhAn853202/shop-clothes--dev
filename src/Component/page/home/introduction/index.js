@@ -18,7 +18,7 @@ function Introduction() {
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
                         tincidunt ut laoreet dolore magna aliquam erat volutpat.
                     </p>
-                    <Link className={cx('link')} to={'/gioi-thieu'}>
+                    <Link className={cx('link')} to={'gioi-thieu'}>
                         Về chúng tôi
                         <span>
                             <FontAwesomeIcon icon={faRightLong} />

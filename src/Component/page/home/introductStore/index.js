@@ -15,7 +15,7 @@ function IntroductStore() {
                 <div className={cx('content')}>
                     <h4 className={cx('title-inform')}>Mừng khai trương chi nhánh mới</h4>
                     <h1 className={cx('info-inform')}>Sale off up to 70%</h1>
-                    <Link to={'/cua-hang'} className={cx('see-product-inform')}>
+                    <Link to={'cua-hang'} className={cx('see-product-inform')}>
                         Xem tất cả sản phẩm
                         <span>
                             <FontAwesomeIcon icon={faLongArrowAltRight} />
@@ -33,7 +33,7 @@ function IntroductStore() {
                     </div>
                     <div className={cx('wrapper-title-content-img')}>
                         <h2 className={cx('title-content-img')}>Danh sách <span>sản phẩm</span></h2>
-                        <Link to={'/cua-hang'} className={cx('see-list-product')}>
+                        <Link to={'cua-hang'} className={cx('see-list-product')}>
                             <FontAwesomeIcon icon={faLongArrowAltRight} />
                         </Link>
                     </div>

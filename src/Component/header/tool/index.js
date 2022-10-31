@@ -7,11 +7,21 @@ import Render from '~/renderTippy';
 import 'tippy.js/dist/tippy.css';
 import Bag from './bagShop';
 import Search from './search';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
 function Tool() {
+    const [isPath, setIsPath] = useState(true);
+    const location = useLocation();
+    useEffect(() => {
+        // nếu đang ở trang giỏ hàng thì sẻ k suất hiện tippy khi hover
+        setIsPath((props) => {
+            return location.pathname === '/gio-hang' ? false : true;
+        });
+    }, [location.pathname]);
+
     return (
         <div className={cx('wrapper')}>
             <div>
@@ -23,9 +33,13 @@ function Tool() {
                     placement="bottom-end"
                     interactiveBorder={0}
                     render={(attrs) => (
-                        <Render attrs={attrs}>
-                            <Bag />
-                        </Render>
+                        <div>
+                            {isPath && (
+                                <Render attrs={attrs}>
+                                    <Bag />
+                                </Render>
+                            )}
+                        </div>
                     )}
                 >
                     <Link to={'gio-hang'} className={cx('icon-bag')}>
