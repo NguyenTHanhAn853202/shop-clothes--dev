@@ -27,7 +27,7 @@ function Header() {
                     height: '100px',
                 });
                 setResetAnimate(true);
-            } else if(scrollYs>=155) {
+            } else if (scrollYs >= 155) {
                 Object.assign(headerRef.current.style, {
                     position: 'fixed',
                     top: '0',
@@ -47,8 +47,8 @@ function Header() {
     }, [scroll]);
 
     return (
-        <div ref={headerRef} className={cx('wrapper', { ['wrap']: 'wrap' })}>
-            <div className={cx('contain', { ['grid']: 'grid' })}>
+        <div ref={headerRef} className={cx('wrapper', { wrap: true })}>
+            <div className={cx('contain', { grid: true })}>
                 <div className={cx('logo')}>
                     <Link to="/">
                         <img ref={imgLogoRef} className={cx('img-logo')} src={logo} alt="logo" />

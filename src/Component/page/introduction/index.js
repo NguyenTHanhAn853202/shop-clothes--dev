@@ -15,8 +15,8 @@ function Introduct() {
     return (
         <div className={cx('wrapper')}>
             <HeaderEachPage title={'giới thiệu'} />
-            <div className={cx('contain', { ['wrap']: 'wrap' })}>
-                <div className={cx('contain-grid', { ['grid']: 'grid' })}>
+            <div className={cx('contain', { wrap: true })}>
+                <div className={cx('contain-grid', { grid: true })}>
                     <div className={cx('contain-logo')}>
                         <div className={cx('logo')}>
                             <img className={cx('logo-img')} src={logo} alt={'logo'} />

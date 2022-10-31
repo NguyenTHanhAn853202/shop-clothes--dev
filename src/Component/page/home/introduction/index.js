@@ -8,8 +8,8 @@ const cx = classNames.bind(styles);
 
 function Introduction() {
     return (
-        <div className={cx('wrapper', { ['wrap']: 'wrap' })}>
-            <div className={cx('contain', { ['grid']: 'grid' })}>
+        <div className={cx('wrapper', { wrap: true })}>
+            <div className={cx('contain', { grid: true })}>
                 <img className={cx('logo')} src={logoImg} alt={'logo'} />
                 <div className={cx('info')}>
                     <h3 className={cx('title')}>2019 New Arrivals</h3>

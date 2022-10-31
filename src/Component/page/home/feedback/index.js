@@ -5,15 +5,12 @@ import ContainFeedback from './contain';
 const cx = classNames.bind(styles);
 
 function Feedback() {
-    const settings = {
-        dots: true
-    }
     return (
-        <div className={cx('wrapper', { ['wrap']: 'wrap' })}>
-            <div className={cx('contain', { ['grid']: 'grid' })}>
+        <div className={cx('wrapper', { wrap: true })}>
+            <div className={cx('contain', { grid: true })}>
                 <h1 className={cx('title')}>Khách hàng nói gì về chúng tôi</h1>
                 <div className={cx('feedback')}>
-                   <ContainFeedback />
+                    <ContainFeedback />
                 </div>
             </div>
         </div>

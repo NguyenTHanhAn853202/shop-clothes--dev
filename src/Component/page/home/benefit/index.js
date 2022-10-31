@@ -8,8 +8,8 @@ const cx = classNames.bind(styles);
 
 function Benefit() {
     return (
-        <div className={cx('wrapper', { ['wrap']: 'wrap' })}>
-            <div className={cx('contain', { ['grid']: 'grid' })}>
+        <div className={cx('wrapper', { wrap: true })}>
+            <div className={cx('contain', { grid: true })}>
                 <div className={cx('card')}>
                     <Card
                         title={'Miễn phí giao hàng'}

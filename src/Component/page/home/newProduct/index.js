@@ -52,8 +52,8 @@ function NewProduct() {
         scrollRef.current.style.width = element.offsetWidth + 'px';
     };
     return (
-        <div className={cx('wrapper', { ['wrap']: 'wrap' })}>
-            <div className={cx('contain', { ['grid']: 'grid' })}>
+        <div className={cx('wrapper', { wrap: true })}>
+            <div className={cx('contain', { grid: true })}>
                 <div className={cx('header')}>
                     <h2 className={cx('title')}>Sản phẩm mới</h2>
                     <div className={cx('category')}>

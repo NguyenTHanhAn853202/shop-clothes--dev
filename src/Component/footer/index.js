@@ -8,12 +8,12 @@ const cx = classNames.bind(styles);
 
 function Footer() {
     return (
-        <div className={cx('wrapper', { ['wrap']: 'wrap' })}>
-            <div className={cx('contain', { ['grid']: 'grid' })}>
+        <div className={cx('wrapper', { wrap: true })}>
+            <div className={cx('contain', { grid: true })}>
                 <div className={cx('copy-right')}>
                     <CopyRight />
                 </div>
-                    <Feature />
+                <Feature />
                 <div className={cx('register')}>
                     <Register />
                 </div>

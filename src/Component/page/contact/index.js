@@ -12,8 +12,8 @@ function Contact() {
             <div className={cx('header')}>
                 <HeaderEachPage title={'giới thiệu'} />
             </div>
-            <div className={cx('body', { ['wrap']: 'wrap' })}>
-                <div className={cx('contain-body', { ['grid']: 'grid' })}>
+            <div className={cx('body', { wrap: true })}>
+                <div className={cx('contain-body', { grid:true })}>
                     <div className={cx('map')}>
                         <Map />
                     </div>
@@ -27,4 +27,3 @@ function Contact() {
 }
 
 export default Contact;
-

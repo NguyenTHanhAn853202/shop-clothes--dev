@@ -17,8 +17,8 @@ function StoreImage() {
         'http://mauweb.monamedia.net/pleatskora/wp-content/uploads/2019/04/gallery-10.jpg',
     ];
     return (
-        <div className={cx('wrapper', { ['wrap']: 'wrap' })}>
-            <div className={cx('contain', { ['grid']: 'grid' })}>
+        <div className={cx('wrapper', { wrap: true })}>
+            <div className={cx('contain', { grid: true })}>
                 {imgArr.map((item, index) => (
                     <div key={index} className={cx('contain-img')}>
                         <img className={cx('img')} src={item} alt="gallery" />
