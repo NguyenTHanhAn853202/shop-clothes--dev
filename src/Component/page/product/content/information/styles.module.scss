@@ -1,0 +1,25 @@
+.wrapper {
+    padding: 10px 0;
+}
+
+.btn-other-info {
+    width: 210px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.btn-decretion,
+.btn-feedback,
+.btn-other-info {
+    background-color: rgb(228, 224, 224);
+    border: 1px solid #999;
+    color: var(--primary);
+    font-size: 1.5rem;
+    transition:0.5s ease;
+}
+.active{
+    background-color:var(--primary);
+    color: var(--background);
+}
+.content{
+    padding-top:20px
+}

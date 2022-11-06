@@ -1,0 +1,17 @@
+.color{
+    border-collapse: collapse;
+}
+
+.title-color ,.typeof-color{
+    padding: 5px 0;
+    border-bottom: 2px solid var(--border-color);
+}
+.title-color {
+    width: 100px;
+    font-weight: 600;
+}
+
+.typeof-color {
+    flex: 1;
+    text-align: center;
+}

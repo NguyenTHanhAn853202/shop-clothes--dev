@@ -1,4 +1,10 @@
 .wrapper {
+    border: 1px solid var(--border-color);
+    max-height: calc(81px * 5 + 5px + 62px); // 81px each item, 5 item 62 is title, +-5px
+    overflow-y: scroll;
+}
+
+.product {
     display: flex;
     align-items: center;
     padding: 10px var(--padding-left);
@@ -16,7 +22,14 @@
         color: var(--active-color);
     }
 }
-
+.title-product {
+    height: 62px;
+    line-height: 62px;
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-title);
+    padding: 0 var(--padding-left);
+    border-bottom: 1px solid var(--border-color);
+}
 .product-img {
     display: block;
     width: 60px;

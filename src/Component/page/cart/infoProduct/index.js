@@ -6,36 +6,10 @@ import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 import Button from '~/button';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import CountNumber from '~/Component/countNumber';
 const cx = classNames.bind(styles);
 
 function InfoProduct() {
-    const [amount, setAmount] = useState(0);
-    const handleChangeAmount = (e) => {
-        const value = e.target.value;
-        let newValue = value;
-        for (let index = 0; index < newValue.length; index++) {
-            if (newValue[index] < '0' || newValue[index] > '9') {
-                newValue = newValue.replace(newValue[index], '');
-                index--;
-                console.log(newValue);
-            }
-        }
-        setAmount(newValue);
-    };
-    const handleBlurAmount = (e)=>{
-        const value = e.target.value || '0';
-        setAmount(value)
-    }
-    const handleClickIncrease = (e) => {
-        const value = amount * 1 + 1;
-        setAmount(value);
-    };
-    const handleClickDecrease = (e) => {
-        const value = amount * 1 === 0 ? amount : amount * 1 - 1;
-
-        setAmount(value);
-    };
     return (
         <div className={cx('wrapper')}>
             <table className={cx('table-info-product')}>
@@ -64,15 +38,7 @@ function InfoProduct() {
                         </td>
                         <td className={cx('tac', 'fw6')}>$21</td>
                         <td className={cx('tac')}>
-                            <div className={cx('amount')}>
-                                <button onClick={handleClickDecrease} className={cx('btn-amount')}>
-                                    -
-                                </button>
-                                <input onBlur={handleBlurAmount} onChange={handleChangeAmount} className={cx('ip-amount')} value={amount} />
-                                <button onClick={handleClickIncrease} className={cx('btn-amount')}>
-                                    +
-                                </button>
-                            </div>
+                            <CountNumber number={0} />
                         </td>
                         <td className={cx('tar', 'fw6')}>10</td>
                     </tr>

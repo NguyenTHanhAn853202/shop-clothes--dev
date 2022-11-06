@@ -10,7 +10,7 @@ function Contact() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <HeaderEachPage title={'giới thiệu'} />
+                <HeaderEachPage title={'Liên hệ'} />
             </div>
             <div className={cx('body', { wrap: true })}>
                 <div className={cx('contain-body', { grid:true })}>

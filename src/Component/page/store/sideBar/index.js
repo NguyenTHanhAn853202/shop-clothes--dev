@@ -4,11 +4,37 @@ import { Link, NavLink } from 'react-router-dom';
 import { handleSlug } from '~/handleSlug';
 import { useEffect } from 'react';
 import productImg from '~/media/image/product/product-1.jpg';
-import Product from './product';
+import Product from '~/Component/product';
 const cx = classNames.bind(styles);
 
 const typeofProduct = ['Quần áo', 'Túi xách & Balo', 'Giày dép', 'Phụ kiện & Trang sức'];
-const product = [1, 2, 3, 4, 5];
+const product = [
+    {
+        src: productImg,
+        nameProduct: 'Bộ áo thun và áo khoát kết hợp váy điệu đà',
+        price: 20,
+    },
+    {
+        src: productImg,
+        nameProduct: 'Bộ áo thun và áo khoát kết hợp váy điệu đà',
+        price: 20,
+    },
+    {
+        src: productImg,
+        nameProduct: 'Bộ áo thun và áo khoát kết hợp váy điệu đà',
+        price: 20,
+    },
+    {
+        src: productImg,
+        nameProduct: 'Bộ áo thun và áo khoát kết hợp váy điệu đà',
+        price: 20,
+    },
+    {
+        src: productImg,
+        nameProduct: 'Bộ áo thun và áo khoát kết hợp váy điệu đà',
+        price: 20,
+    },
+];
 function SideBar() {
     return (
         <div className={cx('wrapper')}>
@@ -29,16 +55,10 @@ function SideBar() {
                 })}
             </div>
             <div className={cx('product')}>
-                <h2 className={cx('title-product')}>SẢN PHẨM</h2>
-                {product.map((item, index) => (
                     <Product
-                        key={index}
                         // classNames={cx('item-product')}
-                        src={productImg}
-                        nameProduct="Bộ áo thun và áo khoát kết hợp váy điệu đà"
-                        price={32}
+                        data={product}
                     />
-                ))}
             </div>
         </div>
     );

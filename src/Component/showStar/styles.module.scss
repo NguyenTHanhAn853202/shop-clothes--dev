@@ -1,0 +1,12 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+}
+.star{
+    font-size: 1.6rem;
+}
+
+.deactive,
+.active {
+    color: rgb(230, 151, 48);
+}

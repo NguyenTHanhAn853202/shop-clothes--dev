@@ -1,0 +1,41 @@
+.header{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    border:1px solid #999;
+    padding: 20px 30px;
+    background-color:rgb(212, 206, 206);
+}
+.current-star{
+    font-size: 3rem;
+    font-weight: 500;
+    span{
+        font-size: 1.8rem;
+    }
+}
+.average-star{
+    width: 120px;
+}
+
+
+
+.btn-show-feedback{
+    flex: 1;
+    .btn-general{
+        width: auto;
+        border-radius:0;
+        margin: 5px;
+        background-color:rgb(240, 239, 239);
+        border: 1px solid #999;
+        color: var(--primary);
+        height: 40px;
+        font-size: 1.5rem;
+        transition:0.5s ease;
+        padding: 5px 15px;
+    }
+    .activeBtnShow{
+        background-color:var(--primary);
+        color: var(--background)
+    }
+}
+

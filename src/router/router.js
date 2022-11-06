@@ -5,11 +5,8 @@ import Brand from '~/Component/page/brand';
 import Collection from '~/Component/page/collection';
 import Store from '~/Component/page/store';
 import Cart from '~/Component/page/cart';
+import Product from '~/Component/page/product';
 const layout = [
-    // {
-    //     element: Home,
-    //     index: true,
-    // },
     {
         element: Introduct,
         path: 'gioi-thieu',
@@ -39,6 +36,11 @@ const layout = [
         element: undefined,
         path: 'tin-tuc-su-kien',
     },
+    {
+        element:Product,
+        path: 'san-pham',
+        slug:true,
+    }
 ];
 
 export default layout;

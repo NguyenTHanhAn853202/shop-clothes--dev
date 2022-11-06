@@ -1,0 +1,16 @@
+.amount{
+    display: flex;
+    justify-content:center;
+}
+.ip-amount {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgb(214, 212, 212);
+    font-size: 1.4rem;
+    text-align: center;
+}
+.btn-amount{
+    width: 25px;
+    cursor: pointer;
+    border:1px solid rgb(214, 212, 212);
+}

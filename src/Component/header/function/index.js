@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import { Fragment } from 'react';
 import Render from '~/renderTippy';
-import {handleSlug} from '~/handleSlug'
+import { handleSlug } from '~/handleSlug';
 
 const cx = classNames.bind(styles);
 function Func() {
@@ -22,18 +22,19 @@ function Func() {
                     ? {
                           interactive: true,
                           offset: [-10, 15],
-                            // visible:true,
+                        //   visible: true,
                           placement: 'bottom-start',
                           render: (attrs) => (
                               <Render attrs={attrs}>
                                   <div className={cx('more')}>
                                       {more.map((item, index) => {
-                                        const slug = handleSlug(item.name);
-                                        return (
-                                          <Link to={`cua-hang/${slug}`} key={index} className={cx('more-name')}>
-                                              {item.name}
-                                          </Link>
-                                      )})}
+                                          const slug = handleSlug(item.name);
+                                          return (
+                                              <Link to={`cua-hang/${slug}`} key={index} className={cx('more-name')}>
+                                                  {item.name}
+                                              </Link>
+                                          );
+                                      })}
                                   </div>
                               </Render>
                           ),

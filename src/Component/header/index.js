@@ -11,27 +11,24 @@ function Header() {
     const [scroll, setScroll] = useState();
     const [resetAnimate, setResetAnimate] = useState(true);
     const headerRef = useRef();
-    const imgLogoRef = useRef();
+
     useEffect(() => {
         const handleScroll = (e) => {
             const scrollYs = window.scrollY;
-            const law = [{ transform: 'translateY(-100px)' }, { transform: 'translateY(0)' }];
+            const law = [{ transform: 'translateY(-120px)' }, { transform: 'translateY(0)' }];
             const time = {
                 duration: 1000,
                 iterations: 1,
             };
-            if (scrollYs <= 40) {
+            if (scrollYs <= 70) {
                 Object.assign(headerRef.current.style, {
-                    position: 'relative',
-                    top: '0',
                     height: '100px',
                 });
                 setResetAnimate(true);
-            } else if (scrollYs >= 155) {
+            } else if (scrollYs >= 150) {
                 Object.assign(headerRef.current.style, {
-                    position: 'fixed',
-                    top: '0',
                     height: '70px',
+                    top: '0',
                 });
                 if (resetAnimate) {
                     headerRef.current.animate(law, time);
@@ -51,7 +48,7 @@ function Header() {
             <div className={cx('contain', { grid: true })}>
                 <div className={cx('logo')}>
                     <Link to="/">
-                        <img ref={imgLogoRef} className={cx('img-logo')} src={logo} alt="logo" />
+                        <img  className={cx('img-logo')} src={logo} alt="logo" />
                     </Link>
                 </div>
                 <div className={cx('function')}>

@@ -7,29 +7,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { handleSlug } from '~/handleSlug';
 
-
 const cx = classNames.bind(styles);
 const data = [
     {
-        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà',
+        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà 1',
         img: 'http://mauweb.monamedia.net/pleatskora/wp-content/uploads/2019/04/3-2-600x750.jpg',
         money: 1000,
         amount: 2,
     },
     {
-        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà',
+        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà 2',
         img: 'http://mauweb.monamedia.net/pleatskora/wp-content/uploads/2019/04/3-2-600x750.jpg',
         money: 1000,
         amount: 2,
     },
     {
-        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà',
+        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà 3',
         img: 'http://mauweb.monamedia.net/pleatskora/wp-content/uploads/2019/04/3-2-600x750.jpg',
         money: 1000,
         amount: 2,
     },
     {
-        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà',
+        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà 4',
         img: 'http://mauweb.monamedia.net/pleatskora/wp-content/uploads/2019/04/3-2-600x750.jpg',
         money: 1000,
         amount: 2,
