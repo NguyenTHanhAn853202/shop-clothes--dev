@@ -9,7 +9,7 @@ import Feedback from './feedback';
 const cx = classNames.bind(styles);
 
 function Information() {
-    const [part, setPart] = useState(3);
+    const [part, setPart] = useState(1);
     const [Item, setItem] = useState(<Description />);
     const handleClick = (e) => {
         let index = e.target.getAttribute('index');

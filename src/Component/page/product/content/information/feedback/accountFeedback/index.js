@@ -5,6 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import Button from '~/button';
+import video from './download.mp4'
 
 const cx = classNames.bind(styles);
 
@@ -32,9 +33,22 @@ function AccountFeedback() {
                 <p className={cx('content-feedback')}>
                     Sản phẩm tốt giao hàng nhanh Chưa đá chưa biết về chất lượngggg
                 </p>
-                <div className={cx('media')}></div>
+                <div className={cx('media')}>
+                    <div className={cx('video-media')}>
+                        <video >
+                            <source src={video} type="video/mp4" />
+                            <source src="./download.mp4" type="video/ogg" />
+                        </video>
+                    </div>
+                    <div className={cx('img-media')}>
+                        <img
+                            src={'https://toigingiuvedep.vn/wp-content/uploads/2022/04/anh-meme-cheems.jpg'}
+                            alt={'anh'}
+                        />
+                    </div>
+                </div>
                 <div className={cx('others-feature')}>
-                    <Button onClick={handleClickActive} classNames={cx('btn-heart',{loved:isheart})}>
+                    <Button onClick={handleClickActive} classNames={cx('btn-heart', { loved: isheart })}>
                         <FontAwesomeIcon icon={faHeart} />
                     </Button>
                     <Button classNames={cx('btn-report')}>Báo cáo</Button>

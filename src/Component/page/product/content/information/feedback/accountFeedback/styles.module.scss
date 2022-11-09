@@ -15,52 +15,73 @@
     }
 }
 
-.feedback{
-    flex:1;
-    padding-left:10px ;
+.feedback {
+    flex: 1;
+    padding-left: 10px;
 }
 
-.name-account{
-    font-size: 1.6rem ;
+.name-account {
+    font-size: 1.6rem;
     font-weight: 500;
 }
-.star{
+.star {
     font-size: 1.2rem;
 }
-.date-type{
+.date-type {
     font-size: 1.2rem;
     font-weight: 500;
     opacity: 0.6;
     padding: 10px 0;
 }
 
-.content-feedback{
+.content-feedback {
     font-size: 1.5rem;
-    padding-bottom: 10px ;
+    padding-bottom: 10px;
 }
 
-.others-feature{
+// media
+
+.media {
+    display: flex;
+}
+.video-media {
+    padding: 5px;
+    video {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+    }
+}
+.img-media {
+    padding: 5px;
+    img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+    }
+}
+
+.others-feature {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .btn-heart{
+    .btn-heart {
         width: auto;
         height: 20px;
         padding: 0px;
         font-size: 2rem;
-        background-color:transparent;
+        background-color: transparent;
         color: #999;
     }
-    .btn-report{
+    .btn-report {
         width: auto;
         height: auto;
         border-radius: 0;
         border: 1px solid var(--border-color);
-        color:var(--primary);
+        color: var(--primary);
         background-color: rgb(221, 217, 217);
     }
-    .loved{
+    .loved {
         color: rgb(224, 48, 92);
     }
 }
-
