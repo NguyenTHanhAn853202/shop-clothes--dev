@@ -8,7 +8,6 @@ import { Outlet } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
-   
     return (
         <div className={cx('wrapper-contain')}>
             <div className={cx('begin')}>
@@ -17,7 +16,7 @@ function DefaultLayout({ children }) {
             <div className={cx('wrapper')}>
                 <div className={cx('contain')}>
                     <Header />
-                    <div>{<Outlet />}</div>
+                    {children}
                     <Footer />
                 </div>
             </div>

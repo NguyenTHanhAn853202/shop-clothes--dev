@@ -7,6 +7,7 @@ import Content from './content';
 const cx = classNames.bind(styles);
 
 function Store() {
+    
     return (
         <StoreProvider>
             <div className={cx('wrapper', { wrap: true })}>

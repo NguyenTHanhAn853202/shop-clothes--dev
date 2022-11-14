@@ -5,6 +5,7 @@ import ContainFeedback from './contain';
 const cx = classNames.bind(styles);
 
 function Feedback() {
+    
     return (
         <div className={cx('wrapper', { wrap: true })}>
             <div className={cx('contain', { grid: true })}>

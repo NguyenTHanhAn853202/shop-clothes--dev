@@ -1,0 +1,39 @@
+.contain{
+    display: flex;
+    align-items: center;
+}
+
+.primary-background{
+    width:60%;
+}
+
+.logo-img{
+    padding-bottom: 30px;
+    display: flex;
+    justify-content:center;
+    img{
+        width: 50%;
+        object-fit: cover;
+    }
+}
+
+.wrapper{
+    padding: 50px 0;
+}
+
+.title{
+    padding-top:30px;
+}
+.main-title{
+    font-weight: 500;
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+
+.form-background{
+    flex: 1;
+}
+.contain-form{
+    width: 80%;
+}

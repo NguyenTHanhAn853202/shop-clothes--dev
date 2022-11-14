@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
-function Button({ children, classNames, ishover, to, href, w100 = false, ...props }) {
+function Button({ children, classNames, ishover, to, href, type = 'button', w100 = false, ...props }) {
     let Button = 'button';
     const _props = {};
     if (to) {
@@ -14,7 +14,7 @@ function Button({ children, classNames, ishover, to, href, w100 = false, ...prop
         _props.href = href;
     }
     return (
-        <Button {...props} {..._props} className={cx('btn', { [classNames]: classNames, w100, ishover })}>
+        <Button type={type} {...props} {..._props} className={cx('btn', { [classNames]: classNames, w100, ishover })}>
             {children}
         </Button>
     );

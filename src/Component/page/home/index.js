@@ -1,5 +1,6 @@
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
+
 import Begin from './begin';
 import Introduction from './introduction';
 import NewProduct from './newProduct';

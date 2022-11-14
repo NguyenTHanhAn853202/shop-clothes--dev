@@ -6,6 +6,7 @@ import Pay from './pay';
 const cx = classNames.bind(styles);
 
 function Cart() {
+    
     return (
         <div className={cx('wrapper', { wrap: true })}>
             <div className={cx('contain', { grid: true })}>

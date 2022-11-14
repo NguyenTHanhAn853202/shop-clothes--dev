@@ -7,6 +7,7 @@ import { faPaypal } from '@fortawesome/free-brands-svg-icons';
 const cx = classNames.bind(styles);
 
 function Benefit() {
+    
     return (
         <div className={cx('wrapper', { wrap: true })}>
             <div className={cx('contain', { grid: true })}>

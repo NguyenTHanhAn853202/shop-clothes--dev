@@ -10,6 +10,7 @@ import Products from './product';
 const cx = classNames.bind(styles);
 
 function NewProduct() {
+    
     const numberRef = func.length;
     const ref = [];
     const [outerWidth, setOuterWidth] = useState();

@@ -1,35 +1,49 @@
-.wrapper{
+.wrapper {
     position: relative;
     top: 0;
-    z-index: 999 ;
+    z-index: 999;
     width: 100%;
     height: 40px;
-    background-color:var(--primary);
-    z-index:999999;
+    background-color: var(--primary);
+    z-index: 999999;
 }
 
-.contain{
+.contain {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
 }
 
-.sale, .login{
+.sale,
+.login,
+.register {
     color: #fff;
     font-weight: 400;
     opacity: 0.8;
-    font-size:1.2rem;
+    font-size: 1.2rem;
 }
-.sale{
-    cursor:default;
+.sale {
+    cursor: default;
 }
 
-
-.login{
+.login,
+.register {
     cursor: pointer;
     transition: 0.7s ease;
-    &:hover{
+    &:hover {
         opacity: 1;
         text-decoration: underline;
+    }
+}
+.contain-from {
+    display: flex;
+    align-items: center;
+    span {
+        padding: 0 7px;
+        color: #fff;
+        opacity: 0.8;
+        font-size: 1.2rem;
+        user-select: none;
+        line-height: 1.2rem;
     }
 }

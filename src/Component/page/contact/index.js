@@ -7,6 +7,7 @@ import InfoContact from './infoContact';
 const cx = classNames.bind(styles);
 
 function Contact() {
+    
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>

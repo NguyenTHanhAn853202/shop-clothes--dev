@@ -7,6 +7,7 @@ import logoImg from '~/media/image/logo/logo-02.png';
 const cx = classNames.bind(styles);
 
 function Introduction() {
+    
     return (
         <div className={cx('wrapper', { wrap: true })}>
             <div className={cx('contain', { grid: true })}>

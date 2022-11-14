@@ -26,6 +26,7 @@ function ContainFeedback() {
         const _width = window.outerWidth;
         wrapperRef.current.style.width = (((_width * 50) / 100)) + 'px';
     }, []);
+    
     useEffect(() => {
         const handleWidth = () => {
             const _width = window.outerWidth;

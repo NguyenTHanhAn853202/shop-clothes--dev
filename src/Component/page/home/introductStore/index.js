@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function IntroductStore() {
+    
     return (
         <div className={cx('wrapper')}>
             <div className={cx('new-inform')}>

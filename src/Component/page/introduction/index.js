@@ -12,6 +12,7 @@ import { faClipboard } from '@fortawesome/free-regular-svg-icons';
 const cx = classNames.bind(styles);
 
 function Introduct() {
+    
     return (
         <div className={cx('wrapper')}>
             <HeaderEachPage title={'giới thiệu'} />

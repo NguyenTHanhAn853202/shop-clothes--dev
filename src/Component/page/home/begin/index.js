@@ -8,6 +8,7 @@ import modelImg from '~/media/image/model/nguoi-mau-01.png';
 const cx = classNames.bind(styles);
 
 function Begin() {
+    
     return (
         <div className={cx('wrapper')}>
             <div className={cx('img-model')}>

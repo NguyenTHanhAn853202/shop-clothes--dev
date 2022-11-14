@@ -21,7 +21,7 @@ export const functions = [
         icon: false,
     },
     {
-        name: 'Tin tức &Sự kiện',
+        name: 'Tin tức & Sự kiện',
         path: '/tin-tuc-su-kien',
         more: false,
         icon: false,

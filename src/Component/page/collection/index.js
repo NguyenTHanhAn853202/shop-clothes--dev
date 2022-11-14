@@ -6,6 +6,7 @@ import StoreImage from '~/Component/storeImage';
 const cx = classNames.bind(styles);
 
 function Collection() {
+    
     return (
         <div className={cx('wrapper')}>
             <HeaderEachPage title="BỘ sưu tập" />
