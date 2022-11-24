@@ -16,28 +16,28 @@
     margin-bottom: 20px;
     &:focus-within {
         border-color: transparent;
-        box-shadow: inset 0 0 0 1px #fff, 0 0 0 1px #fff, 1px -1px 5px #1beabd, -1px 1px 5px #10abff;
+        box-shadow: inset 0 0 0 1px #fff, 0 0 0 1px #fff, 1px -1px 5px #999, -1px 1px 5px #333;
     }
 }
 .gold {
     &:focus-within {
         border-color: transparent;
-        box-shadow:  0 0 0 1px #eaba1b, 0 0 0 1px #eaba1b
+        box-shadow: 0 0 0 1px #eaba1b, 0 0 0 1px #eaba1b;
     }
 }
-.w100{
+.w100 {
     width: 100%;
-    height:37px;
+    height: 37px;
 }
-.w500{
+.w500 {
     width: 50%;
-    height:37px;
+    height: 37px;
 }
-.w30{
+.w30 {
     width: 30%;
-    height:37px;
+    height: 37px;
 }
-.w70{
+.w70 {
     width: 70%;
     height: 37px;
 }

@@ -3,35 +3,72 @@ import classNames from 'classnames/bind';
 import Button from '~/button';
 import Input from '~/Input';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const cx = classNames.bind(styles);
 
-function FormLogin({ title, placeholder = '', typeBtn, type, titleAccount, titleButton, titlePassword, checkbox }) {
+function FormLogin({
+    title,
+    placeholder = '',
+    typeBtn,
+    type,
+    titleAccount,
+    titleButton,
+    children,
+    checkbox,
+    valueRegister = [],
+    ...props
+}) {
     const [check, setCheck] = useState();
+    const [checkEmail, setCheckEmail] = useState(true);
+    const EmailRef = useRef();
+    const [valuePass, valueSamePass] = valueRegister;
+    const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     useEffect(() => {
-        console.log(title);
-        if ((title === 'ĐĂNG NHẬP')) {
+        if (title === 'ĐĂNG NHẬP') {
             setCheck(false);
         } else {
             setCheck(true);
         }
     }, [title]);
+    //  hanlde login and register
+    const hanldeOnblurEmailCheck = (e) => {
+        if (filter.test(e.target.value.trim())) {
+            setCheckEmail(true);
+        } else {
+            setCheckEmail(false);
+        }
+    };
+    const handleOnkeyDownCheckEmail = (e) => {
+        if (filter.test(e.target.value.trim())) {
+            setCheckEmail(true);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        if (!(valueSamePass === valuePass && valueSamePass && checkEmail)) {
+            e.preventDefault();
+            alert('Please, entering correct information');
+        } else {
+            // submit
+        }
+    };
     return (
-        <form className={cx('wrapper')}>
+        <form className={cx('wrapper')} onSubmit={handleSubmit}>
             <div className={cx('content')}>
                 <h3 className={cx('title')}>{title}</h3>
-                <Input title={titleAccount} classNames={cx('ip-form')} placeholder={placeholder} type={type} />
-                <Input title={titlePassword} classNames={cx('ip-form')} placeholder={placeholder} type={type} />
-                {checkbox && (
-                    <div>
-                        <input id="check-box-form-login" className={cx('checbox')} type="checkbox" />
-                        <label for="check-box-form-login" className={cx('title-checkbox')}>
-                            Ghi nhớ mật khẩu
-                        </label>
-                    </div>
-                )}
+                <Input
+                    ref={EmailRef}
+                    onKeyDown={handleOnkeyDownCheckEmail}
+                    onBlur={hanldeOnblurEmailCheck}
+                    title={titleAccount}
+                    classNames={cx('ip-form', { ['error-border']: !checkEmail })}
+                    placeholder={placeholder}
+                    type={type}
+                />
+                {!checkEmail && <p className={'title-error'}>Email không hợp lệ</p>}
+                {children}
                 <Button type={typeBtn} ishover classNames={cx('btn')}>
                     {titleButton}
                 </Button>

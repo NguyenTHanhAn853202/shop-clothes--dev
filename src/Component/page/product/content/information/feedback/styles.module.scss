@@ -27,6 +27,8 @@
 
 
 .btn-show-feedback{
+    display: flex;
+    flex-wrap: wrap;
     flex: 1;
     .btn-general{
         width: auto;

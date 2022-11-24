@@ -20,15 +20,18 @@ function Header() {
                 duration: 1000,
                 iterations: 1,
             };
-            if (scrollYs <= 70) {
+            if (scrollYs <= 100) {
                 Object.assign(headerRef.current.style, {
+                    position: 'absolute',
                     height: '100px',
+                    top: '0',
                 });
                 setResetAnimate(true);
             } else if (scrollYs >= 150) {
                 Object.assign(headerRef.current.style, {
                     height: '70px',
-                    top: '0',
+                    top:'0',
+                    position:'fixed',  
                 });
                 if (resetAnimate) {
                     headerRef.current.animate(law, time);
@@ -48,7 +51,7 @@ function Header() {
             <div className={cx('contain', { grid: true })}>
                 <div className={cx('logo')}>
                     <Link to="/">
-                        <img  className={cx('img-logo')} src={logo} alt="logo" />
+                        <img className={cx('img-logo')} src={logo} alt="logo" />
                     </Link>
                 </div>
                 <div className={cx('function')}>

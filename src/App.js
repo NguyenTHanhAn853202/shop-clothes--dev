@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import DefaultLayout from '~/defaultLayout';
 import FormAccount from '~/formAccount';
-import { layoutPublic, layoutPrivate , layoutAccount } from './router/router';
+import { layoutPublic, layoutPrivate, layoutAccount } from './router/router';
 import { Fragment } from 'react';
 import LazyCom from './utils/lazyCom';
 import ScrollToTop from './utils/scrollToTop';
-import Protect from '~/protect'
+import Protect from '~/protect';
 function App() {
     return (
         <ScrollToTop>
@@ -20,11 +20,11 @@ function App() {
                                 </Route>
                             );
                         })}
-                        <Route path='/account' element={<FormAccount />}>
-                            {layoutAccount.map((item) => {
+                        <Route path="/account" element={<FormAccount />}>
+                            {layoutAccount.map((item, index) => {
                                 const Layout = item.element || Fragment;
                                 return (
-                                    <Route key={item} path={item.path} element={<Layout />}>
+                                    <Route key={index} path={item.path} element={<Layout />}>
                                         {item.slug && <Route path=":slug" element={<Layout />} />}
                                     </Route>
                                 );
@@ -33,8 +33,8 @@ function App() {
                         {layoutPrivate.map((item) => {
                             const Layout = item.element || Fragment;
                             return (
-                                <Route element={<Protect />}>
-                                    <Route key={item} path={item.path} element={<Layout />}>
+                                <Route key={item} element={<Protect />}>
+                                    <Route path={item.path} element={<Layout />}>
                                         {item.slug && <Route path=":slug" element={<Layout />} />}
                                     </Route>
                                 </Route>
