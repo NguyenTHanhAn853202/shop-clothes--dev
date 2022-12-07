@@ -2,10 +2,15 @@ import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import Button from '~/button';
 import Input from '~/Input';
+import { login } from '~/api-server/loginSevice';
 import { Link } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Context } from '~/GlobalContext';
+import { LOGIN } from '~/GlobalContext/key';
+import { Navigate,useNavigate  } from 'react-router-dom';
+
 const cx = classNames.bind(styles);
 
 function FormLogin({
@@ -17,13 +22,15 @@ function FormLogin({
     titleButton,
     children,
     checkbox,
-    valueRegister = [],
+    password,
     ...props
 }) {
+    const [states, dispatch] = useContext(Context);
     const [check, setCheck] = useState();
     const [checkEmail, setCheckEmail] = useState(true);
-    const EmailRef = useRef();
-    const [valuePass, valueSamePass] = valueRegister;
+    const [email, setEmail] = useState('');
+    const [checkLogin, setCheckLogin] = useState(false);
+    const navigate = useNavigate()
     const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     useEffect(() => {
         if (title === 'ĐĂNG NHẬP') {
@@ -33,6 +40,7 @@ function FormLogin({
         }
     }, [title]);
     //  hanlde login and register
+    console.log(password);
     const hanldeOnblurEmailCheck = (e) => {
         if (filter.test(e.target.value.trim())) {
             setCheckEmail(true);
@@ -47,19 +55,33 @@ function FormLogin({
     };
 
     const handleSubmit = (e) => {
-        if (!(valueSamePass === valuePass && valueSamePass && checkEmail)) {
-            e.preventDefault();
-            alert('Please, entering correct information');
-        } else {
-            // submit
-        }
+        (async function () {
+            try {
+                const data = await login(email, password);
+                setCheckLogin(data.check);
+                if (data.check) {
+                    dispatch({
+                        key: LOGIN,
+                        value: data.check,
+                    });
+                    navigate('/', { replace: true })
+                    alert('Login sucessfully')
+                } else {
+                   alert('error: login failed');
+                }
+            } catch (error) {}
+        })();
+        e.preventDefault();
     };
     return (
         <form className={cx('wrapper')} onSubmit={handleSubmit}>
             <div className={cx('content')}>
                 <h3 className={cx('title')}>{title}</h3>
                 <Input
-                    ref={EmailRef}
+                    value={email}
+                    onChange={(e) => {
+                        setEmail(e.target.value);
+                    }}
                     onKeyDown={handleOnkeyDownCheckEmail}
                     onBlur={hanldeOnblurEmailCheck}
                     title={titleAccount}

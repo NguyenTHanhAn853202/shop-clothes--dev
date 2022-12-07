@@ -3,7 +3,9 @@
     flex-wrap: wrap;
 }
 .contain-card{
+    position:relative;
     width: 25%;
+    height: 350px;
     // height: 350px;
     padding: 10px 5px;
     &:hover{

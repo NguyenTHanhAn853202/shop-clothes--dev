@@ -1,8 +1,11 @@
 import { Outlet , Navigate } from "react-router-dom";
+import {useContext} from 'react'
+import {Context} from '~/GlobalContext/index'
 
 function Protect() {
-    const issue = true
-    return (issue ? <Outlet /> : <Navigate to='/'/>);
+    const context = useContext(Context)
+    const [state,dispatch] = context
+    return (state.login ? <Outlet /> : <Navigate to='/account/login'/>);
 }
 
 export default Protect;

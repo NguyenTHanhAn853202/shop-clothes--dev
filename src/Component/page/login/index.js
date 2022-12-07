@@ -2,10 +2,12 @@ import FormLogin from '~/formLogin';
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import Input from '~/Input';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 function Login() {
+    const [password, setPassword] = useState('');
     return (
         <FormLogin
             title="ĐĂNG NHẬP"
@@ -13,8 +15,18 @@ function Login() {
             titleButton="Đăng nhập"
             typeBtn="submit"
             checkbox={true}
+            password={password}
         >
-            <Input title={"Mật khẩu *"} classNames={cx('ip-form')} placeholder={""} type={"text"} />
+            <Input
+                value={password}
+                onChange={(e) => {
+                    setPassword(e.target.value);
+                }}
+                title={'Mật khẩu *'}
+                classNames={cx('ip-form')}
+                placeholder={''}
+                type={'text'}
+            />
             <div>
                 <input id="check-box-form-login" className={cx('checbox')} type="checkbox" />
                 <label htmlFor="check-box-form-login" className={cx('title-checkbox')}>

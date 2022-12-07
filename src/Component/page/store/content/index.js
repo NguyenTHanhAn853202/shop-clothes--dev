@@ -2,16 +2,26 @@ import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import Card from '~/card';
 import productImg from '~/media/image/product/product-1.jpg';
+import * as productServer from '~/api-server/productServer';
+import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
 const products = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 function Content() {
+    const [path, setPath] = useState('');
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        (async function () {
+            const data = await productServer.product();
+            setData(data);
+        })();
+    }, [path]);
     return (
         <div className={cx('wrapper')}>
-            {products.map((item, index) => {
+            {data.map((item, index) => {
                 return (
                     <div key={index} className={cx('contain-card')}>
-                        <Card src={productImg} alt={''} name="Áo quần bộ cao cấp năng động" cost={39} />
+                        <Card src={item.imageDefualt} alt={item.name} name={item.name} cost={item.costDefualt} />
                     </div>
                 );
             })}

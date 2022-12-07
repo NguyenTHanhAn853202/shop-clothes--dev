@@ -5,6 +5,7 @@ import Begin from '~/begin';
 import classNames from 'classnames/bind';
 import { Outlet } from 'react-router-dom';
 
+
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {

@@ -3,16 +3,18 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-
+import GlobalContext from '~/GlobalContext';
 import GlobalStyles from '~/globalStyles/index';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <GlobalStyles>
-                <App />
-            </GlobalStyles>
-        </BrowserRouter>
+        <GlobalContext>
+            <BrowserRouter>
+                <GlobalStyles>
+                    <App />
+                </GlobalStyles>
+            </BrowserRouter>
+        </GlobalContext>
     </React.StrictMode>,
 );
 
