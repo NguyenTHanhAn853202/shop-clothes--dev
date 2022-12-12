@@ -2,14 +2,14 @@ import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import Button from '~/button';
 import Input from '~/Input';
-import { login } from '~/api-server/loginSevice';
+import { login, create } from '~/api-server/loginService';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef, useContext } from 'react';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Context } from '~/GlobalContext';
 import { LOGIN } from '~/GlobalContext/key';
-import { Navigate,useNavigate  } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -23,6 +23,7 @@ function FormLogin({
     children,
     checkbox,
     password,
+    valueRegister,
     ...props
 }) {
     const [states, dispatch] = useContext(Context);
@@ -30,7 +31,8 @@ function FormLogin({
     const [checkEmail, setCheckEmail] = useState(true);
     const [email, setEmail] = useState('');
     const [checkLogin, setCheckLogin] = useState(false);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    
     const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     useEffect(() => {
         if (title === 'ĐĂNG NHẬP') {
@@ -40,7 +42,6 @@ function FormLogin({
         }
     }, [title]);
     //  hanlde login and register
-    console.log(password);
     const hanldeOnblurEmailCheck = (e) => {
         if (filter.test(e.target.value.trim())) {
             setCheckEmail(true);
@@ -55,22 +56,39 @@ function FormLogin({
     };
 
     const handleSubmit = (e) => {
-        (async function () {
-            try {
-                const data = await login(email, password);
-                setCheckLogin(data.check);
-                if (data.check) {
-                    dispatch({
-                        key: LOGIN,
-                        value: data.check,
-                    });
-                    navigate('/', { replace: true })
-                    alert('Login sucessfully')
-                } else {
-                   alert('error: login failed');
+        if (title === 'ĐĂNG NHẬP') {
+            (async function () {
+                try {
+                    const data = await login(email, password);
+
+                    setCheckLogin(data.check);
+                    if (data.check) {
+                        localStorage.login = data.check;
+                        localStorage.userName = email;
+                        localStorage.accessToken = data.accessToken;
+                        localStorage.refreshToken = data.refreshToken;
+
+                        console.log(localStorage.refreshToken, localStorage.accessToken);
+                        dispatch({
+                            key: LOGIN,
+                            value: data.check,
+                        });
+                        navigate('/', { replace: true });
+                        alert('Login sucessfully');
+                    } else {
+                        alert('error: login failed');
+                    }
+                } catch (error) {}
+            })();
+        } else {
+            (async function () {
+                const [passwordRegister, samePasswordRegister] = valueRegister;
+                if (passwordRegister === samePasswordRegister) {
+                    const data = await create(email, passwordRegister);
+                    console.log(data);
                 }
-            } catch (error) {}
-        })();
+            })();
+        }
         e.preventDefault();
     };
     return (

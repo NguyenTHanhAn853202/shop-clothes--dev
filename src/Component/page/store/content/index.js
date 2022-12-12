@@ -14,6 +14,7 @@ function Content() {
         (async function () {
             const data = await productServer.product();
             setData(data);
+            // console.log(data);
         })();
     }, [path]);
     return (
@@ -21,7 +22,13 @@ function Content() {
             {data.map((item, index) => {
                 return (
                     <div key={index} className={cx('contain-card')}>
-                        <Card src={item.imageDefualt} alt={item.name} name={item.name} cost={item.costDefualt} />
+                        <Card
+                            href={`/san-pham/${item.slug}`}
+                            src={item.imageDefualt}
+                            alt={item.name}
+                            name={item.name}
+                            cost={item.costDefualt}
+                        />
                     </div>
                 );
             })}

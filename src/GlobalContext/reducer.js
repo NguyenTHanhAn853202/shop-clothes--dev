@@ -1,22 +1,22 @@
-import { LOGIN } from "./key"
+import { LOGIN } from './key';
 
+export const context = {
+    login: false,
+};
 
-export const context ={
-    login:false,
-}
-
-const reducer = (state , action) => {
-    const {key, value} = action
+const reducer = (state, action) => {
+    const { key, value } = action;
 
     switch (key) {
         case LOGIN:
+            const newValue = value === 'false' ? false : value;
             return {
                 ...state,
-                login: value,
-            }
+                login: newValue,
+            };
         default:
             break;
     }
-}
+};
 
-export default reducer
+export default reducer;

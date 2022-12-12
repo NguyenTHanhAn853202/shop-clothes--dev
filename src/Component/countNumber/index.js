@@ -1,9 +1,10 @@
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { useEffect } from 'react';
 const cx = classNames.bind(styles);
 
-function CountNumber({ number }) {
+function CountNumber({ number, setNumber }) {
     const [amount, setAmount] = useState(number);
     const handleChangeAmount = (e) => {
         const value = e.target.value;
@@ -29,6 +30,11 @@ function CountNumber({ number }) {
 
         setAmount(value);
     };
+    useEffect(() => {
+        if (setNumber) {
+            setNumber(amount);
+        }
+    }, [amount]);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('amount')}>

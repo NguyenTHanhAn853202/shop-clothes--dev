@@ -6,7 +6,15 @@ import { Fragment } from 'react';
 import LazyCom from './utils/lazyCom';
 import ScrollToTop from './utils/scrollToTop';
 import Protect from '~/protect';
+import { Context } from './GlobalContext';
+import { LOGIN } from './GlobalContext/key';
+import { useEffect, useContext } from 'react';
+
 function App() {
+    const [states, dispatch] = useContext(Context);
+    useEffect(() => {
+        dispatch({ key: LOGIN, value: localStorage.login });
+    }, []);
     return (
         <ScrollToTop>
             <DefaultLayout>
