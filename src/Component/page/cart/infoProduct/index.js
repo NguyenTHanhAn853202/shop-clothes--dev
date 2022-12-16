@@ -7,9 +7,15 @@ import { Link } from 'react-router-dom';
 import Button from '~/button';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import CountNumber from '~/Component/countNumber';
+import { useState, useEffect } from 'react';
+
 const cx = classNames.bind(styles);
 
-function InfoProduct() {
+function InfoProduct({ data }) {
+    const [newData, setNewData] = useState([data]);
+    useEffect(() => {
+        setNewData(data);
+    }, [data.join()]);
     return (
         <div className={cx('wrapper')}>
             <table className={cx('table-info-product')}>
@@ -22,26 +28,30 @@ function InfoProduct() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <button className={cx('btn-remove')}>
-                                <FontAwesomeIcon icon={faTimesCircle} />
-                            </button>
-                        </td>
-                        <td className={cx('product-img')}>
-                            <Link className={cx('link-product-img')}>
-                                <img src={productImg} />
-                            </Link>
-                        </td>
-                        <td>
-                            <Link style={{ color: 'var(--primary)' }}> Đầm suông cách điệu sang trọng</Link>
-                        </td>
-                        <td className={cx('tac', 'fw6')}>$21</td>
-                        <td className={cx('tac')}>
-                            <CountNumber number={0} />
-                        </td>
-                        <td className={cx('tar', 'fw6')}>10</td>
-                    </tr>
+                    {newData.map((item, index) => {
+                        return (
+                            <tr key={index}>
+                                <td>
+                                    <button className={cx('btn-remove')}>
+                                        <FontAwesomeIcon icon={faTimesCircle} />
+                                    </button>
+                                </td>
+                                <td className={cx('product-img')}>
+                                    <Link className={cx('link-product-img')}>
+                                        <img src={item.image} />
+                                    </Link>
+                                </td>
+                                <td>
+                                    <Link style={{ color: 'var(--primary)' }}>{item.name}</Link>
+                                </td>
+                                <td className={cx('tac', 'fw6')}>{`$${item.cost}`}</td>
+                                <td className={cx('tac')}>
+                                    <CountNumber number={item.number} />
+                                </td>
+                                <td className={cx('tar', 'fw6')}>{`$${item.number * item.cost}`}</td>
+                            </tr>
+                        );
+                    })}
                     <tr>
                         <td colSpan={6} className={cx('td-btn')}>
                             <div className={cx('contian-btn')}>

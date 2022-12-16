@@ -22,11 +22,11 @@ function Introduct({ data }) {
 
     // handle event
     const addIntoCart = (e) => {
-        // (async function () {
-        //     const data = await add(datas._id, number);
-        //     setDataAddCart(data);
-        // })();
-        // console.log(data, dataAddCart);
+        (async function () {
+            const data = await add(datas._id, number);
+            setDataAddCart(data);
+        })();
+        console.log(data, dataAddCart);
     };
     //
     return (

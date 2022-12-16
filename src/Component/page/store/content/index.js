@@ -6,7 +6,6 @@ import * as productServer from '~/api-server/productServer';
 import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
-const products = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 function Content() {
     const [path, setPath] = useState('');
     const [data, setData] = useState([]);

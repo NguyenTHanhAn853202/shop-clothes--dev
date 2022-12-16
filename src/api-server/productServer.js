@@ -26,4 +26,17 @@ export const oneProduct = async (slug = '') => {
         console.log('error');
     }
 };
+
+export const getProduct = async (idProduct) => {
+    try {
+        const datas = await requests.get('product/get-product', {
+            params: {
+                idProduct, 
+            },
+        });
+        return datas;
+    } catch (error) {
+        console.log(error);
+    }
+};
 // http://localhost:3100/product/get-products
