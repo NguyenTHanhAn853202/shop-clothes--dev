@@ -1,10 +1,15 @@
 .wrapper{
     display: flex;
+    position: relative;
 }
 .img-product{
+    position: relative;
     width: 32%;
     img{
+        position: relative;
         width: 100%;
+        max-height: 80%;
+        display: block;
         object-fit: cover;
     }
 }

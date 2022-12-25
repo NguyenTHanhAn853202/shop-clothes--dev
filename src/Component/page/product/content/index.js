@@ -6,25 +6,32 @@ import Other from './other';
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Context } from '../ConetextProduct';
+import { useContext } from 'react';
 
 import * as productServer from '~/api-server/productServer';
+import { SHOW } from '../ConetextProduct/key';
 
 const cx = classNames.bind(styles);
 
 function Content() {
-    const [data,setData] = useState([])
+    const [data, setData] = useState([]);
     const { slug } = useParams();
+    const [states, dispatch] = useContext(Context);
 
     useEffect(() => {
         (async function () {
             const data = await productServer.oneProduct(slug);
-            setData(data);
+            dispatch({
+                key: SHOW,
+                value: data,
+            });
         })();
     }, [slug]);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('introduct')}>
-                <Introduct data={data} />
+                <Introduct />
             </div>
             <div className={cx('information')}>
                 <Information data={data} />

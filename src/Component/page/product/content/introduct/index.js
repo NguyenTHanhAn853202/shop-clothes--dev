@@ -3,36 +3,38 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import CountNumber from '~/Component/countNumber';
 import Button from '~/button';
-import imgProduct from '~/media/image/product/product-1.jpg';
 import { allLogo as logoShip } from '~/media/image/logoShip';
 import { allLogo as logoBank } from '~/media/image/logoBank';
-import { useState, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { Context as ContextProduct } from '../../ConetextProduct';
+
+import { Context } from '~/GlobalContext';
 // import api
 import { add } from '~/api-server/cartService';
+import { ADD_CART } from '~/GlobalContext/key';
+
 
 const cx = classNames.bind(styles);
 
-function Introduct({ data }) {
-    const [datas, setData] = useState(data.length > 0 ? data[0] : {});
+function Introduct() {
+    const [datas, setData] = useContext(ContextProduct);
     const [number, setNumber] = useState(0);
-    const [dataAddCart, setDataAddCart] = useState();
-    useEffect(() => {
-        setData(data.length > 0 ? data[0] : {});
-    }, [data.length]);
-
+    const [states, dispatch] = useContext(Context);
     // handle event
+
+    const { product } = datas;
+
     const addIntoCart = (e) => {
         (async function () {
-            const data = await add(datas._id, number);
-            setDataAddCart(data);
+            const data = await add(product._id, product.name, product.imageDefualt, product.costDefualt, number, product.slug);
+            dispatch({ key: ADD_CART, value: data });
         })();
-        console.log(data, dataAddCart);
     };
     //
     return (
         <div className={cx('wrapper')}>
             <div className={cx('img-product')}>
-                <img src={datas.imageDefualt} />
+                <img src={product.imageDefualt} />
             </div>
             <div className={cx('main-info')}>
                 <span className={cx('goto')}>
@@ -44,8 +46,8 @@ function Introduct({ data }) {
                         QUẦN ÁO
                     </Link>
                 </span>
-                <h1 className={cx('name-product')}>{datas.name}</h1>
-                <h1 className={cx('price-product')}>{`$${datas.costDefualt}`}</h1>
+                <h1 className={cx('name-product')}>{product.name}</h1>
+                <h1 className={cx('price-product')}>{`$${product.costDefualt}`}</h1>
                 <p className={cx('introduct-product')}>
                     Trích đoạn chuẩn của Lorem Ipsum được sử dụng từ thế kỉ thứ 16 và được tái bản sau đó cho những
                     người quan tâm đến nó. Đoạn 1.10.32 và 1.10.33 trong cuốn “De Finibus Bonorum et Malorum” của Cicero

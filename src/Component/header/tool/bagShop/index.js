@@ -1,83 +1,99 @@
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import Button from '~/button';
-import { useMemo, memo } from 'react';
+import { useMemo, memo, useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
-import { handleSlug } from '~/handleSlug';
+import { faCircleXmark, faFrownOpen } from '@fortawesome/free-regular-svg-icons';
+import { Context } from '~/GlobalContext';
+import { remove } from '~/api-server/cartService';
+import { REMOVE_CART } from '~/GlobalContext/key';
 
 const cx = classNames.bind(styles);
-const data = [
-    {
-        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà 1',
-        img: 'http://mauweb.monamedia.net/pleatskora/wp-content/uploads/2019/04/3-2-600x750.jpg',
-        money: 1000,
-        amount: 2,
-    },
-    {
-        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà 2',
-        img: 'http://mauweb.monamedia.net/pleatskora/wp-content/uploads/2019/04/3-2-600x750.jpg',
-        money: 1000,
-        amount: 2,
-    },
-    {
-        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà 3',
-        img: 'http://mauweb.monamedia.net/pleatskora/wp-content/uploads/2019/04/3-2-600x750.jpg',
-        money: 1000,
-        amount: 2,
-    },
-    {
-        name: 'Bộ áo thun và áo khoát kết hợp váy điệu đà 4',
-        img: 'http://mauweb.monamedia.net/pleatskora/wp-content/uploads/2019/04/3-2-600x750.jpg',
-        money: 1000,
-        amount: 2,
-    },
-];
-function Bag() {
+function Bag({ setAgree, setIsShow, agree }) {
+    const [states, dispatch] = useContext(Context);
+    const { cart } = states;
+    const [idProduct, setIdProduct] = useState('');
+
+    const handleRemoveCart = (e) => {
+        setIsShow(true);
+        setIdProduct(e.currentTarget.id);
+    };
+    useEffect(() => {
+        if (agree) {
+            (async function () {
+                // đưa hàm async vào reducer của globalContext
+                await remove(idProduct);
+                dispatch({ key: REMOVE_CART, value: { idProduct } });
+            })();
+        }
+        setAgree(false);
+    }, [agree]);
+
     const total = useMemo(() => {
-        return data.reduce((money, item) => {
-            return money + item.amount * item.money;
+        return cart.reduce((money, item) => {
+            return money + item.number * item.cost;
         }, 0);
-    }, [data]);
+    }, [cart]);
 
     return (
         <div className={cx('wrapper')}>
-            <ul className={cx('list-product')}>
-                {data.map((item, index) => {
-                    const slug = handleSlug(item.name);
-                    return (
-                        <li key={index} className={cx('product')}>
-                            <div className={cx('contain-product')}>
-                                <Link to={`san-pham/${slug}`} className={cx('link-contain-product')}>
-                                    <img className={cx('img')} src={item.img} alt={item.name} />
-                                    <h4 className={cx('name')}>{item.name}</h4>
-                                </Link>
-                                <button className={cx('btn-delete-product')}>
-                                    <FontAwesomeIcon icon={faCircleXmark} />
-                                </button>
-                            </div>
-                            <div className={cx('info-sell')}>
-                                <span className={cx('amount')}>{`${item.amount} × `}</span>
-                                <span className={cx('price')}>{`$${item.money}`}</span>
-                            </div>
-                        </li>
-                    );
-                })}
-            </ul>
-            <div className={cx('handle')}>
-                <h2 className={cx('sum-money')}>
-                    Tổng phụ: <span className={cx('money-paid')}>{`$${total}`}</span>
-                </h2>
-                <div className={cx('btn')}>
-                    <Button ishover to={'/gio-hang'} classNames={cx('btn-goto-bag')}>
-                        <span>XEM GIỎ HÀNG</span>
-                    </Button>
-                    <Button ishover to={'/thanh-toan'} classNames={cx('btn-paid')}>
-                        <span>THANH TOÁN</span>
-                    </Button>
+            {cart.length > 0 ? (
+                <>
+                    <ul className={cx('list-product')}>
+                        {cart.map((item, index) => {
+                            const slug = item.slugProduct;
+                            return (
+                                <li key={index} className={cx('product')}>
+                                    <div className={cx('contain-product')}>
+                                        <Link to={`san-pham/${slug}`} className={cx('link-contain-product')}>
+                                            <img className={cx('img')} src={item.image} alt={item.name} />
+                                            <h4 className={cx('name')}>{item.name}</h4>
+                                        </Link>
+                                        <button
+                                            id={item.idProduct}
+                                            onClick={handleRemoveCart}
+                                            className={cx('btn-delete-product')}
+                                        >
+                                            <FontAwesomeIcon icon={faCircleXmark} />
+                                        </button>
+                                    </div>
+                                    <div className={cx('info-sell')}>
+                                        <span className={cx('amount')}>{`${item.number} × `}</span>
+                                        <span className={cx('price')}>{`$${item.cost}`}</span>
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                    <div className={cx('handle')}>
+                        <h2 className={cx('sum-money')}>
+                            Tổng phụ: <span className={cx('money-paid')}>{`$${total}`}</span>
+                        </h2>
+                        <div className={cx('btn')}>
+                            <Button ishover to={'/gio-hang'} classNames={cx('btn-goto-bag')}>
+                                <span>XEM GIỎ HÀNG</span>
+                            </Button>
+                            <Button ishover to={'/thanh-toan'} classNames={cx('btn-paid')}>
+                                <span>THANH TOÁN</span>
+                            </Button>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <div className={cx('no-product')}>
+                    <h2 className={cx('no-product__title')}>Không có sản phẩm nào trong giỏ hàng </h2>
+                    <FontAwesomeIcon className={cx('no-product__icon-bag')} icon={faFrownOpen} />
+                    <h4 className={cx('no-product__navigate-store')}>
+                        Đi đến:{' '}
+                        <Link
+                            to={'/cua-hang'}
+                        >
+                            Cửa hàng
+                        </Link>
+                    </h4>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

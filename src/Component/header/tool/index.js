@@ -9,10 +9,13 @@ import Bag from './bagShop';
 import Search from './search';
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Default from '~/announcement/default';
 
 const cx = classNames.bind(styles);
 
 function Tool() {
+    const [isShow, setIsShow] = useState(false);
+    const [agree, setAgree] = useState(false);
     const [isPath, setIsPath] = useState(true);
     const location = useLocation();
     useEffect(() => {
@@ -21,14 +24,13 @@ function Tool() {
             return location.pathname === '/gio-hang' ? false : true;
         });
     }, [location.pathname]);
-
     return (
         <div className={cx('wrapper')}>
             <div>
                 <Tippy
                     offset={[15, 15]}
                     interactive
-                    // visible
+                    // visible={}
                     // hideOnClick={false}
                     placement="bottom-end"
                     interactiveBorder={0}
@@ -36,7 +38,7 @@ function Tool() {
                         <div>
                             {isPath && (
                                 <Render attrs={attrs}>
-                                    <Bag />
+                                    <Bag agree={agree} setAgree={setAgree} setIsShow={setIsShow} />
                                 </Render>
                             )}
                         </div>
@@ -46,6 +48,15 @@ function Tool() {
                         <FontAwesomeIcon icon={faBagShopping} />
                     </Link>
                 </Tippy>
+                {isShow && (
+                    <Default
+                        setAgree={setAgree}
+                        setIsShow={setIsShow}
+                        setIsPath={setIsPath}
+                        title={'Xoa san pham'}
+                        message="ban co chac muon xoa san pham nay khoi gio hang"
+                    />
+                )}
             </div>
             <div>
                 <Tippy

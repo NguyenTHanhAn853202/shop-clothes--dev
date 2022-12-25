@@ -8,16 +8,46 @@ import Button from '~/button';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import CountNumber from '~/Component/countNumber';
 import { useState, useEffect } from 'react';
+import { remove } from '~/api-server/cartService';
+import { REMOVE_CART } from '~/GlobalContext/key';
+import Default from '~/announcement/default';
 
 const cx = classNames.bind(styles);
 
 function InfoProduct({ data }) {
-    const [newData, setNewData] = useState([data]);
+    const [states, dispatch] = data;
+    const cart = states.cart;
+    const [isShow, setIsShow] = useState(false);
+    const [agree, setAgree] = useState(false);
+    const [idProduct, setIdProduct] = useState('');
+
+    // Handle Events
+    // 1. Handle remove Product in Cart
+    const handleRemoveItem = (e) => {
+        setIsShow(true);
+        setIdProduct(e.currentTarget.id);
+    };
+
     useEffect(() => {
-        setNewData(data);
-    }, [data.join()]);
+        if (agree) {
+            (async function () {
+                await remove(idProduct);
+                dispatch({ key: REMOVE_CART, value: { idProduct } });
+            })();
+        }
+        return setAgree(false);
+    }, [agree]);
+
     return (
         <div className={cx('wrapper')}>
+            {isShow && (
+                <Default
+                    setAgree={setAgree}
+                    setIsShow={setIsShow}
+                    title={'thong bao '}
+                    message="ban co chac chan muon xoa no khoi cua hang cua ban khong"
+                />
+            )}
             <table className={cx('table-info-product')}>
                 <thead>
                     <tr>
@@ -28,11 +58,11 @@ function InfoProduct({ data }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {newData.map((item, index) => {
+                    {cart.map((item, index) => {
                         return (
                             <tr key={index}>
                                 <td>
-                                    <button className={cx('btn-remove')}>
+                                    <button id={item.idProduct} onClick={handleRemoveItem} className={cx('btn-remove')}>
                                         <FontAwesomeIcon icon={faTimesCircle} />
                                     </button>
                                 </td>

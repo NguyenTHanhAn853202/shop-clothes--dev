@@ -8,8 +8,9 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Context } from '~/GlobalContext';
-import { LOGIN } from '~/GlobalContext/key';
+import { CART, LOGIN } from '~/GlobalContext/key';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { get } from '~/api-server/cartService';
 
 const cx = classNames.bind(styles);
 
@@ -30,9 +31,8 @@ function FormLogin({
     const [check, setCheck] = useState();
     const [checkEmail, setCheckEmail] = useState(true);
     const [email, setEmail] = useState('');
-    const [checkLogin, setCheckLogin] = useState(false);
     const navigate = useNavigate();
-    
+
     const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     useEffect(() => {
         if (title === 'ĐĂNG NHẬP') {
@@ -61,20 +61,29 @@ function FormLogin({
                 try {
                     const data = await login(email, password);
 
-                    setCheckLogin(data.check);
-                    if (data.check) {
-                        localStorage.login = data.check;
-                        localStorage.userName = email;
-                        localStorage.accessToken = data.accessToken;
-                        localStorage.refreshToken = data.refreshToken;
+                    const {
+                        check,
+                        message,
+                        refreshToken,
+                        token: { accessToken, expiresIn },
+                    } = data;
 
-                        console.log(localStorage.refreshToken, localStorage.accessToken);
+                    if (data.check) {
+                        localStorage.login = check;
+                        localStorage.userName = email;
+                        localStorage.accessToken = accessToken;
+                        localStorage.refreshToken = refreshToken;
+                        localStorage.expiresIn = expiresIn;
+
+                        const dataCart = await get();
+                        dispatch({ key: CART, value: dataCart });
+
                         dispatch({
                             key: LOGIN,
                             value: data.check,
                         });
-                        navigate('/', { replace: true });
-                        alert('Login sucessfully');
+                        navigate('/', { replace: false });
+                        alert(message);
                     } else {
                         alert('error: login failed');
                     }

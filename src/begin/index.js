@@ -5,6 +5,8 @@ import { useState, useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react/headless';
 
+import { logout } from '~/api-server/loginService';
+
 import { Context } from '~/GlobalContext/index';
 import Render from '~/renderTippy';
 import { LOGIN } from '~/GlobalContext/key';
@@ -15,12 +17,15 @@ function Begin() {
     const [states, dispatch] = useContext(Context);
     const checkLogin = states.login;
 
-    const handleClickLogout = (e) => {
+    const handleClickLogout = async (e) => {
         dispatch({
             key: LOGIN,
             value: false,
         });
         localStorage.login = false;
+        const refreshToken = localStorage.refreshToken;
+        const datas = await logout(refreshToken);
+        console.log(datas);
     };
 
     return (

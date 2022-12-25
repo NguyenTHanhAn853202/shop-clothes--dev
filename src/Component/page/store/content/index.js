@@ -12,8 +12,9 @@ function Content() {
     useEffect(() => {
         (async function () {
             const data = await productServer.product();
-            setData(data);
-            // console.log(data);
+            if (data) {
+                setData(data);
+            }
         })();
     }, [path]);
     return (

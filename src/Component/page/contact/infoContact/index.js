@@ -28,8 +28,8 @@ function InfoContact() {
                         <Input placeholder={'Số điện thoại'} gold w100 />
                     </div>
                     <div className={cx('input-info')}>
-                        <Input placeholder={'Họ và tên'} gold w100 />
-                        <Input placeholder={'Số điện thoại'} gold w100 />
+                        <Input placeholder={'Email'} gold w100 />
+                        <Input placeholder={'Địa chỉ'} gold w100 />
                     </div>
                 </div>
                 <textarea placeholder={'Lời nhắn'} ></textarea>

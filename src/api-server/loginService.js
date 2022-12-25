@@ -3,7 +3,7 @@ import * as requests from '~/utils/Api/request';
 export const login = async (email, password) => {
     try {
         const datas = await requests.post('account/login', {
-            name: email,
+            userName: email,
             password,
         });
         return datas;
@@ -14,8 +14,13 @@ export const login = async (email, password) => {
 
 export const create = async (email, password) => {
     const datas = await requests.post('account/create', {
-        name: email,
+        userName: email,
         password,
     });
+    return datas;
+};
+
+export const logout = async (refreshToken) => {
+    const datas = await requests.post('account/logout', { token: refreshToken });
     return datas;
 };

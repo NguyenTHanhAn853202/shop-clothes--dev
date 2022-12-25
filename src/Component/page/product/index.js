@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Content from './content';
+import ContextProduct from './ConetextProduct';
 
 const cx = classNames.bind(styles);
 const product = [
@@ -40,18 +41,20 @@ function Product() {
     // useEffect(() => {
     //     console.log(params);
     // }, [params]);
-    
+
     return (
-        <div className={cx('wrapper', { wrap: true })}>
-            <div className={cx('contain', { grid: true })}>
-                <div className={cx('sidebar')}>
-                    <Products data={product} />
-                </div>
-                <div className={cx('content')}>
-                    <Content />
+        <ContextProduct>
+            <div className={cx('wrapper', { wrap: true })}>
+                <div className={cx('contain', { grid: true })}>
+                    <div className={cx('sidebar')}>
+                        <Products data={product} />
+                    </div>
+                    <div className={cx('content')}>
+                        <Content />
+                    </div>
                 </div>
             </div>
-        </div>
+        </ContextProduct>
     );
 }
 
