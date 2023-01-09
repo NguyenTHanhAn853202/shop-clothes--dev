@@ -8,8 +8,9 @@ import 'tippy.js/dist/tippy.css';
 import Bag from './bagShop';
 import Search from './search';
 import { Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import Default from '~/announcement/default';
+import { useState, useContext, useEffect, useRef, useMemo } from 'react';
+import { Context } from '~/GlobalContext';
+import Default from '~/announcement/accept';
 
 const cx = classNames.bind(styles);
 
@@ -17,35 +18,55 @@ function Tool() {
     const [isShow, setIsShow] = useState(false);
     const [agree, setAgree] = useState(false);
     const [isPath, setIsPath] = useState(true);
+    const displayRef = useRef();
     const location = useLocation();
+    const [states] = useContext(Context);
+    const { cart } = states;
+
     useEffect(() => {
         // nếu đang ở trang giỏ hàng thì sẻ k suất hiện tippy khi hover
         setIsPath((props) => {
             return location.pathname === '/gio-hang' ? false : true;
         });
     }, [location.pathname]);
+
+    const number = useMemo(() => {
+        return cart.reduce((total, item) => {
+            return total + item.number * 1;
+        }, 0);
+    }, [JSON.stringify(cart)]);
     return (
         <div className={cx('wrapper')}>
             <div>
                 <Tippy
                     offset={[15, 15]}
                     interactive
-                    // visible={}
+                    // disabled ={false}
+                    // visible={'none'}
                     // hideOnClick={false}
                     placement="bottom-end"
                     interactiveBorder={0}
                     render={(attrs) => (
                         <div>
                             {isPath && (
-                                <Render attrs={attrs}>
-                                    <Bag agree={agree} setAgree={setAgree} setIsShow={setIsShow} />
+                                <Render isNotPadding={true} attrs={attrs}>
+                                    <Bag ref={displayRef} agree={agree} setAgree={setAgree} setIsShow={setIsShow} />
                                 </Render>
                             )}
                         </div>
                     )}
                 >
-                    <Link to={'gio-hang'} className={cx('icon-bag')}>
-                        <FontAwesomeIcon icon={faBagShopping} />
+                    <Link
+                        onMouseOver={() => {
+                            displayRef.current.block();
+                        }}
+                        to={'gio-hang'}
+                        className={cx('icon-bag')}
+                    >
+                        <div className={cx('number-of-product')}>
+                            <span>{number}</span>
+                        </div>
+                        <FontAwesomeIcon className={cx('icon-bag__icon')} icon={faBagShopping} />
                     </Link>
                 </Tippy>
                 {isShow && (

@@ -8,7 +8,7 @@ export const login = async (email, password) => {
         });
         return datas;
     } catch (error) {
-        console.log('error');
+        console.log(error.message);
     }
 };
 
@@ -21,6 +21,7 @@ export const create = async (email, password) => {
 };
 
 export const logout = async (refreshToken) => {
-    const datas = await requests.post('account/logout', { token: refreshToken });
+    const datas = await requests.post('account/logout', { userName: localStorage.userName, token: refreshToken });
+    localStorage.clear();
     return datas;
 };

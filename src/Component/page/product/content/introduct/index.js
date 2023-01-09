@@ -12,27 +12,48 @@ import { Context } from '~/GlobalContext';
 // import api
 import { add } from '~/api-server/cartService';
 import { ADD_CART } from '~/GlobalContext/key';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import Announcement from '~/announcement/announcement';
 
 const cx = classNames.bind(styles);
 
 function Introduct() {
     const [datas, setData] = useContext(ContextProduct);
-    const [number, setNumber] = useState(0);
+    const [number, setNumber] = useState(1);
     const [states, dispatch] = useContext(Context);
+    const [isLoading, setIsLoading] = useState(false);
+    const [addSuccess, setAddSuccess] = useState(false);
     // handle event
 
     const { product } = datas;
-
+    const { cart } = states;
     const addIntoCart = (e) => {
         (async function () {
-            const data = await add(product._id, product.name, product.imageDefualt, product.costDefualt, number, product.slug);
+            setIsLoading(true);
+            const data = await add(
+                product._id,
+                product.name,
+                product.imageDefualt,
+                product.costDefualt,
+                number,
+                product.slug,
+            );
             dispatch({ key: ADD_CART, value: data });
+            setIsLoading(false);
+            setAddSuccess(true);
         })();
     };
+    useEffect(() => {
+        const id = setTimeout(() => {
+            setAddSuccess(false);
+        }, 1000);
+        // return clearTimeout(id);
+    }, [JSON.stringify(cart)]);
     //
     return (
         <div className={cx('wrapper')}>
+            {addSuccess && <Announcement />}
             <div className={cx('img-product')}>
                 <img src={product.imageDefualt} />
             </div>
@@ -57,7 +78,11 @@ function Introduct() {
                 <div className={cx('count-and-add')}>
                     <CountNumber setNumber={setNumber} number={number} />
                     <Button onClick={addIntoCart} ishover classNames={cx('add-cart')}>
-                        THÊM VÀO GIỎ
+                        {!isLoading ? (
+                            'THÊM VÀO GIỎ'
+                        ) : (
+                            <FontAwesomeIcon className={cx('add-cart__icon-spinner')} icon={faSpinner} />
+                        )}
                     </Button>
                 </div>
                 <div className={cx('ship-paid')}>

@@ -10,7 +10,7 @@ import CountNumber from '~/Component/countNumber';
 import { useState, useEffect } from 'react';
 import { remove } from '~/api-server/cartService';
 import { REMOVE_CART } from '~/GlobalContext/key';
-import Default from '~/announcement/default';
+import Default from '~/announcement/accept';
 
 const cx = classNames.bind(styles);
 

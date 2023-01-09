@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 
 import { useState, useRef, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Tippy from '@tippyjs/react/headless';
 
 import { logout } from '~/api-server/loginService';
@@ -16,16 +16,17 @@ const cx = classNames.bind(styles);
 function Begin() {
     const [states, dispatch] = useContext(Context);
     const checkLogin = states.login;
+    const navigate = useNavigate();
 
     const handleClickLogout = async (e) => {
         dispatch({
             key: LOGIN,
             value: false,
         });
-        localStorage.login = false;
         const refreshToken = localStorage.refreshToken;
-        const datas = await logout(refreshToken);
-        console.log(datas);
+        await logout(refreshToken);
+        navigate('/');
+        window.location.reload(false);
     };
 
     return (

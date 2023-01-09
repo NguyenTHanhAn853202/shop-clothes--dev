@@ -25,6 +25,7 @@ function App() {
             const expiresIn = localStorage.expiresIn * 1;
             if (timeNow > expiresIn) {
                 const token = localStorage.refreshToken;
+
                 const {
                     token: { accessToken, expiresIn },
                 } = await refreshToken(token);

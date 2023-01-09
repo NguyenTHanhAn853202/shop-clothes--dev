@@ -8,8 +8,7 @@
     --border-color: #eee;
     --active-color: #f05d23;
     --border-error-color: rgb(255, 38, 0);
-    --border-success-color:   #10abff;
-    ;
+    --border-success-color: #10abff;
 }
 
 * {
@@ -59,7 +58,7 @@ button {
     border: none;
     outline: none;
 }
-button{
+button {
     cursor: pointer;
 }
 
@@ -118,7 +117,7 @@ h6 {
     box-shadow: 0px 0px 5px var(--border-error-color);
 }
 
-.success-border{
+.success-border {
     border: 1px solid var(--border-success-color);
     &:focus-within {
         box-shadow: 0px 0px 5px var(--border-success-color);
@@ -126,8 +125,12 @@ h6 {
     box-shadow: 0px 0px 5px var(--border-success-color);
 }
 
-.title-error{
+.title-error {
     color: var(--border-error-color);
-    font-size:1.4rem;
-    margin-top:-20px;
+    font-size: 1.4rem;
+    margin-top: -20px;
 }
+
+// animation
+
+

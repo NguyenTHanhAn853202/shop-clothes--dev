@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-function Contain({ children }) {
-    return <div className={cx('wrapper')}>{children}</div>;
+function Contain({ children, isNotPadding = false }) {
+    return <div className={cx('wrapper', { isNotPadding })}>{children}</div>;
 }
 
 export default Contain;

@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import Button from '~/button';
-import { useMemo, memo, useContext, useState, useEffect } from 'react';
+import { useMemo, memo, useContext, useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faFrownOpen } from '@fortawesome/free-regular-svg-icons';
@@ -10,15 +10,23 @@ import { remove } from '~/api-server/cartService';
 import { REMOVE_CART } from '~/GlobalContext/key';
 
 const cx = classNames.bind(styles);
-function Bag({ setAgree, setIsShow, agree }) {
+function Bag({ setAgree, setIsShow, agree }, ref) {
     const [states, dispatch] = useContext(Context);
     const { cart } = states;
     const [idProduct, setIdProduct] = useState('');
+    const wrapperRef = useRef();
 
     const handleRemoveCart = (e) => {
         setIsShow(true);
         setIdProduct(e.currentTarget.id);
     };
+
+    useImperativeHandle(ref, () => ({
+        block() {
+            wrapperRef.current.style.display = 'block';
+        },
+    }));
+
     useEffect(() => {
         if (agree) {
             (async function () {
@@ -32,12 +40,12 @@ function Bag({ setAgree, setIsShow, agree }) {
 
     const total = useMemo(() => {
         return cart.reduce((money, item) => {
-            return money + item.number * item.cost;
+            return money + item.number * 1 * item.cost;
         }, 0);
-    }, [cart]);
+    }, [JSON.stringify(cart)]);
 
     return (
-        <div className={cx('wrapper')}>
+        <div ref={wrapperRef} className={cx('wrapper')}>
             {cart.length > 0 ? (
                 <>
                     <ul className={cx('list-product')}>
@@ -87,6 +95,9 @@ function Bag({ setAgree, setIsShow, agree }) {
                     <h4 className={cx('no-product__navigate-store')}>
                         Đi đến:{' '}
                         <Link
+                            onClick={() => {
+                                wrapperRef.current.style.display = 'none';
+                            }}
                             to={'/cua-hang'}
                         >
                             Cửa hàng
@@ -98,4 +109,4 @@ function Bag({ setAgree, setIsShow, agree }) {
     );
 }
 
-export default memo(Bag);
+export default forwardRef(Bag);

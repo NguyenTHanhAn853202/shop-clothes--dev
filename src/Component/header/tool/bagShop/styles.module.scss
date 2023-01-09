@@ -1,5 +1,6 @@
 .wrapper {
-    padding:0px 10px;
+    padding: 10px 20px;
+    // padding:0px 10px;
     &::before {
         content: ' ';
         position: absolute;
@@ -15,18 +16,21 @@
     max-height: 280px;
     overflow: hidden;
     overflow-y: scroll;
-    border-bottom: 1px solid rgb(180, 180, 180);
+    border-bottom: 2px solid rgb(180, 180, 180);
 }
 .product {
-    padding-top: 10px ;
+    padding-top: 10px;
     border-bottom: 1px solid rgb(180, 180, 180);
+    &:last-child {
+        border-bottom: none;
+    }
 }
 
 .contain-product {
     display: flex;
     align-items: center;
 }
-.link-contain-product{
+.link-contain-product {
     display: flex;
 }
 
@@ -35,96 +39,97 @@
     width: 60px;
     height: 60px;
     object-fit: cover;
-    &:hover ~ .name{
+    &:hover ~ .name {
         opacity: 1;
     }
 }
-.name{
+.name {
     font-weight: 400;
     font-size: 1.4rem;
     opacity: 0.8;
     padding: 0 10px;
-    &:hover{
+    &:hover {
         opacity: 1;
     }
 }
 
-.btn-delete-product{
-    height:2rem;
+.btn-delete-product {
+    height: 2rem;
     cursor: pointer;
-    font-size:2rem;
+    font-size: 2rem;
     opacity: 0.4;
-    background-color:transparent ;
-    &:hover{
+    background-color: transparent;
+    &:hover {
         opacity: 1;
     }
 }
 
-.info-sell{
+.info-sell {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     padding: 5px 0;
 }
-.amount, .price{
+.amount,
+.price {
     font-size: 1.3rem;
 }
-.amount{
+.amount {
     opacity: 0.6;
 }
 
-.handle{
+.handle {
     padding-top: 15px;
 }
 
-.sum-money{
+.sum-money {
     font-weight: 400;
     font-size: 1.6rem;
     opacity: 0.8;
     text-align: center;
 
-    .money-paid{
+    .money-paid {
         font-weight: 700;
     }
 }
 
-.btn{
+.btn {
     display: flex;
-    .btn-goto-bag,.btn-paid{
+    .btn-goto-bag,
+    .btn-paid {
         margin-top: 15px;
-        height:70px;
+        height: 70px;
         border-radius: 0;
         font-size: 1.6rem;
         text-align: center;
         display: flex;
         align-items: center;
     }
-    
 }
 
 // no product in the cart
 
-.no-product{
+.no-product {
     text-align: center;
-    padding:10px 0;
+    padding: 10px 0;
 }
-.no-product__title{
+.no-product__title {
     font-weight: 500;
     font-size: 1.8rem;
 }
 
-.no-product__icon-bag{
+.no-product__icon-bag {
     font-size: 5rem;
     opacity: 0.3;
     padding: 10px 0;
 }
 
-.no-product__navigate-store{
+.no-product__navigate-store {
     font-size: 1.8rem;
     font-weight: 500;
-    a{
+    a {
         color: red;
         opacity: 0.6;
-        &:hover{
+        &:hover {
             opacity: 0.8;
         }
     }

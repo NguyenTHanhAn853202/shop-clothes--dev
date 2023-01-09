@@ -18,7 +18,7 @@ function CountNumber({ number, setNumber }) {
         setAmount(newValue);
     };
     const handleBlurAmount = (e) => {
-        const value = e.target.value || '0';
+        const value = e.target.value || '1';
         setAmount(value);
     };
     const handleClickIncrease = (e) => {
@@ -26,7 +26,7 @@ function CountNumber({ number, setNumber }) {
         setAmount(value);
     };
     const handleClickDecrease = (e) => {
-        const value = amount * 1 === 0 ? amount : amount * 1 - 1;
+        const value = amount * 1 === 1 ? amount : amount * 1 - 1;
 
         setAmount(value);
     };
