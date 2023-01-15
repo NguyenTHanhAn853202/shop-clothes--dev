@@ -25,7 +25,7 @@ function Login() {
                 title={'Mật khẩu *'}
                 classNames={cx('ip-form')}
                 placeholder={''}
-                type={'text'}
+                type={'password'}
             />
             <div>
                 <input id="check-box-form-login" className={cx('checbox')} type="checkbox" />

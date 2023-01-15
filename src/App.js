@@ -19,8 +19,15 @@ function App() {
     request.interceptors.request.use(
         async (config) => {
             const url = config.url;
-            if (url.includes('get-products') || url.includes('login') || url.includes('account/refreshTokens'))
+            if (
+                url.includes('get-products') ||
+                url.includes('login') ||
+                url.includes('account/refreshTokens') ||
+                url.includes('logout') ||
+                url.includes('product')
+            )
                 return config;
+            // console.log(url);
             const timeNow = Date.now();
             const expiresIn = localStorage.expiresIn * 1;
             if (timeNow > expiresIn) {
@@ -47,7 +54,7 @@ function App() {
                 const data = await get();
                 dispatch({ key: CART, value: data });
             } catch (error) {
-                console.log(error);
+                // console.log(error);
             }
         })();
     }, []);

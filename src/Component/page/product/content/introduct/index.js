@@ -48,7 +48,7 @@ function Introduct() {
         const id = setTimeout(() => {
             setAddSuccess(false);
         }, 1000);
-        // return clearTimeout(id);
+        return clearTimeout(id);
     }, [JSON.stringify(cart)]);
     //
     return (

@@ -88,7 +88,7 @@ function Tool() {
                     placement="bottom-end"
                     interactiveBorder={0}
                     render={(attrs) => (
-                        <Render attrs={attrs}>
+                        <Render classNames={cx('tippy-search')} attrs={attrs}>
                             <Search />
                         </Render>
                     )}

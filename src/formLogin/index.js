@@ -60,7 +60,6 @@ function FormLogin({
             (async function () {
                 try {
                     const data = await login(email, password);
-
                     const {
                         check,
                         message,

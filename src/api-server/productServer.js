@@ -10,7 +10,7 @@ export const product = async (q = '', type = 'less') => {
         });
         return datas;
     } catch (error) {
-        console.log('error');
+        console.log(error);
     }
 };
 
@@ -22,8 +22,8 @@ export const oneProduct = async (slug = '') => {
             },
         });
         return datas;
-    } catch (error) {
-        console.log('error');
+    } catch (err) {
+        console.log(err);
     }
 };
 
@@ -31,7 +31,7 @@ export const getProduct = async (idProduct) => {
     try {
         const datas = await requests.get('product/get-product', {
             params: {
-                idProduct, 
+                idProduct,
             },
         });
         return datas;
