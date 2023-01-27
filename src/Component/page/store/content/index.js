@@ -1,22 +1,24 @@
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import Card from '~/card';
-import productImg from '~/media/image/product/product-1.jpg';
 import * as productServer from '~/api-server/productServer';
 import { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function Content() {
-    const [path, setPath] = useState('');
     const [data, setData] = useState([]);
+    const location = useLocation();
+    const params = useParams().slug;
+
     useEffect(() => {
         (async function () {
-            const data = await productServer.product();
-            if (data) {
-                setData(data);
-            }
+            const data = params
+                ? await productServer.getType(params)
+                : await productServer.product(location.state?.nameFind || '');
+            if (data) setData(data);
         })();
-    }, [path]);
+    }, [ location.state?.nameFind, params]);
     return (
         <div className={cx('wrapper')}>
             {data.map((item, index) => {

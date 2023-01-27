@@ -42,7 +42,7 @@ function Tool() {
                     offset={[15, 15]}
                     interactive
                     // disabled ={false}
-                    // visible={'none'}
+                    // visible     
                     // hideOnClick={false}
                     placement="bottom-end"
                     interactiveBorder={0}
@@ -82,7 +82,7 @@ function Tool() {
             <div>
                 <Tippy
                     // visible
-                    hideOnClick={false}
+                    // hideOnClick={false}
                     interactive
                     offset={[15, 15]}
                     placement="bottom-end"

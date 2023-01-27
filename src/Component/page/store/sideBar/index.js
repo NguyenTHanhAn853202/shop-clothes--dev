@@ -35,7 +35,10 @@ const product = [
         price: 20,
     },
 ];
+
 function SideBar() {
+    
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('typeof')}>
@@ -55,10 +58,10 @@ function SideBar() {
                 })}
             </div>
             <div className={cx('product')}>
-                    <Product
-                        // classNames={cx('item-product')}
-                        data={product}
-                    />
+                <Product
+                    // classNames={cx('item-product')}
+                    data={product}
+                />
             </div>
         </div>
     );

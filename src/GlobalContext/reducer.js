@@ -1,9 +1,10 @@
-import { LOGIN, CART, BOUGHT, REMOVE_CART, ADD_BOUGHT, REMOVE_BOUGHT, ADD_CART } from './key';
+import { LOGIN, CART, BOUGHT, REMOVE_CART, ADD_BOUGHT, REMOVE_BOUGHT, ADD_CART, FIND_PRODUCT } from './key';
 
 export const context = {
     login: false,
     cart: [],
     bought: [],
+    findProduct: '',
 };
 
 const reducer = (state, action) => {
@@ -57,6 +58,7 @@ const reducer = (state, action) => {
                 ...state,
                 cart: [...newBought],
             };
+
         default:
             console.log('switch default ready');
             break;

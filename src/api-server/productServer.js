@@ -1,10 +1,10 @@
 import * as requests from '~/utils/Api/request';
 
-export const product = async (q = '', type = 'less') => {
+export const product = async (find = '', type = 'less') => {
     try {
         const datas = await requests.get('product/get-products', {
             params: {
-                q,
+                find,
                 type,
             },
         });
@@ -35,6 +35,18 @@ export const getProduct = async (idProduct) => {
             },
         });
         return datas;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const getType = async (type) => {
+    try {
+        const data = await requests.get('product/type', {
+            params: {
+                type: type,
+            },
+        });
+        return data.data;
     } catch (error) {
         console.log(error);
     }
