@@ -1,0 +1,21 @@
+
+
+.contain-input{
+    padding: 10px 0;
+
+    label{
+        display: block;
+
+    }
+    input{
+        border: 1px solid #777;
+        width: 100%;
+        height: 40px;
+        font-size: 1.7rem;
+        padding: 0 5px;
+        opacity: 0.7;
+        &:focus{
+            opacity: 1;
+        }
+    }
+}

@@ -1,0 +1,30 @@
+
+.wrapper {
+    padding: 40px 0;
+}
+
+.line-border {
+    align-self: center;
+    display: block;
+    height: 330px;
+    width: 1px;
+    border-left: 1px solid var(--primary);
+    margin: 0 8%;
+    opacity: 0.5;
+}
+
+.layout {
+    display: flex;
+    justify-content: center;
+}
+
+.payment {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.disabled{
+    cursor: not-allowed;
+    opacity: 0.6;
+}

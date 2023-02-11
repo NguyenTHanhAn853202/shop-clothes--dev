@@ -1,5 +1,6 @@
 // import Home from '~/Component/page/home';
 import { lazy } from 'react';
+const Payment = lazy(() => import('~/Component/page/payment'));
 const Home = lazy(() => import('~/Component/page/home'));
 
 const Introduct = lazy(() => import('~/Component/page/introduction'));
@@ -9,8 +10,8 @@ const Collection = lazy(() => import('~/Component/page/collection'));
 const Store = lazy(() => import('~/Component/page/store'));
 const Cart = lazy(() => import('~/Component/page/cart'));
 const Product = lazy(() => import('~/Component/page/product'));
-const Login = lazy(() => import('~/Component/page/login'))
-const Register = lazy(() => import('~/Component/page/register'))
+const Login = lazy(() => import('~/Component/page/login'));
+const Register = lazy(() => import('~/Component/page/register'));
 // import Home from '~/Component/page/home';
 // import Product from '~/Component/page/product';
 // import Cart from '~/Component/page/cart';
@@ -20,12 +21,16 @@ const Register = lazy(() => import('~/Component/page/register'))
 // import Contact from '~/Component/page/contact';
 // import Introduct from '~/Component/page/introduction';
 
-export const layoutPrivate=[
+export const layoutPrivate = [
     {
         element: Cart,
         path: '/gio-hang',
     },
-]
+    {
+        element: Payment,
+        path: '/thanh-toan',
+    },
+];
 
 export const layoutPublic = [
     {
@@ -53,7 +58,7 @@ export const layoutPublic = [
         path: '/cua-hang',
         slug: true,
     },
-    
+
     {
         element: undefined,
         path: '/tin-tuc-su-kien',
@@ -62,17 +67,15 @@ export const layoutPublic = [
         element: Product,
         path: '/san-pham',
         slug: true,
-    }
-
+    },
 ];
 export const layoutAccount = [
     {
-        element:Login,
-        path:'login',
+        element: Login,
+        path: 'login',
     },
     {
-        element:Register,
-        path:'register',
-    }
-]
-
+        element: Register,
+        path: 'register',
+    },
+];

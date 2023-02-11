@@ -1,9 +1,21 @@
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
+import { useSearchParams } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function HeaderStore() {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const handleSortType = (e) => {
+        const selectTagname = e.target;
+        const [column, type] = selectTagname.options[selectTagname.selectedIndex].value.split(' ');
+        setSearchParams({
+            _sort: column === 'default' ? false : true,
+            column: column,
+            type: type,
+        });
+    };
+
     return (
         <div className={cx('wrapper')}>
             <h2 className={cx('title-header')}>
@@ -12,13 +24,19 @@ function HeaderStore() {
             </h2>
             <div className={cx('options-header')}>
                 <span className={cx('title-options-header')}>Hiển thị một kết quả duy nhất</span>
-                <select className={cx('select')}>
-                    <option className={cx('option-select')}>Thứ tự mặc định</option>
-                    <option className={cx('option-select')}>Thứ tự theo mức độ phổ biến</option>
-                    <option className={cx('option-select')}>Thứ tự theo điểm đánh giá</option>
-                    <option className={cx('option-select')}>Mới nhất</option>
-                    <option className={cx('option-select')}>Thứ tự theo giá: thấp đến cao</option>
-                    <option className={cx('option-select')}>Thứ tự theo giá: cao xuống thấp</option>
+                <select onChange={handleSortType} className={cx('select')}>
+                    <option value="default default" className={cx('option-select')}>
+                        Thứ tự mặc định{' '}
+                    </option>
+                    <option value="createdAt desc" className={cx('option-select')}>
+                        Mới nhất
+                    </option>
+                    <option value="costDefault asc" className={cx('option-select')}>
+                        Thứ tự theo giá: thấp đến cao
+                    </option>
+                    <option value="costDefault desc" className={cx('option-select')}>
+                        Thứ tự theo giá: cao xuống thấp
+                    </option>
                 </select>
             </div>
         </div>

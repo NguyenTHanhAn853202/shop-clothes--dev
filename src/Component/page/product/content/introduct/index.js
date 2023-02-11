@@ -34,8 +34,8 @@ function Introduct() {
             const data = await add(
                 product._id,
                 product.name,
-                product.imageDefualt,
-                product.costDefualt,
+                product.imageDefault,
+                product.costDefault,
                 number,
                 product.slug,
             );
@@ -57,7 +57,7 @@ function Introduct() {
         <div className={cx('wrapper')}>
             {addSuccess && <Announcement />}
             <div className={cx('img-product')}>
-                <img src={product.imageDefualt} />
+                <img src={product.imageDefault} />
             </div>
             <div className={cx('main-info')}>
                 <span className={cx('goto')}>
@@ -70,7 +70,7 @@ function Introduct() {
                     </Link>
                 </span>
                 <h1 className={cx('name-product')}>{product.name}</h1>
-                <h1 className={cx('price-product')}>{`$${product.costDefualt}`}</h1>
+                <h1 className={cx('price-product')}>{`$${product.costDefault}`}</h1>
                 <p className={cx('introduct-product')}>
                     Trích đoạn chuẩn của Lorem Ipsum được sử dụng từ thế kỉ thứ 16 và được tái bản sau đó cho những
                     người quan tâm đến nó. Đoạn 1.10.32 và 1.10.33 trong cuốn “De Finibus Bonorum et Malorum” của Cicero

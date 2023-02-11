@@ -70,7 +70,7 @@ function Search() {
                                     <img src={product.image[0].imageOfColor} alt={product.name} />
                                     <div>
                                         <h4>{product.name}</h4>
-                                        <span>{`$${product.costDefualt}`}</span>
+                                        <span>{`$${product.costDefault}`}</span>
                                     </div>
                                 </Link>
                             </li>

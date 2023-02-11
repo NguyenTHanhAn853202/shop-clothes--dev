@@ -1,0 +1,93 @@
+.contain-products {
+    max-height: 230px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    span {
+        color: rgb(226, 8, 8);
+        display: block;
+        text-align: center;
+
+        a{
+            color: rgb(10, 143, 125);
+            font-weight: bold;
+        }
+    }
+}
+
+.products {
+    background-color: var(--background-mask);
+    padding: 10px 0;
+    border-radius: 7px;
+    margin: 5px;
+    display: flex;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.7;
+    }
+
+    input {
+        cursor: pointer;
+        margin: 10px;
+        width: 20px;
+    }
+}
+.product {
+    display: flex;
+    height: 80px;
+    overflow: hidden;
+}
+.info-of-product {
+    align-self: center;
+    padding: 5px 10px;
+    overflow: hidden;
+    h4 {
+        font-weight: 500;
+        display: block;
+        display: -webkit-box;
+        max-height: 43px;
+        line-height: 1;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 3px 0;
+    }
+    h5 {
+        padding: 3px 0;
+        font-weight: 500;
+        text-align: center;
+    }
+}
+
+.line-border {
+    display: block;
+    margin: 20px 0;
+    width: 100%;
+    border-bottom: 2px solid var(--primary);
+    opacity: 0.3;
+}
+
+.discount {
+    font-size: 1.6rem;
+    padding: 3px 7px;
+    height: 35px;
+    width: 100%;
+    border: 1px solid #777;
+    opacity: 0.7;
+    margin-top: 20px;
+    display: block;
+    &:focus {
+        opacity: 1;
+    }
+}
+
+.cost-table {
+    width: 100%;
+    padding-top: 20px;
+}
+
+.t-r {
+    text-align: right;
+}

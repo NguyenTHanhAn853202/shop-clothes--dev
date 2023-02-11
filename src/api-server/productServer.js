@@ -1,11 +1,11 @@
 import * as requests from '~/utils/Api/request';
 
-export const product = async (find = '', type = 'less') => {
+export const product = async (find = '', other) => {
     try {
         const datas = await requests.get('product/get-products', {
             params: {
                 find,
-                type,
+                ...other,
             },
         });
         return datas;
@@ -39,11 +39,12 @@ export const getProduct = async (idProduct) => {
         console.log(error);
     }
 };
-export const getType = async (type) => {
+export const getType = async (typeProduct, other) => {
     try {
         const data = await requests.get('product/type', {
             params: {
-                type: type,
+                typeProduct: typeProduct,
+                ...other,
             },
         });
         return data.data;

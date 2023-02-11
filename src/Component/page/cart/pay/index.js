@@ -5,10 +5,12 @@ import Button from '~/button';
 import { faTag } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Input from '~/Input';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function Pay({ totalCost }) {
+    const navigate = useNavigate();
     const ipRef = useRef();
     const [address, setAddress] = useState();
     const [isAddress, setIsAddress] = useState(false);
@@ -60,7 +62,13 @@ function Pay({ totalCost }) {
                     </tr>
                     <tr>
                         <td className={cx('pay')} colSpan={2}>
-                            <Button ishover w100>
+                            <Button
+                                ishover
+                                w100
+                                onClick={() => {
+                                    navigate('/thanh-toan');
+                                }}
+                            >
                                 TIẾN HÀNH THANH TOÁN
                             </Button>
                             <div className={cx('discount-code')}>
