@@ -9,7 +9,7 @@
         display: block;
         text-align: center;
 
-        a{
+        a {
             color: rgb(10, 143, 125);
             font-weight: bold;
         }
@@ -90,4 +90,16 @@
 
 .t-r {
     text-align: right;
+}
+
+select {
+    font-size: 1.6rem;
+    padding: 2px 5px;
+    border-radius: 5px;
+    &:focus-visible {
+        outline: none;
+    }
+    option {
+        font-size: 1.6rem;
+    }
 }

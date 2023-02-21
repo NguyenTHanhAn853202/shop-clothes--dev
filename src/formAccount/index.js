@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import { Outlet } from 'react-router-dom';
 
 import logoImg from '~/media/image/logo/logo-black-03.png';
-import FormLogin from '~/formLogin';
 const cx = classNames.bind(styles);
 
 function FormAccount() {

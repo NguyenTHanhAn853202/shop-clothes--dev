@@ -1,0 +1,78 @@
+.wrapper {
+    padding: 50px 0;
+}
+
+.container {
+    padding: 50px 100px;
+    box-sizing: initial;
+    background-color: var(--background-mask);
+    width: 40%;
+    display: grid;
+    // grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        'input input img'
+        'btn btn btn';
+}
+
+.informations {
+    grid-area: input;
+    input {
+        display: block;
+    }
+
+    .contain-selection {
+        display: flex;
+        justify-content: space-between;
+        .birthday {
+            margin-bottom: 20px;
+            height: 40px;
+            width: 150px;
+            input {
+                display: inline-block;
+            }
+        }
+        select {
+            height: 40px;
+            width: 100px;
+            border-radius: 7px;
+            font-size: 1.6rem;
+            option {
+                font-size: 1.6rem;
+            }
+        }
+    }
+}
+
+.image {
+    grid-area: img;
+    display: flex;
+    justify-content: right;
+    img {
+        display: block;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+    input{
+        display: none;
+    }
+    label{
+        background-color: transparent;
+        cursor: pointer;
+        display: block;
+        margin:auto;
+        padding: 3px;
+        font-size: 1.4rem;
+        &:hover{
+            color:rgb(224, 78, 10);
+        }
+
+        span{
+            padding: 0 3px;
+        }
+    }
+}
+.btn-comfirm {
+    margin: auto;
+    grid-area: btn;
+}

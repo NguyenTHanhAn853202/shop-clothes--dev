@@ -55,7 +55,7 @@ function Begin() {
                             render={(attrs) => (
                                 <Render classNames={cx('render-tippy')} attrs={attrs}>
                                     <div className={cx('list-items')}>
-                                        <Link>Thông tin</Link>
+                                        <Link to={'/cap-nhat-thong-tin'}>Thông tin</Link>
                                         <Link>Đăng khi thành viên</Link>
                                         <Link> Đăng kí ví ANPAY</Link>
                                         <Link onClick={handleClickLogout}>Đăng xuất</Link>

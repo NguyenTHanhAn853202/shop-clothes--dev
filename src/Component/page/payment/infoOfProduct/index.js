@@ -1,7 +1,7 @@
 import styles from './infoOfProduct.module.scss';
 import classNames from 'classnames/bind';
 import { Context } from '~/GlobalContext';
-import { useContext, useState } from 'react';
+import { useContext, useState, forwardRef } from 'react';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 const codeDiscount = 'thanhandeptrai';
 
-function InfoOfProduct({ chooseProduct }) {
+function InfoOfProduct({ chooseProduct }, ref) {
     const [{ cart }, dispatch] = useContext(Context);
     const [choosedProducts, setChoosedProducts] = chooseProduct;
     const [discount, setDiscount] = useState(0);
@@ -41,7 +41,6 @@ function InfoOfProduct({ chooseProduct }) {
             setDiscount(300);
         }
     };
-
     //
     const cost = useMemo(() => {
         return choosedProducts.reduce((price, item) => price + item.cost * item.number, 0);
@@ -70,7 +69,12 @@ function InfoOfProduct({ chooseProduct }) {
                 )}
             </div>
             <span className={cx('line-border')}></span>
-            <input onBlur={handleDiscount} className={cx('discount')} placeholder="Mã giảm giá" />
+            <input
+                onBlur={handleDiscount}
+                ref={ref.refcodeDiscount} 
+                className={cx('discount')}
+                placeholder="Mã giảm giá"
+            />
             <table className={cx('cost-table')}>
                 <tbody>
                     <tr>
@@ -88,10 +92,10 @@ function InfoOfProduct({ chooseProduct }) {
                     <tr>
                         <td colSpan={3}>phương thức thanh toán: </td>
                         <td className={cx('t-r')}>
-                            <select>
-                                <option>Thanh toán sau khi nhận hàng</option>
-                                <option>Thanh toán qua ngân hàng</option>
-                                <option>Thanh toán qua </option>
+                            <select ref={ref.refTypePayment}>
+                                <option>Khi nhận hàng</option>
+                                <option>Ngân hàng</option>
+                                <option>ANPAY </option>
                             </select>
                         </td>
                     </tr>
@@ -101,4 +105,4 @@ function InfoOfProduct({ chooseProduct }) {
     );
 }
 
-export default InfoOfProduct;
+export default forwardRef(InfoOfProduct);

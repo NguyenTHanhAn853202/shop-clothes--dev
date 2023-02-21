@@ -61,6 +61,9 @@ function FormLogin({
                 try {
                     const data = await login(email, password);
                     const {
+                        id,
+                        avatar,
+                        name,
                         check,
                         message,
                         refreshToken,
@@ -68,6 +71,9 @@ function FormLogin({
                     } = data;
 
                     if (data.check) {
+                        localStorage.id = id;
+                        localStorage.avatar = avatar;
+                        localStorage.name = name;
                         localStorage.login = check;
                         localStorage.userName = email;
                         localStorage.accessToken = accessToken;

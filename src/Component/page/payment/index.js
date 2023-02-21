@@ -4,7 +4,7 @@ import InfoOfUser from './infoOfUser';
 import InfoOfProduct from './infoOfProduct';
 import Button from '~/button';
 import Default from '~/announcement/accept';
-import { useState, useContext, createRef, useMemo } from 'react';
+import { useState, useContext, createRef, useMemo, useRef } from 'react';
 import { Context } from '~/GlobalContext';
 import NotifyContainer, { notify } from '~/utils/notification';
 
@@ -15,6 +15,8 @@ function Payment() {
     const [isShow, setIsShow] = useState(false);
     const [choosedProducts, setChoosedProducts] = useState([]);
     const [{ cart }, dispatch] = useContext(Context);
+    const refcodeDiscount = useRef();
+    const refTypePayment = useRef();
     let infoUser = [];
     const refInfoUser = useMemo(() => {
         const refs = [];
@@ -26,6 +28,13 @@ function Payment() {
 
     // function handle event
     const handleClickPayment = () => {
+        if (choosedProducts.length > 0) {
+            // setIsShow(true);
+        } else {
+            // setIsShow(false);
+            notify('warning', 'chưa có sản phẩm nào được chọn', {});
+            return;
+        }
         refInfoUser.forEach((item, index) => {
             const element = item.current;
             if (element.value.trim() === '') {
@@ -34,15 +43,15 @@ function Payment() {
                 element.className = element.className.replace(element.getAttribute('classnames'), '');
                 infoUser.push({ title: element.getAttribute('kindof'), value: element.value });
             }
-            if (infoUser.length !== refInfoUser.length) infoUser = [];
         });
-        return;
-        if (choosedProducts.length > 0) {
-            setIsShow(true);
-        } else {
-            setIsShow(false);
-            notify('warning', 'chưa có sản phẩm nào trong giỏ hàng', {});
+        if (infoUser.length !== refInfoUser.length) {
+            notify('warning', 'Vui lòng nhập đủ thông tin');
+            return;
         }
+        const codeDiscount = refcodeDiscount.current.value;
+        const typeOfPayment = refTypePayment.current.value;
+        // call API
+        infoUser = [];
     };
     return (
         <div className={cx('wrapper', { wrap: true })}>
@@ -62,7 +71,10 @@ function Payment() {
                     </div>
                     <span className={cx('line-border')}></span>
                     <div style={{ width: '377px', overflow: 'hidden' }}>
-                        <InfoOfProduct chooseProduct={[choosedProducts, setChoosedProducts]} />
+                        <InfoOfProduct
+                            ref={{ refcodeDiscount, refTypePayment }}
+                            chooseProduct={[choosedProducts, setChoosedProducts]}
+                        />
                     </div>
                 </div>
                 <div className={cx('payment')}>

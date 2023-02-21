@@ -12,6 +12,7 @@ const Cart = lazy(() => import('~/Component/page/cart'));
 const Product = lazy(() => import('~/Component/page/product'));
 const Login = lazy(() => import('~/Component/page/login'));
 const Register = lazy(() => import('~/Component/page/register'));
+const updateInfoOfUser = lazy(() => import('~/Component/page/updateInfoOfUser'));
 // import Home from '~/Component/page/home';
 // import Product from '~/Component/page/product';
 // import Cart from '~/Component/page/cart';
@@ -29,6 +30,10 @@ export const layoutPrivate = [
     {
         element: Payment,
         path: '/thanh-toan',
+    },
+    {
+        element: updateInfoOfUser,
+        path: '/cap-nhat-thong-tin',
     },
 ];
 
