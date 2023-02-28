@@ -42,7 +42,7 @@ function Tool() {
                     offset={[15, 15]}
                     interactive
                     // disabled ={false}
-                    // visible     
+                    // visible
                     // hideOnClick={false}
                     placement="bottom-end"
                     interactiveBorder={0}
@@ -58,7 +58,7 @@ function Tool() {
                 >
                     <Link
                         onMouseOver={() => {
-                            displayRef.current.block();
+                            displayRef.current?.block();
                         }}
                         to={'gio-hang'}
                         className={cx('icon-bag')}

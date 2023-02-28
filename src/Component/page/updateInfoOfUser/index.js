@@ -15,17 +15,18 @@ const cx = classNames.bind(styles);
 
 const cookies = new Cookies();
 const listInput = [
-    { name: 'name', placeholder: cookies.get('name') || 'Họ và tên', type: 'text' },
-    { name: 'phoneNumber', placeholder: cookies.get('phoneNumber') || 'Số điện thoại', type: 'text' },
-    { name: 'address', placeholder: cookies.get('address') || 'Địa chỉ', type: 'text' },
-    { name: 'email', placeholder: cookies.get('email') || 'Email', type: 'email' },
+    { name: 'name', defaultValue: cookies.get('name'), placeholder: 'Họ và tên', type: 'text' },
+    { name: 'phoneNumber', defaultValue: cookies.get('phoneNumber'), placeholder: 'Số điện thoại', type: 'text' },
+    { name: 'address', defaultValue: cookies.get('address'), placeholder: 'Địa chỉ', type: 'text' },
+    { name: 'email', defaultValue: cookies.get('email'), placeholder: 'Email', type: 'email' },
 ];
 
 function UpdateInfoOfUser() {
     const [loadingSubmit, setLoadingSubmit] = useState(false);
     const imgRef = useRef();
     const sexRef = useRef();
-    const [birthday, setBirthday] = useState(new Date(cookies.get('birthday')));
+    const newDateBirthday = cookies.get('birthday') ? new Date(cookies.get('birthday')) : new Date();
+    const [birthday, setBirthday] = useState(newDateBirthday);
     const [file, setFile] = useState();
     const refInputs = useMemo(() => {
         const refs = [];
@@ -57,13 +58,13 @@ function UpdateInfoOfUser() {
             formData.append('birthday', birthday);
         }
         formData.append('id', localStorage.id);
+        console.log(sexRef.current.value);
         formData.append('sex', sexRef.current.value);
         const data = await updateInfoOfUser(formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
         });
-        console.log(data);
         if (data && data.success) {
             setLoadingSubmit(false);
             notify('success', 'Cập nhật thành công');
@@ -87,7 +88,8 @@ function UpdateInfoOfUser() {
                                 type={item.type}
                                 name={item.name}
                                 w100
-                                defaultValue={item.placeholder}
+                                defaultValue={item.defaultValue || ''}
+                                placeholder={item.placeholder}
                             />
                         ))}
                         <div className={cx('contain-selection')}>
@@ -100,10 +102,10 @@ function UpdateInfoOfUser() {
                                 value={birthday}
                             />
                             <select
-                                defaultValue={(cookies.get('sex') || '').toLowerCase() === 'nữ' ? 'Female' : 'Male'}
+                                defaultValue={(cookies.get('sex') || '').toLowerCase() === 'female' ? 'Female' : 'Male'}
                                 ref={sexRef}
                             >
-                                <option value="Male ">Nam</option>
+                                <option value="Male">Nam</option>
                                 <option value="Female">Nữ</option>
                             </select>
                         </div>

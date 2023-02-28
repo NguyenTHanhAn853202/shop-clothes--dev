@@ -18,22 +18,25 @@ function InfoOfProduct({ chooseProduct }, ref) {
         const element = e.target;
         const checked = element.checked;
         const dataProduct = JSON.parse(element.getAttribute('item'));
-        if (checked) {
-            setChoosedProducts([...choosedProducts, dataProduct]);
-        } else {
-            setChoosedProducts((props) => {
-                let index;
-                props.forEach((item, i) => {
-                    if (item.idProduct === dataProduct.idProduct) {
-                        index = i;
-                        return;
-                    }
-                });
-                const newData = [...props];
-                newData.splice(index, 1);
-                return newData;
+        // if (checked) {
+        //     setChoosedProducts([...choosedProducts, dataProduct]);
+        // } else {
+        setChoosedProducts((props) => {
+            const newData = [...props];
+            let same = false;
+            props.forEach((item, i) => {
+                if (item.idProduct === dataProduct.idProduct) {
+                    newData.splice(i, 1);
+                    same = true;
+                    return;
+                }
             });
-        }
+            if (!same) {
+                newData.push(dataProduct);
+            }
+            return newData;
+        });
+        // }
     };
     const handleDiscount = (e) => {
         const value = e.target.value;
@@ -49,18 +52,28 @@ function InfoOfProduct({ chooseProduct }, ref) {
         <div className={cx('wrapper')}>
             <div className={cx('contain-products')}>
                 {cart.length > 0 ? (
-                    cart.map((item, index) => (
-                        <div key={index} className={cx('products')}>
-                            <input item={JSON.stringify(item)} onChange={handleChangeChoose} type="checkbox" />
-                            <Link to={`/san-pham/${item.slugProduct}`} className={cx('product')}>
-                                <img src={item.image} />
-                                <div className={cx('info-of-product')}>
-                                    <h4>{item.name}</h4>
-                                    <h5>{`$${item.cost} × ${item.number} `}</h5>
-                                </div>
-                            </Link>
-                        </div>
-                    ))
+                    cart.map((item, index) => {
+                        const chooseJson = JSON.stringify(choosedProducts);
+                        const itemJson = JSON.stringify(item);
+                        console.log(choosedProducts);
+                        return (
+                            <div key={index} className={cx('products')}>
+                                <input
+                                    item={itemJson}
+                                    onChange={handleChangeChoose}
+                                    type="checkbox"
+                                    checked={chooseJson.includes(itemJson)}
+                                />
+                                <Link to={`/san-pham/${item.slugProduct}`} className={cx('product')}>
+                                    <img src={item.image} />
+                                    <div className={cx('info-of-product')}>
+                                        <h4>{item.name}</h4>
+                                        <h5>{`$${item.cost} × ${item.number} `}</h5>
+                                    </div>
+                                </Link>
+                            </div>
+                        );
+                    })
                 ) : (
                     <span>
                         Không có sản phẩm nào trong giỏ hàng, bạn có thể đến <Link to="/cua-hang">Cửa hàng</Link> để
@@ -71,7 +84,7 @@ function InfoOfProduct({ chooseProduct }, ref) {
             <span className={cx('line-border')}></span>
             <input
                 onBlur={handleDiscount}
-                ref={ref.refcodeDiscount} 
+                ref={ref.refcodeDiscount}
                 className={cx('discount')}
                 placeholder="Mã giảm giá"
             />

@@ -12,6 +12,7 @@ import { useEffect, useContext } from 'react';
 import request from '~/utils/Api/request';
 import { refreshToken } from '~/api-server/refeshToken';
 import { get } from './api-server/cartService';
+import { getInfoOfUser } from './api-server/getInfoOfUser';
 
 function App() {
     const [states, dispatch] = useContext(Context);
@@ -32,7 +33,6 @@ function App() {
             const expiresIn = localStorage.expiresIn * 1;
             if (timeNow > expiresIn) {
                 const token = localStorage.refreshToken;
-
                 const {
                     token: { accessToken, expiresIn },
                 } = await refreshToken(token);
@@ -51,10 +51,12 @@ function App() {
         dispatch({ key: LOGIN, value: localStorage.login });
         (async function () {
             try {
+                const info = await getInfoOfUser();
+                console.log(info);
                 const data = await get();
                 dispatch({ key: CART, value: data });
             } catch (error) {
-                // console.log(error);
+                console.log(error);
             }
         })();
     }, []);

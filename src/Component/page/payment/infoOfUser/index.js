@@ -2,13 +2,37 @@ import styles from './infoOfUser.module.scss';
 import classNames from 'classnames/bind';
 import { createRef, forwardRef, useMemo, useRef, useState } from 'react';
 import NotifyContainer, { notify } from '~/utils/notification';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const cx = classNames.bind(styles);
 const listMenu = [
-    { title: 'Họ và tên* ', require: true, placeholder: 'Nguyen Thanh An', type: 'text', kindof: 'name' },
-    { title: 'Số điện thoại*', require: true, placeholder: '0123456789', type: 'tel', kindof: 'phone' },
-    { title: 'Địa chỉ*', require: true, placeholder: 'Phường A, Quận B, Huyện C...', type: 'text', kindof: 'address' },
-    { title: 'Ghi chú', require: false, placeholder: 'ghi chú', type: 'text', kindof: 'note' },
+    {
+        title: 'Họ và tên* ',
+        require: true,
+        defaultValue: cookies.get('name'),
+        placeholder: 'Nguyen Thanh An',
+        type: 'text',
+        kindof: 'name',
+    },
+    {
+        title: 'Số điện thoại*',
+        require: true,
+        defaultValue: cookies.get('phoneNumber'),
+        placeholder: '0123456789',
+        type: 'tel',
+        kindof: 'phone',
+    },
+    {
+        title: 'Địa chỉ*',
+        require: true,
+        defaultValue: cookies.get('address'),
+        placeholder: 'Phường A, Quận B, Huyện C...',
+        type: 'text',
+        kindof: 'address',
+    },
+    { title: 'Ghi chú', require: false, defaultValue: null, placeholder: 'ghi chú', type: 'text', kindof: 'note' },
 ];
 
 function InfoOfUser({ datas, check }, refs) {
@@ -65,6 +89,7 @@ function InfoOfUser({ datas, check }, refs) {
                             onBlur={handleOnblurInput}
                             onChange={handleValueInput}
                             typename={item.type}
+                            defaultValue={item.defaultValue || ''}
                             placeholder={`eg: ${item.placeholder}`}
                             id={cx(`input${index}`)}
                         />
