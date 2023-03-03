@@ -23,7 +23,7 @@
     .td-btn {
         border-bottom: none;
     }
-    .fw6{
+    .fw6 {
         font-weight: 600;
     }
 }
@@ -61,10 +61,10 @@
     justify-content: center;
     background-color: #eee;
     color: var(--primary);
-    border:1px solid #333;
-    &:hover{
-         background-color:var(--primary);
-         color: var(--background);
+    border: 1px solid #333;
+    &:hover {
+        background-color: var(--primary);
+        color: var(--background);
     }
     span {
         padding: 0 5px;
@@ -78,4 +78,10 @@
     opacity: 0.5;
     cursor: default;
     pointer-events: none;
+}
+
+.update {
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: all;
 }

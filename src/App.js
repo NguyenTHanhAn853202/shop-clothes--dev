@@ -28,7 +28,6 @@ function App() {
                 url.includes('product')
             )
                 return config;
-            // console.log(url);
             const timeNow = Date.now();
             const expiresIn = localStorage.expiresIn * 1;
             if (timeNow > expiresIn) {
@@ -51,10 +50,11 @@ function App() {
         dispatch({ key: LOGIN, value: localStorage.login });
         (async function () {
             try {
-                const info = await getInfoOfUser();
-                console.log(info);
-                const data = await get();
-                dispatch({ key: CART, value: data });
+                if (localStorage.id || localStorage.userName) {
+                    await getInfoOfUser();
+                    const data = await get();
+                    dispatch({ key: CART, value: data });
+                }
             } catch (error) {
                 console.log(error);
             }

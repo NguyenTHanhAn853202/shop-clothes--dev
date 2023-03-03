@@ -16,6 +16,8 @@ function Payment() {
     const [agree, setAgree] = useState(false);
     const [isShow, setIsShow] = useState(false);
     const [choosedProducts, setChoosedProducts] = useState([]);
+    const [codeDiscount, setCodeDiscount] = useState('');
+    const [typeOfPayment, setTypeOfPayment] = useState('');
     const [{ cart }, dispatch] = useContext(Context);
     const refcodeDiscount = useRef();
     const refTypePayment = useRef();
@@ -30,11 +32,10 @@ function Payment() {
     useEffect(() => {
         if (agree) {
             (async () => {
-                const data = await payment(localStorage.id, choosedProducts);
+                const data = await payment( choosedProducts, typeOfPayment, codeDiscount);
                 dispatch({ key: CART, value: data });
                 notify('success', 'Đặt hàng thành công');
                 setAgree(false);
-                console.log(choosedProducts);
                 setChoosedProducts([]);
             })();
         }
@@ -67,10 +68,8 @@ function Payment() {
         if (!mapCheckErrorInput) {
             notify('warning', 'Vui lòng nhập đủ thông tin');
         }
-        const codeDiscount = refcodeDiscount.current.value;
-        const typeOfPayment = refTypePayment.current.value;
-
-        console.log(choosedProducts);
+        setCodeDiscount(refcodeDiscount.current.value);
+        setTypeOfPayment(refTypePayment.current.value);
         // call API
     };
     return (

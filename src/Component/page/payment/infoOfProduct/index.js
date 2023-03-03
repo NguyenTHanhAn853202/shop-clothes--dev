@@ -16,11 +16,8 @@ function InfoOfProduct({ chooseProduct }, ref) {
     // event functions
     const handleChangeChoose = (e) => {
         const element = e.target;
-        const checked = element.checked;
         const dataProduct = JSON.parse(element.getAttribute('item'));
-        // if (checked) {
-        //     setChoosedProducts([...choosedProducts, dataProduct]);
-        // } else {
+
         setChoosedProducts((props) => {
             const newData = [...props];
             let same = false;
@@ -36,7 +33,6 @@ function InfoOfProduct({ chooseProduct }, ref) {
             }
             return newData;
         });
-        // }
     };
     const handleDiscount = (e) => {
         const value = e.target.value;
@@ -55,7 +51,6 @@ function InfoOfProduct({ chooseProduct }, ref) {
                     cart.map((item, index) => {
                         const chooseJson = JSON.stringify(choosedProducts);
                         const itemJson = JSON.stringify(item);
-                        console.log(choosedProducts);
                         return (
                             <div key={index} className={cx('products')}>
                                 <input
@@ -106,9 +101,13 @@ function InfoOfProduct({ chooseProduct }, ref) {
                         <td colSpan={3}>phương thức thanh toán: </td>
                         <td className={cx('t-r')}>
                             <select ref={ref.refTypePayment}>
-                                <option>Khi nhận hàng</option>
-                                <option>Ngân hàng</option>
-                                <option>ANPAY </option>
+                                <option value="after">Khi nhận hàng</option>
+                                <option value="banking" disabled>
+                                    Ngân hàng
+                                </option>
+                                <option value="anpay" disabled>
+                                    ANPAY
+                                </option>
                             </select>
                         </td>
                     </tr>

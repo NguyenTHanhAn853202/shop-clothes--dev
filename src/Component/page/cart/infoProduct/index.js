@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 import Button from '~/button';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import CountNumber from '~/Component/countNumber';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { remove } from '~/api-server/cartService';
-import { REMOVE_CART } from '~/GlobalContext/key';
+import { REMOVE_CART, CART } from '~/GlobalContext/key';
 import Default from '~/announcement/accept';
+import { updateCart } from '~/api-server/cartService';
 
 const cx = classNames.bind(styles);
 
@@ -20,12 +21,35 @@ function InfoProduct({ data }) {
     const [isShow, setIsShow] = useState(false);
     const [agree, setAgree] = useState(false);
     const [idProduct, setIdProduct] = useState('');
+    const [changingProduct, setChangingProduct] = useState([]);
+    const [number, setNumber] = useState()
 
     // Handle Events
     // 1. Handle remove Product in Cart
     const handleRemoveItem = (e) => {
         setIsShow(true);
         setIdProduct(e.currentTarget.id);
+    };
+
+    const handleUpdateCart = async () => {
+        const data = await updateCart(changingProduct);
+        dispatch({ key: CART, value: data });
+    };
+
+    const isChangeNumberProduct = () => {
+        states.cart.forEach((item) => {
+            for (let i = 0; i < changingProduct.length; i++) {
+                if (changingProduct[i].idProduct === item.idProduct && changingProduct[i].number === item.number) {
+                    setChangingProduct((props) => {
+                        const data = [...props];
+                        data.splice(i, 1);
+                        i--;
+                        return [...data];
+                    });
+                }
+            }
+        });
+        return changingProduct.length ? true : false;
     };
 
     useEffect(() => {
@@ -37,7 +61,6 @@ function InfoProduct({ data }) {
         }
         return setAgree(false);
     }, [agree]);
-
     return (
         <div className={cx('wrapper')}>
             {isShow && (
@@ -76,7 +99,12 @@ function InfoProduct({ data }) {
                                 </td>
                                 <td className={cx('tac', 'fw6')}>{`$${item.cost}`}</td>
                                 <td className={cx('tac')}>
-                                    <CountNumber number={item.number} />
+                                    <CountNumber
+                                        data={item.idProduct}
+                                        setChangingProduct={setChangingProduct}
+                                        number={item.number}
+                                        setNumber={setNumber}
+                                    />
                                 </td>
                                 <td className={cx('tar', 'fw6')}>{`$${item.number * item.cost}`}</td>
                             </tr>
@@ -91,7 +119,12 @@ function InfoProduct({ data }) {
                                     </span>
                                     <p>Tiếp tục xem sản phẩm</p>
                                 </Button>
-                                <Button classNames={cx('update-cart')}>Cập nhật giỏ hàng</Button>
+                                <Button
+                                    onClick={handleUpdateCart}
+                                    classNames={cx('update-cart', { update: isChangeNumberProduct() })}
+                                >
+                                    Cập nhật giỏ hàng
+                                </Button>
                             </div>
                         </td>
                     </tr>

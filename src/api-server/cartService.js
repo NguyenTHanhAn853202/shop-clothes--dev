@@ -30,3 +30,16 @@ export const remove = async (idProduct = '') => {
         console.log(error);
     }
 };
+
+export const updateCart = async (cartUpdate) => {
+    try {
+        const datas = await requests.post('account/cart/update-in-cart', {
+            cartUpdate,
+            id: localStorage.id,
+            userName: localStorage.userName,
+        });
+        return datas.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
