@@ -1,0 +1,44 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    align-content: center;
+}
+.input{
+    display:grid;
+    grid-template-areas: 'colors sizes' 'price number';
+    align-content: center;
+}
+.color {
+    grid-area: colors;
+}
+.size {
+    grid-area: sizes;
+}
+.price {
+    grid-area: price;
+}
+.number {
+    grid-area: number;
+}
+.image {
+    label {
+        text-align: center;
+        background-color: transparent;
+        cursor: pointer;
+        display: block;
+        margin: auto;
+        padding: 3px;
+        font-size: 1.4rem;
+        border: 1px solid #999;
+        background-color: #999;
+        width: 70%;
+        &:hover {
+            color: white;
+        }
+    }
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+}
+

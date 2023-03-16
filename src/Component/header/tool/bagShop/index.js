@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faFrownOpen } from '@fortawesome/free-regular-svg-icons';
 import { Context } from '~/GlobalContext';
 import { remove } from '~/api-server/cartService';
-import { REMOVE_CART } from '~/GlobalContext/key';
+import { CART, REMOVE_CART } from '~/GlobalContext/key';
 
 const cx = classNames.bind(styles);
 function Bag({ setAgree, setIsShow, agree }, ref) {
@@ -31,8 +31,8 @@ function Bag({ setAgree, setIsShow, agree }, ref) {
         if (agree) {
             (async function () {
                 // đưa hàm async vào reducer của globalContext
-                await remove(idProduct);
-                dispatch({ key: REMOVE_CART, value: { idProduct } });
+                const data = await remove(idProduct);
+                dispatch({ key: CART, value: data });
             })();
         }
         setAgree(false);
@@ -40,7 +40,7 @@ function Bag({ setAgree, setIsShow, agree }, ref) {
 
     const total = useMemo(() => {
         return cart.reduce((money, item) => {
-            return money + item.number * 1 * item.cost;
+            return money + item.number * 1 * item?.price;
         }, 0);
     }, [JSON.stringify(cart)]);
 
@@ -50,16 +50,17 @@ function Bag({ setAgree, setIsShow, agree }, ref) {
                 <>
                     <ul className={cx('list-product')}>
                         {cart.map((item, index) => {
-                            const slug = item.slugProduct;
+                            const product = item?.idProduct||{}
+                            const slug = product.slug;
                             return (
                                 <li key={index} className={cx('product')}>
                                     <div className={cx('contain-product')}>
                                         <Link to={`san-pham/${slug}`} className={cx('link-contain-product')}>
-                                            <img className={cx('img')} src={item.image} alt={item.name} />
-                                            <h4 className={cx('name')}>{item.name}</h4>
+                                            <img className={cx('img')} src={item.image} alt={product.name} />
+                                            <h4 className={cx('name')}>{product?.name}</h4>
                                         </Link>
                                         <button
-                                            id={item.idProduct}
+                                            id={item._id}
                                             onClick={handleRemoveCart}
                                             className={cx('btn-delete-product')}
                                         >
@@ -68,8 +69,10 @@ function Bag({ setAgree, setIsShow, agree }, ref) {
                                     </div>
                                     <div className={cx('info-sell')}>
                                         <span className={cx('amount')}>{`${item.number} × `}</span>
-                                        <span className={cx('price')}>{`$${item.cost}`}</span>
+                                        <span className={cx('price')}>{`$${item.price}`}</span>
+                                        
                                     </div>
+                                    <h4 className={cx('size')}>{`Size: ${item?.size}`}</h4>
                                 </li>
                             );
                         })}

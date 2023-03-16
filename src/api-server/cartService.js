@@ -1,31 +1,35 @@
 import * as requests from '~/utils/Api/request';
 
-export const add = async (idProduct, name, image, cost, number, slugProduct) => {
-    const datas = await requests.post('account/cart/update', {
-        userName: localStorage.userName,
+export const add = async (idProduct, size, number, color, price, image) => {
+    const datas = await requests.post('cart/add-product', {
+        id: localStorage.id,
         idProduct,
+        size,
         number,
-        cost,
+        color,
+        price,
         image,
-        name,
-        slugProduct,
     });
     return datas;
 };
 
-export const get = async () => {
-    const datas = await requests.post('account/cart/get', {
-        userName: localStorage.userName,
+export const get = async (page) => {
+    const datas = await requests.get('cart/get', {
+        params: {
+            id: localStorage.id,
+            page,
+            perPage: 4,
+        },
     });
-    return datas;
+    return datas.data;
 };
 
-export const remove = async (idProduct = '') => {
+export const remove = async (id = '') => {
     try {
-        const datas = await requests.remove('account/cart/delete', {
-            data: { userName: localStorage.userName, idProduct: idProduct },
+        const datas = await requests.remove('cart/delete', {
+            data: { id },
         });
-        return datas;
+        return datas.data;
     } catch (error) {
         console.log(error);
     }
@@ -33,10 +37,8 @@ export const remove = async (idProduct = '') => {
 
 export const updateCart = async (cartUpdate) => {
     try {
-        const datas = await requests.post('account/cart/update-in-cart', {
+        const datas = await requests.post('cart/update-product', {
             cartUpdate,
-            id: localStorage.id,
-            userName: localStorage.userName,
         });
         return datas.data;
     } catch (error) {

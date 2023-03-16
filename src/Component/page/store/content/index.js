@@ -24,23 +24,25 @@ function Content() {
                 : await productServer.product(location.state?.nameFind || '', {
                       column: column,
                       type: type,
-                      type,
                       _sort: isSort,
                   });
             if (data) setData(data);
         })();
     }, [location.state?.nameFind, params, column, type]);
+
     return (
         <div className={cx('wrapper')}>
             {data.map((item, index) => {
+                const product = item.product[0]
                 return (
+                    
                     <div key={index} className={cx('contain-card')}>
                         <Card
                             href={`/san-pham/${item.slug}`}
-                            src={item.imageDefault}
+                            src={product.imagePath}
                             alt={item.name}
                             name={item.name}
-                            cost={item.costDefault}
+                            cost={product.price}
                         />
                     </div>
                 );

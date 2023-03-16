@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import DefaultLayout from '~/defaultLayout';
 import FormAccount from '~/formAccount';
-import { layoutPublic, layoutPrivate, layoutAccount } from './router/router';
+import { layoutPublic, layoutPrivate, layoutAccount, layout_employee_manager, layoutManager } from './router/router';
 import { Fragment } from 'react';
 import LazyCom from './utils/lazyCom';
 import ScrollToTop from './utils/scrollToTop';
-import Protect from '~/protect';
+import { EmployeeAndManager, Manager, Protect } from '~/protect';
 import { Context } from './GlobalContext';
 import { CART, LOGIN } from './GlobalContext/key';
 import { useEffect, useContext } from 'react';
@@ -24,8 +24,7 @@ function App() {
                 url.includes('get-products') ||
                 url.includes('login') ||
                 url.includes('account/refreshTokens') ||
-                url.includes('logout') ||
-                url.includes('product')
+                url.includes('logout')
             )
                 return config;
             const timeNow = Date.now();
@@ -52,7 +51,7 @@ function App() {
             try {
                 if (localStorage.id || localStorage.userName) {
                     await getInfoOfUser();
-                    const data = await get();
+                    const data = await get(1);
                     dispatch({ key: CART, value: data });
                 }
             } catch (error) {
@@ -87,6 +86,26 @@ function App() {
                             const Layout = item.element || Fragment;
                             return (
                                 <Route key={item} element={<Protect />}>
+                                    <Route path={item.path} element={<Layout />}>
+                                        {item.slug && <Route path=":slug" element={<Layout />} />}
+                                    </Route>
+                                </Route>
+                            );
+                        })}
+                        {layout_employee_manager.map((item, index) => {
+                            const Layout = item.element || Fragment;
+                            return (
+                                <Route element={<EmployeeAndManager />} key={index}>
+                                    <Route path={item.path} element={<Layout />}>
+                                        {item.slug && <Route path=":slug" element={<Layout />} />}
+                                    </Route>
+                                </Route>
+                            );
+                        })}
+                        {layoutManager.map((item, index) => {
+                            const Layout = item.element || Fragment;
+                            return (
+                                <Route path="/quan-ly" key={index} element={<Manager />}>
                                     <Route path={item.path} element={<Layout />}>
                                         {item.slug && <Route path=":slug" element={<Layout />} />}
                                     </Route>

@@ -52,4 +52,9 @@ export const getType = async (typeProduct, other) => {
         console.log(error);
     }
 };
+
+export const uploadProduct = async (formData, config) => {
+    const data = await requests.post('product/upload-product', formData, config);
+    return data;
+};
 // http://localhost:3100/product/get-products

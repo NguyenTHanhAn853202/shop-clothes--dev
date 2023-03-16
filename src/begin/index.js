@@ -56,6 +56,12 @@ function Begin() {
                                 <Render classNames={cx('render-tippy')} attrs={attrs}>
                                     <div className={cx('list-items')}>
                                         <Link to={'/cap-nhat-thong-tin'}>Thông tin</Link>
+                                        {(localStorage.role === 'manager' || localStorage.role === 'employee') && (
+                                            <Link to={'/upload-product'}>Cập nhật sản phẩm</Link>
+                                        )}
+                                        {localStorage.role === 'manager' && (
+                                            <Link to={'/quan-ly/tao-tai-khoan'}>Tạo tài khoản cho nhân viên</Link>
+                                        )}
                                         <Link>Đăng khi thành viên</Link>
                                         <Link> Đăng kí ví ANPAY</Link>
                                         <Link onClick={handleClickLogout}>Đăng xuất</Link>

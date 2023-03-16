@@ -61,6 +61,7 @@ function FormLogin({
                 try {
                     const data = await login(email, password);
                     const {
+                        role,
                         id,
                         avatar,
                         name,
@@ -71,6 +72,7 @@ function FormLogin({
                     } = data;
 
                     if (data.check) {
+                        localStorage.role = role;
                         localStorage.id = id;
                         localStorage.avatar = avatar;
                         localStorage.name = name;
@@ -79,7 +81,6 @@ function FormLogin({
                         localStorage.accessToken = accessToken;
                         localStorage.refreshToken = refreshToken;
                         localStorage.expiresIn = expiresIn;
-
                         const dataCart = await get();
                         dispatch({ key: CART, value: dataCart });
 

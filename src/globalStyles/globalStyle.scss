@@ -67,6 +67,10 @@ a[href] {
     text-decoration: none;
 }
 
+textarea{
+    font:inherit
+}
+
 h1,
 h2,
 h3,
@@ -87,9 +91,9 @@ h6 {
     height: 100%;
 }
 
-@media (max-width: 1170px) and (min-width: 870px) {
-    .grid {
-        width: 96%;
+@media (max-width: 1170px) and (min-width: 950px) {
+    .wrap .grid {
+        width: 90% ;
     }
 }
 

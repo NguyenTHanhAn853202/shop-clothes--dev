@@ -1,7 +1,7 @@
 import styles from './infoOfProduct.module.scss';
 import classNames from 'classnames/bind';
 import { Context } from '~/GlobalContext';
-import { useContext, useState, forwardRef } from 'react';
+import { useContext, useState, forwardRef, useEffect } from 'react';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -22,7 +22,8 @@ function InfoOfProduct({ chooseProduct }, ref) {
             const newData = [...props];
             let same = false;
             props.forEach((item, i) => {
-                if (item.idProduct === dataProduct.idProduct) {
+                const itemJSON = JSON.stringify(item);
+                if (itemJSON === element.getAttribute('item')) {
                     newData.splice(i, 1);
                     same = true;
                     return;
@@ -42,7 +43,7 @@ function InfoOfProduct({ chooseProduct }, ref) {
     };
     //
     const cost = useMemo(() => {
-        return choosedProducts.reduce((price, item) => price + item.cost * item.number, 0);
+        return choosedProducts.reduce((price, item) => price + item?.price * item.number, 0);
     }, [JSON.stringify(choosedProducts)]);
     return (
         <div className={cx('wrapper')}>
@@ -51,6 +52,7 @@ function InfoOfProduct({ chooseProduct }, ref) {
                     cart.map((item, index) => {
                         const chooseJson = JSON.stringify(choosedProducts);
                         const itemJson = JSON.stringify(item);
+                        const product = item?.idProduct || {};
                         return (
                             <div key={index} className={cx('products')}>
                                 <input
@@ -59,11 +61,12 @@ function InfoOfProduct({ chooseProduct }, ref) {
                                     type="checkbox"
                                     checked={chooseJson.includes(itemJson)}
                                 />
-                                <Link to={`/san-pham/${item.slugProduct}`} className={cx('product')}>
-                                    <img src={item.image} />
+                                <Link to={`/san-pham/${product?.slug}`} className={cx('product')}>
+                                    <img src={item?.image} />
                                     <div className={cx('info-of-product')}>
-                                        <h4>{item.name}</h4>
-                                        <h5>{`$${item.cost} × ${item.number} `}</h5>
+                                        <h4>{product?.name}</h4>
+                                        <h5>{`Size: ${item.size} - $${item?.price} × ${item.number} `}</h5>
+                                        <h5>{``}</h5>
                                     </div>
                                 </Link>
                             </div>

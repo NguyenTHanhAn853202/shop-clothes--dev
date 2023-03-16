@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 const cx = classNames.bind(styles);
 
-function CountNumber({ number, setNumber, setChangingProduct, ...props }) {
+function CountNumber({ number, setNumber, setChangingProduct, data, ...props }) {
     const inputRef = useRef();
     const [amount, setAmount] = useState(number);
     const firstRender = useRef(true);
@@ -20,7 +20,7 @@ function CountNumber({ number, setNumber, setChangingProduct, ...props }) {
         setAmount(newValue);
     };
     const handleBlurAmount = (e) => {
-        const value = e.target.value || '1';
+        const value = e.target.value==='0' || !e.target.value?  '1':e.target.value;
         setAmount(value);
     };
     const handleClickIncrease = (e) => {
@@ -35,15 +35,17 @@ function CountNumber({ number, setNumber, setChangingProduct, ...props }) {
         if (setNumber) {
             setNumber(amount);
         }
-        if (firstRender.current) {
-            firstRender.current = false;
-        } else {
-            const idProduct = inputRef.current.getAttribute('data');
-            setChangingProduct((props) => {
-                const data = [...props];
-                const newData = data.filter((item) => item.idProduct !== idProduct);
-                return [...newData, { idProduct, number: amount * 1 }];
-            });
+        if (data) {
+            if (firstRender.current) {
+                firstRender.current = false;
+            } else {
+                const { size, color, _id } = data;
+                setChangingProduct((props) => {
+                    const data = [...props];
+                    const newData = data.filter((item) => item._id !== _id);
+                    return [...newData, { _id, number: amount * 1, size, color }];
+                });
+            }
         }
     }, [amount]);
     return (

@@ -1,5 +1,6 @@
 .wrapper-slider {
     // width: 50vw;
+    width: 75%;
 }
 
 .wrapper {
@@ -18,7 +19,7 @@
     object-fit: cover;
 }
 
-.feedback{
+.feedback {
     display: block;
     padding: 20px 0;
     text-align: center;
@@ -34,7 +35,6 @@
     -webkit-line-clamp: 3;
     line-height: 2rem;
     font-size: 1.6rem;
-  
 }
 .contain {
     display: flex;

@@ -64,6 +64,8 @@ function InfoOfUser({ datas, check }, refs) {
     };
     const handleOnblurInput = (e) => {
         const index = e.target.getAttribute('index');
+        const type = e.target.getAttribute('kindof');
+        if (type === 'note') return;
         if (e.target.value.trim() === '') {
             validInput(index, '');
         } else {

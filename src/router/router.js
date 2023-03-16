@@ -1,5 +1,6 @@
 // import Home from '~/Component/page/home';
 import { lazy } from 'react';
+import CreateAccount from '~/Component/pageManager/createAccount';
 const Payment = lazy(() => import('~/Component/page/payment'));
 const Home = lazy(() => import('~/Component/page/home'));
 
@@ -13,14 +14,7 @@ const Product = lazy(() => import('~/Component/page/product'));
 const Login = lazy(() => import('~/Component/page/login'));
 const Register = lazy(() => import('~/Component/page/register'));
 const updateInfoOfUser = lazy(() => import('~/Component/page/updateInfoOfUser'));
-// import Home from '~/Component/page/home';
-// import Product from '~/Component/page/product';
-// import Cart from '~/Component/page/cart';
-// import Store from '~/Component/page/store';
-// import Collection from '~/Component/page/collection';
-// import Brand from '~/Component/page/brand';
-// import Contact from '~/Component/page/contact';
-// import Introduct from '~/Component/page/introduction';
+const UploadProduct = lazy(() => import('~/Component/page/uploadProduct'));
 
 export const layoutPrivate = [
     {
@@ -37,7 +31,23 @@ export const layoutPrivate = [
     },
 ];
 
+export const  layout_employee_manager = [
+    {
+        element: UploadProduct,
+        path: '/upload-product',
+    },
+
+]
+
+export const layoutManager = [
+    {
+        element:CreateAccount,
+        path:'tao-tai-khoan'
+    }
+]
+
 export const layoutPublic = [
+    
     {
         element: Home,
         path: '/',

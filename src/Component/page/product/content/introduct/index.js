@@ -11,7 +11,7 @@ import { Context as ContextProduct } from '../../ConetextProduct';
 import { Context } from '~/GlobalContext';
 // import api
 import { add } from '~/api-server/cartService';
-import { ADD_CART } from '~/GlobalContext/key';
+import { ADD_CART, CART } from '~/GlobalContext/key';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Announcement from '~/announcement/announcement';
@@ -19,29 +19,40 @@ import Announcement from '~/announcement/announcement';
 const cx = classNames.bind(styles);
 
 function Introduct() {
+    const [infoProduct, setInfoProduct] = useState({});
+    const [iColor, setIColor] = useState();
+    const [iSize, setISize] = useState();
+    const [size, setSize] = useState([]);
+    const [color, setColor] = useState([]);
     const [datas, setData] = useContext(ContextProduct);
     const [number, setNumber] = useState(1);
     const [states, dispatch] = useContext(Context);
     const [isLoading, setIsLoading] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
     // handle event
-
     const { product } = datas;
     const { cart } = states;
+    const defaultProduct = product.product ? product.product[iColor || 0] : {};
     const addIntoCart = (e) => {
         (async function () {
-            setIsLoading(true);
-            const data = await add(
-                product._id,
-                product.name,
-                product.imageDefault,
-                product.costDefault,
-                number,
-                product.slug,
-            );
-            dispatch({ key: ADD_CART, value: data });
-            setIsLoading(false);
-            setAddSuccess(true);
+            try {
+                setIsLoading(true);
+                const { success, data } = await add(
+                    product._id,
+                    size,
+                    number,
+                    infoProduct.color,
+                    defaultProduct.price,
+                    defaultProduct.imagePath,
+                );
+                if (success) {
+                    dispatch({ key: CART, value: data });
+                    setAddSuccess(true);
+                    setIsLoading(false);
+                }
+            } catch (error) {
+                console.log(error);
+            }
         })();
     };
     useEffect(() => {
@@ -57,7 +68,7 @@ function Introduct() {
         <div className={cx('wrapper')}>
             {addSuccess && <Announcement />}
             <div className={cx('img-product')}>
-                <img src={product.imageDefault} />
+                <img src={defaultProduct?.imagePath} />
             </div>
             <div className={cx('main-info')}>
                 <span className={cx('goto')}>
@@ -70,13 +81,48 @@ function Introduct() {
                     </Link>
                 </span>
                 <h1 className={cx('name-product')}>{product.name}</h1>
-                <h1 className={cx('price-product')}>{`$${product.costDefault}`}</h1>
-                <p className={cx('introduct-product')}>
-                    Trích đoạn chuẩn của Lorem Ipsum được sử dụng từ thế kỉ thứ 16 và được tái bản sau đó cho những
-                    người quan tâm đến nó. Đoạn 1.10.32 và 1.10.33 trong cuốn “De Finibus Bonorum et Malorum” của Cicero
-                    cũng được tái bản lại theo đúng cấu trúc gốc, kèm theo phiên bản tiếng Anh được dịch bởi H. Rackham
-                    vào năm 1914.
-                </p>
+                <h1 className={cx('price-product')}>{`$${defaultProduct?.price}`}</h1>
+                <div className={cx('product-type')}>
+                    <span>Kích thước:</span>
+                    <div className={cx('product-size')}>
+                        {(defaultProduct.size || []).map((item, index) => (
+                            <button
+                                value={item}
+                                onClick={(e) => {
+                                    setInfoProduct((props) => ({ ...props, size: item }));
+                                    setISize(index);
+
+                                    setSize(e.target.value);
+                                }}
+                                className={cx({ active: index === iSize })}
+                                key={index}
+                            >
+                                {item}
+                            </button>
+                        ))}
+                    </div>
+                    <span>Màu sắc:</span>
+                    <div className={cx('product-color')}>
+                        {(product.color || []).map((item, index) => {
+                            return (
+                                <button
+                                    onClick={(e) => {
+                                        setInfoProduct((props) => ({ ...props, color: item }));
+                                        setIColor(index);
+                                        setISize(null);
+                                    }}
+                                    className={cx({
+                                        active: index === iColor,
+                                        choose: product.product[index].number === 0,
+                                    })}
+                                    key={index}
+                                >
+                                    {item}
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
                 <div className={cx('count-and-add')}>
                     <CountNumber setNumber={setNumber} number={number} />
                     <Button onClick={addIntoCart} ishover classNames={cx('add-cart')}>

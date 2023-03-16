@@ -32,7 +32,8 @@ function Payment() {
     useEffect(() => {
         if (agree) {
             (async () => {
-                const data = await payment( choosedProducts, typeOfPayment, codeDiscount);
+                const data = await payment(choosedProducts, typeOfPayment, codeDiscount);
+                console.log(data);
                 dispatch({ key: CART, value: data });
                 notify('success', 'Đặt hàng thành công');
                 setAgree(false);

@@ -22,35 +22,20 @@ function ContainFeedback() {
         autoplay: true,
         autoplaySpeed: 3000,
     };
-    useEffect(() => {
-        const _width = window.outerWidth;
-        wrapperRef.current.style.width = (((_width * 50) / 100)) + 'px';
-    }, []);
-    
-    useEffect(() => {
-        const handleWidth = () => {
-            const _width = window.outerWidth;
-            wrapperRef.current.style.width = (((_width * 50) / 100)) + 'px';
-            setWidth(_width);
-        };
-        window.addEventListener('resize', handleWidth);
-        return function () {
-            window.removeEventListener('resize', handleWidth);
-        };
-    }, [width]);
     return (
         <div ref={wrapperRef} className={cx('wrapper-slider')}>
+            {/* <div className={cx('contain-slider')}> */}
             <Slider {...settings}>
                 <div className={cx('wrapper')}>
                     <div className={cx('contain')}>
                         <img className={cx('avatar')} src={avatar} alt={'avatar'} />
                         <div className={cx('feedback')}>
                             <p className={cx('description')}>
-                                I think this is a good website, This helps me is easy to buy faster products. But The shop
-                                still don't sales speacial to customers. I hope the shop will take care of the customer a
-                                lot of, I think this is a good website, This helps me is easy to buy faster products. But The shop
-                                still don't sales speacial to customers. I hope the shop will take care of the customer a
-                                lot of
+                                I think this is a good website, This helps me is easy to buy faster products. But The
+                                shop still don't sales speacial to customers. I hope the shop will take care of the
+                                customer a lot of, I think this is a good website, This helps me is easy to buy faster
+                                products. But The shop still don't sales speacial to customers. I hope the shop will
+                                take care of the customer a lot of
                             </p>
                         </div>
                         <h4 className={cx('name-of-feedbacker')}>
@@ -64,11 +49,11 @@ function ContainFeedback() {
                         <img className={cx('avatar')} src={avatar} alt={'avatar'} />
                         <div className={cx('feedback')}>
                             <p className={cx('description')}>
-                                I think this is a good website, This helps me is easy to buy faster products. But The shop
-                                still don't sales speacial to customers. I hope the shop will take care of the customer a
-                                lot of, I think this is a good website, This helps me is easy to buy faster products. But The shop
-                                still don't sales speacial to customers. I hope the shop will take care of the customer a
-                                lot of
+                                I think this is a good website, This helps me is easy to buy faster products. But The
+                                shop still don't sales speacial to customers. I hope the shop will take care of the
+                                customer a lot of, I think this is a good website, This helps me is easy to buy faster
+                                products. But The shop still don't sales speacial to customers. I hope the shop will
+                                take care of the customer a lot of
                             </p>
                         </div>
                         <h4 className={cx('name-of-feedbacker')}>
@@ -82,11 +67,11 @@ function ContainFeedback() {
                         <img className={cx('avatar')} src={avatar} alt={'avatar'} />
                         <div className={cx('feedback')}>
                             <p className={cx('description')}>
-                                I think this is a good website, This helps me is easy to buy faster products. But The shop
-                                still don't sales speacial to customers. I hope the shop will take care of the customer a
-                                lot of, I think this is a good website, This helps me is easy to buy faster products. But The shop
-                                still don't sales speacial to customers. I hope the shop will take care of the customer a
-                                lot of
+                                I think this is a good website, This helps me is easy to buy faster products. But The
+                                shop still don't sales speacial to customers. I hope the shop will take care of the
+                                customer a lot of, I think this is a good website, This helps me is easy to buy faster
+                                products. But The shop still don't sales speacial to customers. I hope the shop will
+                                take care of the customer a lot of
                             </p>
                         </div>
                         <h4 className={cx('name-of-feedbacker')}>
@@ -96,6 +81,7 @@ function ContainFeedback() {
                     </div>
                 </div>
             </Slider>
+            {/* </div > */}
         </div>
     );
 }

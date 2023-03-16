@@ -32,7 +32,7 @@ function Tool() {
 
     const number = useMemo(() => {
         return cart.reduce((total, item) => {
-            return total + item.number * 1;
+            return total + item.number*1;
         }, 0);
     }, [JSON.stringify(cart)]);
     return (

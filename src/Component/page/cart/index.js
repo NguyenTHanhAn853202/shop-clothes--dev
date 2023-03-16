@@ -13,7 +13,7 @@ function Cart() {
 
     const totalCost = useMemo(() => {
         return states.cart.reduce((cost, item) => {
-            const price = item.cost ? item.cost * item.number : 0;
+            const price = item.price ? item.price * item.number : 0;
             return cost + price;
         }, 0);
     }, [states.cart]);

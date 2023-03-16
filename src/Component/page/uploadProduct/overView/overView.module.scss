@@ -1,0 +1,24 @@
+.wrapper {
+    display: grid;
+    grid-template-areas: 'nameP nameP nameP nameP type' 'description description description description description';
+    padding: 20px 10px;
+    justify-content: space-around;
+    .input {
+        grid-area: nameP;
+        height: 40px;
+        width: 80%;
+    }
+    select {
+        width: 100px;
+        height: 40px;
+        font-size: 1.6rem;
+        padding: 2px 3px;
+        border-radius: 7px;
+        grid-area: type;
+    }
+    textarea {
+        grid-area: description;
+        height: 100px;
+        padding: 5px 10px;
+    }
+}

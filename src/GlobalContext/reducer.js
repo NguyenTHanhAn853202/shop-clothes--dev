@@ -23,15 +23,13 @@ const reducer = (state, action) => {
                 cart: value,
             };
         case ADD_CART:
-            const { same, data } = value;
             const newData = state.cart;
-            if (same) {
-                const sameProduct = state.cart.find((item) => item.idProduct === data.idProduct);
-                const index = state.cart.indexOf(sameProduct);
-                newData.splice(index, 1, data);
-            } else {
-                newData.push(data);
-            }
+            const sameProduct = state.cart.find(
+                (item) => item.idProduct === value.idProduct && item.size === value.size && item.color === value.color,
+            );
+            const index = state.cart.indexOf(sameProduct);
+            newData.splice(index, 1, value);
+
             return {
                 ...state,
                 cart: [...newData],

@@ -25,6 +25,7 @@ function UpdateInfoOfUser() {
     const [loadingSubmit, setLoadingSubmit] = useState(false);
     const imgRef = useRef();
     const sexRef = useRef();
+    console.log(cookies.get('name'), cookies.get('birthday'), cookies.get('address'));
     const newDateBirthday = cookies.get('birthday') ? new Date(cookies.get('birthday')) : new Date();
     const [birthday, setBirthday] = useState(newDateBirthday);
     const [file, setFile] = useState();
@@ -58,7 +59,6 @@ function UpdateInfoOfUser() {
             formData.append('birthday', birthday);
         }
         formData.append('id', localStorage.id);
-        console.log(sexRef.current.value);
         formData.append('sex', sexRef.current.value);
         const data = await updateInfoOfUser(formData, {
             headers: {
@@ -88,8 +88,8 @@ function UpdateInfoOfUser() {
                                 type={item.type}
                                 name={item.name}
                                 w100
-                                defaultValue={item.defaultValue || ''}
-                                placeholder={item.placeholder}
+                                defaultValue={item?.defaultValue||''}
+                                placeholder={item?.placeholder}
                             />
                         ))}
                         <div className={cx('contain-selection')}>

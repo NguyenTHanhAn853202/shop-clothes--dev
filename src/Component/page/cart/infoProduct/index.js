@@ -9,7 +9,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import CountNumber from '~/Component/countNumber';
 import { useState, useEffect, useMemo } from 'react';
 import { remove } from '~/api-server/cartService';
-import { REMOVE_CART, CART } from '~/GlobalContext/key';
+import { CART } from '~/GlobalContext/key';
 import Default from '~/announcement/accept';
 import { updateCart } from '~/api-server/cartService';
 
@@ -20,15 +20,15 @@ function InfoProduct({ data }) {
     const cart = states.cart;
     const [isShow, setIsShow] = useState(false);
     const [agree, setAgree] = useState(false);
-    const [idProduct, setIdProduct] = useState('');
+    const [idCart, setIdCart] = useState('');
     const [changingProduct, setChangingProduct] = useState([]);
-    const [number, setNumber] = useState()
+    const [number, setNumber] = useState();
 
     // Handle Events
     // 1. Handle remove Product in Cart
     const handleRemoveItem = (e) => {
         setIsShow(true);
-        setIdProduct(e.currentTarget.id);
+        setIdCart(e.currentTarget.id);
     };
 
     const handleUpdateCart = async () => {
@@ -39,7 +39,13 @@ function InfoProduct({ data }) {
     const isChangeNumberProduct = () => {
         states.cart.forEach((item) => {
             for (let i = 0; i < changingProduct.length; i++) {
-                if (changingProduct[i].idProduct === item.idProduct && changingProduct[i].number === item.number) {
+                const _item = changingProduct[i];
+                if (
+                    _item._id === item._id &&
+                    _item.number === item.number &&
+                    _item.color === item.color &&
+                    _item.size === item.size
+                ) {
                     setChangingProduct((props) => {
                         const data = [...props];
                         data.splice(i, 1);
@@ -55,8 +61,8 @@ function InfoProduct({ data }) {
     useEffect(() => {
         if (agree) {
             (async function () {
-                await remove(idProduct);
-                dispatch({ key: REMOVE_CART, value: { idProduct } });
+                const data = await remove(idCart);
+                dispatch({ key: CART, value: data });
             })();
         }
         return setAgree(false);
@@ -76,37 +82,44 @@ function InfoProduct({ data }) {
                     <tr>
                         <th colSpan={3}>SẢN PHẨM</th>
                         <th className={cx('tac')}>GIÁ</th>
+                        <th className={cx('tac')}>SIZE</th>
+                        <th className={cx('tac')}>MÀU</th>
                         <th className={cx('tac')}>SỐ LƯỢNG</th>
                         <th className={cx('tar')}>TỔNG</th>
                     </tr>
                 </thead>
                 <tbody>
                     {cart.map((item, index) => {
+                        const to = `/san-pham/${item?.idProduct.slug}`;
                         return (
                             <tr key={index}>
                                 <td>
-                                    <button id={item.idProduct} onClick={handleRemoveItem} className={cx('btn-remove')}>
+                                    <button id={item._id} onClick={handleRemoveItem} className={cx('btn-remove')}>
                                         <FontAwesomeIcon icon={faTimesCircle} />
                                     </button>
                                 </td>
                                 <td className={cx('product-img')}>
-                                    <Link className={cx('link-product-img')}>
-                                        <img src={item.image} />
+                                    <Link to={to} className={cx('link-product-img')}>
+                                        <img src={item?.image} />
                                     </Link>
                                 </td>
-                                <td>
-                                    <Link style={{ color: 'var(--primary)' }}>{item.name}</Link>
+                                <td style={{ width: '27%' }}>
+                                    <Link to={to} style={{ color: 'var(--primary)', width: '60%' }}>
+                                        {item?.idProduct?.name}
+                                    </Link>
                                 </td>
-                                <td className={cx('tac', 'fw6')}>{`$${item.cost}`}</td>
+                                <td className={cx('tac', 'fw6')}>{`$${item?.price}`}</td>
+                                <td className={cx('size', 'tac')}>{item.size}</td>
+                                <td className={cx('size', 'tac')}>{item.color}</td>
                                 <td className={cx('tac')}>
                                     <CountNumber
-                                        data={item.idProduct}
+                                        data={item}
                                         setChangingProduct={setChangingProduct}
                                         number={item.number}
                                         setNumber={setNumber}
                                     />
                                 </td>
-                                <td className={cx('tar', 'fw6')}>{`$${item.number * item.cost}`}</td>
+                                <td className={cx('tar', 'fw6')}>{`$${item.number * item?.price}`}</td>
                             </tr>
                         );
                     })}

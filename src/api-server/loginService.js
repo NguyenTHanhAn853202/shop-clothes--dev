@@ -20,6 +20,19 @@ export const create = async (email, password) => {
     return datas;
 };
 
+export const registerManager = async (userName, password, rePassword, role, yourPassword) => {
+    const data = await requests.post('account/create-manager', {
+        userName,
+        password,
+        rePassword,
+        role,
+        userNameManager: localStorage.userName,
+        yourPassword,
+        id: localStorage.id,
+    });
+    return data;
+};
+
 export const logout = async (refreshToken) => {
     const datas = await requests.post('account/logout', { userName: localStorage.userName, token: refreshToken });
     localStorage.clear();
