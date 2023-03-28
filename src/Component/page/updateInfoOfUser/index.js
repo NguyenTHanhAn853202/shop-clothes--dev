@@ -25,7 +25,6 @@ function UpdateInfoOfUser() {
     const [loadingSubmit, setLoadingSubmit] = useState(false);
     const imgRef = useRef();
     const sexRef = useRef();
-    console.log(cookies.get('name'), cookies.get('birthday'), cookies.get('address'));
     const newDateBirthday = cookies.get('birthday') ? new Date(cookies.get('birthday')) : new Date();
     const [birthday, setBirthday] = useState(newDateBirthday);
     const [file, setFile] = useState();
@@ -88,7 +87,7 @@ function UpdateInfoOfUser() {
                                 type={item.type}
                                 name={item.name}
                                 w100
-                                defaultValue={item?.defaultValue||''}
+                                defaultValue={item?.defaultValue || ''}
                                 placeholder={item?.placeholder}
                             />
                         ))}

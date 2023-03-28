@@ -15,6 +15,7 @@ const Login = lazy(() => import('~/Component/page/login'));
 const Register = lazy(() => import('~/Component/page/register'));
 const updateInfoOfUser = lazy(() => import('~/Component/page/updateInfoOfUser'));
 const UploadProduct = lazy(() => import('~/Component/page/uploadProduct'));
+const DisableAccount = lazy(() => import('~/Component/page/disableAccount'));
 
 export const layoutPrivate = [
     {
@@ -31,23 +32,25 @@ export const layoutPrivate = [
     },
 ];
 
-export const  layout_employee_manager = [
+export const layout_employee_manager = [
     {
         element: UploadProduct,
         path: '/upload-product',
     },
-
-]
+];
 
 export const layoutManager = [
     {
-        element:CreateAccount,
-        path:'tao-tai-khoan'
-    }
-]
+        element: CreateAccount,
+        path: 'tao-tai-khoan',
+    },
+    {
+        element: DisableAccount,
+        path: 'vo-hieu-hoa-tai-khoan',
+    },
+];
 
 export const layoutPublic = [
-    
     {
         element: Home,
         path: '/',

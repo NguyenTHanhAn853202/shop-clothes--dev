@@ -35,7 +35,6 @@ function Content() {
             {data.map((item, index) => {
                 const product = item.product[0]
                 return (
-                    
                     <div key={index} className={cx('contain-card')}>
                         <Card
                             href={`/san-pham/${item.slug}`}

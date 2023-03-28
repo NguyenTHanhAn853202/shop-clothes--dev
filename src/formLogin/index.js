@@ -60,18 +60,19 @@ function FormLogin({
             (async function () {
                 try {
                     const data = await login(email, password);
-                    const {
-                        role,
-                        id,
-                        avatar,
-                        name,
-                        check,
-                        message,
-                        refreshToken,
-                        token: { accessToken, expiresIn },
-                    } = data;
-
-                    if (data.check) {
+                    if (!data.check) {
+                        alert(data.message);
+                    } else {
+                        const {
+                            role ,
+                            id ,
+                            avatar ,
+                            name ,
+                            check ,
+                            message ,
+                            refreshToken ,
+                            token: { accessToken, expiresIn },
+                        } = data;
                         localStorage.role = role;
                         localStorage.id = id;
                         localStorage.avatar = avatar;
@@ -90,10 +91,10 @@ function FormLogin({
                         });
                         navigate('/', { replace: false });
                         alert(message);
-                    } else {
-                        alert('error: login failed');
                     }
-                } catch (error) {}
+                } catch (error) {
+                    console.log(error);
+                }
             })();
         } else {
             (async function () {

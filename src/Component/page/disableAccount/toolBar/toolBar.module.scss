@@ -1,0 +1,47 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #999;
+    padding-bottom: 30px;
+    select {
+        width: 25%;
+        padding: 7px 3px;
+        text-align: center;
+    }
+    .find {
+        position: relative;
+        flex: 1;
+        .input-find {
+            width: 90%;
+            padding-left: 17px;
+            padding-right: 10%;
+        }
+        span {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10%;
+        }
+        .icon {
+            animation: spinner 1s linear infinite;
+        }
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.input-find,
+select {
+    height: 45px;
+    font-size: 1.7rem;
+    border-radius: 40px;
+    margin: 0 20px;
+}

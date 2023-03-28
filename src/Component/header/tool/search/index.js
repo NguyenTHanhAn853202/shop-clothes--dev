@@ -63,19 +63,17 @@ function Search() {
             </div>
             <ul className={cx('list-product')}>
                 {products.length > 0 ? (
-                    products.map((product) => {
-                        return (
-                            <li key={product._id}>
-                                <Link to={`/san-pham/${product.slug}`} className={cx('item-product-link')}>
-                                    <img src={product.image[0].imageOfColor} alt={product.name} />
-                                    <div>
-                                        <h4>{product.name}</h4>
-                                        <span>{`$${product.costDefault}`}</span>
-                                    </div>
-                                </Link>
-                            </li>
-                        );
-                    })
+                    products.map((product) => (
+                        <li key={product._id}>
+                            <Link to={`/san-pham/${product.slug}`} className={cx('item-product-link')}>
+                                <img src={product.image} alt={product.name} />
+                                <div>
+                                    <h4>{product.name}</h4>
+                                    <span>{`$${product.price}`}</span>
+                                </div>
+                            </Link>
+                        </li>
+                    ))
                 ) : value.trim() === '' ? (
                     <h1 className={cx('announcement-search')}>Mời tìm kiếm</h1>
                 ) : (

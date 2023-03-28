@@ -7,10 +7,9 @@ const cx = classNames.bind(styles);
 function HeaderStore() {
     const [searchParams, setSearchParams] = useSearchParams();
     const handleSortType = (e) => {
-        const selectTagname = e.target;
-        const [column, type] = selectTagname.options[selectTagname.selectedIndex].value.split(' ');
+        const [column, type] = e.target.value.split(' ');
         setSearchParams({
-            _sort: column === 'default' ? false : true,
+            _sort: column || type ? false : true,
             column: column,
             type: type,
         });
@@ -25,16 +24,16 @@ function HeaderStore() {
             <div className={cx('options-header')}>
                 <span className={cx('title-options-header')}>Hiển thị một kết quả duy nhất</span>
                 <select onChange={handleSortType} className={cx('select')}>
-                    <option value="default default" className={cx('option-select')}>
+                    <option value="'' ''" className={cx('option-select')}>
                         Thứ tự mặc định{' '}
                     </option>
                     <option value="createdAt desc" className={cx('option-select')}>
                         Mới nhất
                     </option>
-                    <option value="costDefault asc" className={cx('option-select')}>
+                    <option value="price asc" className={cx('option-select')}>
                         Thứ tự theo giá: thấp đến cao
                     </option>
-                    <option value="costDefault desc" className={cx('option-select')}>
+                    <option value="price desc" className={cx('option-select')}>
                         Thứ tự theo giá: cao xuống thấp
                     </option>
                 </select>

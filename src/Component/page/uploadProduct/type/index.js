@@ -15,8 +15,10 @@ function Type({ index }, ref) {
 
     const handlChangeImage = (e) => {
         const image = e.target.files[0];
-        imgRef.current.src = URL.createObjectURL(image);
-        setFile(image);
+        if (image) {
+            imgRef.current.src = URL.createObjectURL(image);
+            setFile(image);
+        }
     };
     useImperativeHandle(ref, () => ({
         info() {

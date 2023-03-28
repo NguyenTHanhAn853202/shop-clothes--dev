@@ -60,8 +60,12 @@ function Begin() {
                                             <Link to={'/upload-product'}>Cập nhật sản phẩm</Link>
                                         )}
                                         {localStorage.role === 'manager' && (
-                                            <Link to={'/quan-ly/tao-tai-khoan'}>Tạo tài khoản cho nhân viên</Link>
+                                            <>
+                                                <Link to={'/quan-ly/tao-tai-khoan'}>Tạo tài khoản cho nhân viên</Link>
+                                                <Link to={'/quan-ly/vo-hieu-hoa-tai-khoan'}>Vô hiệu hóa tài</Link>
+                                            </>
                                         )}
+
                                         <Link>Đăng khi thành viên</Link>
                                         <Link> Đăng kí ví ANPAY</Link>
                                         <Link onClick={handleClickLogout}>Đăng xuất</Link>

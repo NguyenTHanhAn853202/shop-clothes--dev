@@ -1,16 +1,24 @@
-.wrapper{
+.wrapper {
     display: flex;
     flex-wrap: wrap;
 }
-.contain-card{
-    position:relative;
+.contain-card {
+    position: relative;
     width: 25%;
     height: 350px;
     // height: 350px;
     padding: 10px 5px;
-    &:hover{
+    &:hover {
         transform: translateY(-3px);
         transition: 0.5s ease;
         box-shadow: 2px 2px 10px #999;
+    }
+}
+
+@media screen and (max-width: 1350px) and (min-width: 950px) {
+    .wrapper {
+        .contain-card {
+            width: 33.33%;
+        }
     }
 }

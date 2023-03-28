@@ -1,0 +1,37 @@
+.wrapper {
+    padding: 20px 0;
+    border-bottom: 1px solid #999;
+    ul {
+        min-height: 40vh;
+        max-height:50vh;
+        overflow: auto;
+        li {
+            padding: 10px 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            &:first-child{
+                padding-top: 10px;
+            }
+            img {
+                display: block;
+                width: 130px;
+                object-fit: cover;
+                padding: 0 20px;
+                max-height: 100px;
+            }
+            input {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+            .info-of-account {
+                h2 {
+                    font-weight: 500;
+                    opacity: 0.8;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
+}
