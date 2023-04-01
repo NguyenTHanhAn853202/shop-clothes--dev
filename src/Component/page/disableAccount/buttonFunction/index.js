@@ -4,14 +4,16 @@ import Button from '~/button';
 import NotifyAgree from '~/announcement/accept';
 import { useState, useContext } from 'react';
 import { ContextToolBar, ISDISABLED } from '..';
+import { notify } from '~/utils/notification';
 const cx = classNames.bind(styles);
 
 function ButtonFunction({ isShow, setIsShow, setAgree }) {
     const [states, dispatch] = useContext(ContextToolBar);
-    const { isDisabled } = states;
+    const { isDisabled, listID } = states;
     // handle event
     const handleDisabled = (e) => {
-        setIsShow(true);
+        listID.length <= 0 && notify('warning', 'Vui lòng chọn tài khoản cần xử lý');
+        listID.length > 0 && setIsShow(true);
     };
 
     const handleNavigateToDisabled = (e) => {
@@ -34,7 +36,7 @@ function ButtonFunction({ isShow, setIsShow, setAgree }) {
             <Button onClick={handleNavigateToDisabled} ishover classNames={cx('disabled')}>
                 {isDisabled ? 'Tài khoản chưa vô hiệu hóa' : 'Tài khoản đã vô hiệu hóa'}
             </Button>
-            <Button onClick={handleDisabled} ishover classNames={cx('handle-disable')}>
+            <Button disabled={listID.length === 0} onClick={handleDisabled} ishover classNames={cx('handle-disable')}>
                 {isDisabled ? 'Mở lại' : 'Vô hiệu hóa'}
             </Button>
         </div>

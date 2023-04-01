@@ -46,14 +46,14 @@ function Content({ agree, setAgree }) {
                         });
                         return newAccount;
                     });
+                    notify('success', isDisabled ? 'Mở tài khoản thành công' : 'Vô hiệu hóa thành công');
+                    dispatch({ key: CLEAR_ID });
+                    dispatch({ key: FIND, value: '' });
+                    setAgree(false);
                 } catch (error) {
                     notify('error', isDisabled ? 'Mở tài khoản không thành công' : 'Vô hiệu hóa không thành công');
                 }
             })();
-            notify('success', isDisabled ? 'Mở tài khoản thành công' : 'Vô hiệu hóa thành công');
-            dispatch({ key: CLEAR_ID });
-            dispatch({ key: FIND, value: '' });
-            setAgree(false);
         }
     }, [agree, isDisabled]);
     return (
