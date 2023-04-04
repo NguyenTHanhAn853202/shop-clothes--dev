@@ -5,11 +5,14 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
-function Loading({ fixed = false, bigSize = false }) {
+function Loading({ fixed = false, bigSize = false, className }) {
     return (
         <div className={cx('wrapper', { fixed })}>
             <div className={cx('contain')}>
-                <FontAwesomeIcon className={cx('add-cart__icon-spinner', { bigSize })} icon={faSpinner} />
+                <FontAwesomeIcon
+                    className={cx('add-cart__icon-spinner', { bigSize, [className]: className })}
+                    icon={faSpinner}
+                />
             </div>
         </div>
     );
