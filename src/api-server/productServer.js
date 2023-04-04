@@ -57,4 +57,13 @@ export const uploadProduct = async (formData, config) => {
     const data = await requests.post('product/upload-product', formData, config);
     return data;
 };
+
+export const deleteProduct = async (id) => {
+    const data = await requests.remove('product/delete', {
+        id: localStorage?.id,
+        role: localStorage.role,
+        id,
+    });
+    return data.data;
+};
 // http://localhost:3100/product/get-products

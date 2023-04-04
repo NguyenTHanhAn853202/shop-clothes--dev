@@ -8,6 +8,26 @@
     height: 350px;
     // height: 350px;
     padding: 10px 5px;
+
+    button {
+        padding: 3px 5px;
+        width: 70px;
+        height: 30px;
+        background-color: #555;
+        position: absolute;
+        z-index: 9999;
+        right: 0px;
+        top: 5px;
+        border-radius: 5px;
+        box-shadow: 1px 5px 5px #999;
+        transition: 0.3s linear;
+        color:rgb(243, 232, 232);
+        &:hover {
+            transform: translateY(-5px);
+            background-color: #777;
+        }
+    }
+
     &:hover {
         transform: translateY(-3px);
         transition: 0.5s ease;
