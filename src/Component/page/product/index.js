@@ -37,10 +37,7 @@ const product = [
     },
 ];
 function Product() {
-    // const params = useParams();
-    // useEffect(() => {
-    //     console.log(params);
-    // }, [params]);
+    
 
     return (
         <ContextProduct>

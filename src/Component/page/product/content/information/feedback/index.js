@@ -1,22 +1,31 @@
-
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
-import ShowStar from '~/Component/showStar'
+import ShowStar from '~/Component/showStar';
 import Button from '~/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { listBtn } from './listBtn';
 import AccountFeedback from './accountFeedback';
+import { showFeedback } from '~/api-server/feedback';
 const cx = classNames.bind(styles);
 
 const starCurrent = 4;
 
 function Feedback() {
     const [activeBtn, setActiveBtn] = useState('all');
-
+    const [data, setData] = useState([]);
     const handleClickActive = (e) => {
         const value = e.target.getAttribute('value');
         setActiveBtn(value);
     };
+
+    useEffect(() => {
+        (async () => {
+            const data = await showFeedback('64314953cee56ef5e5784d3d',1);
+            console.log(data);
+            setData(data);
+        })();
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <h1 className={cx('main-title')}>ĐÁNH GIÁ SẢN PHẨM</h1>
@@ -46,7 +55,9 @@ function Feedback() {
                 </div>
             </div>
             <div className={cx('content-feedback')}>
-                <AccountFeedback />
+                {data.map((item) => (
+                    <AccountFeedback key={item} data={item} />
+                ))}
             </div>
         </div>
     );
