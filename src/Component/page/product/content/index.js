@@ -15,7 +15,6 @@ import { SHOW } from '../ConetextProduct/key';
 const cx = classNames.bind(styles);
 
 function Content() {
-    const [data, setData] = useState([]);
     const { slug } = useParams();
     const [states, dispatch] = useContext(Context);
 
@@ -34,10 +33,10 @@ function Content() {
                 <Introduct />
             </div>
             <div className={cx('information')}>
-                <Information data={data} />
+                <Information data={states?.product} />
             </div>
             <div className={cx('feedback')}>
-                <Other data={data} />
+                <Other data={states?.product} />
             </div>
         </div>
     );

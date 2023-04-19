@@ -1,16 +1,18 @@
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import Button from '~/button';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import Description from './description';
 import OtherInfo from './otherInfo';
 import Feedback from './feedback';
+import { Context } from '../../ConetextProduct';
 const cx = classNames.bind(styles);
 
 function Information() {
     const [part, setPart] = useState(1);
     const [Item, setItem] = useState(<Description />);
+    const [states, dispatch] = useContext(Context);
     const handleClick = (e) => {
         let index = e.target.getAttribute('index');
         index = Number(index); // ép kiểu
@@ -37,7 +39,7 @@ function Information() {
                     THÔNG TIN BỔ SUNG
                 </Button>
                 <Button onClick={handleClick} classNames={cx('btn-feedback', { active: 3 === part })} index={3}>
-                    ĐÁNH GIÁ {`(${0})`}
+                    ĐÁNH GIÁ {`(${states?.product?.numberFeedback})`}
                 </Button>
             </div>
             <div className={cx('content')}>{Item}</div>

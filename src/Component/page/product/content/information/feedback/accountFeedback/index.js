@@ -32,7 +32,7 @@ function AccountFeedback({ data }) {
             </div>
             <div className={cx('feedback')}>
                 <h4 className={cx('name-account')}>{data?.userID?.name}</h4>
-                <ShowStar starCurrent={3} classNames={cx('star')} />
+                <ShowStar starCurrent={data?.stars || 1} classNames={cx('star')} />
                 <h4 className={cx('date-type')}>{dateString}</h4>
                 <p className={cx('content-feedback')}>{data?.comment}</p>
                 <div className={cx('media')}>

@@ -2,17 +2,18 @@ import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import ShowStar from '~/Component/showStar';
 import Button from '~/button';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { listBtn } from './listBtn';
 import AccountFeedback from './accountFeedback';
 import { showFeedback } from '~/api-server/feedback';
+import { Context } from '../../../ConetextProduct';
 const cx = classNames.bind(styles);
-
-const starCurrent = 4;
 
 function Feedback() {
     const [activeBtn, setActiveBtn] = useState('all');
     const [data, setData] = useState([]);
+    const [page, setPage] = useState(1);
+    const [states, dispatch] = useContext(Context);
     const handleClickActive = (e) => {
         const value = e.target.getAttribute('value');
         setActiveBtn(value);
@@ -20,8 +21,7 @@ function Feedback() {
 
     useEffect(() => {
         (async () => {
-            const data = await showFeedback('64314953cee56ef5e5784d3d',1);
-            console.log(data);
+            const data = await showFeedback(states?.product?._id, page);
             setData(data);
         })();
     }, []);
@@ -32,10 +32,10 @@ function Feedback() {
             <div className={cx('header')}>
                 <div className={cx('average-star')}>
                     <h3 className={cx('current-star')}>
-                        4 <span> trên 5</span>
+                        {states?.product?.starAverage} <span> trên 5</span>
                     </h3>
                     <div className={cx('show-stars')}>
-                        <ShowStar starCurrent={starCurrent} />
+                        <ShowStar starCurrent={states?.product?.starAverage} />
                     </div>
                 </div>
                 <div className={cx('btn-show-feedback')}>
@@ -55,8 +55,8 @@ function Feedback() {
                 </div>
             </div>
             <div className={cx('content-feedback')}>
-                {data.map((item) => (
-                    <AccountFeedback key={item} data={item} />
+                {data.map((item,index) => (
+                    <AccountFeedback key={index} data={item} />
                 ))}
             </div>
         </div>
