@@ -1,6 +1,6 @@
 .wrapper {
     display: flex;
-    padding: 30px 0;
+    padding-top: 30px;
 }
 .avatar {
     width: 60px;
@@ -58,6 +58,12 @@
         width: 80px;
         height: 80px;
         object-fit: cover;
+        transition: all 0.5s;
+        cursor: pointer;
+        &:hover{
+            width: 150px;
+            height: 150px;
+        }
     }
 }
 

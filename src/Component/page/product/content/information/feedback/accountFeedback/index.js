@@ -5,7 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import Button from '~/button';
-import video from './download.mp4';
+
 import { favouriteFeedback } from '~/api-server/feedback';
 
 const cx = classNames.bind(styles);
@@ -21,6 +21,9 @@ function AccountFeedback({ data }) {
             SetIsHeart(!isHeart);
         } catch (error) {}
     };
+    const handleOpenImage = (item) => {
+        window.open(item, '_blank');
+    };
     const date = new Date(data?.createdAt || Date.now());
     const dateString = `${date?.getDate() < 10 ? `0${date?.getDate()}` : date?.getDate()}-${
         date?.getMonth() < 10 ? `0${date?.getMonth()}` : date?.getMonth()
@@ -31,27 +34,17 @@ function AccountFeedback({ data }) {
                 <img className={cx('avatar-img')} src={data?.userID?.avatar} alt="avatar" />
             </div>
             <div className={cx('feedback')}>
-                <h4 className={cx('name-account')}>{data?.userID?.name}</h4>
+                <h4 className={cx('name-account')}>{data?.userID?.name || 'Chưa có tên'}</h4>
                 <ShowStar starCurrent={data?.stars || 1} classNames={cx('star')} />
                 <h4 className={cx('date-type')}>{dateString}</h4>
                 <p className={cx('content-feedback')}>{data?.comment}</p>
                 <div className={cx('media')}>
-                    {date?.video && (
-                        <div className={cx('video-media')}>
-                            <video>
-                                <source src={video} type="video/mp4" />
-                                <source src="./download.mp4" type="video/ogg" />
-                            </video>
-                        </div>
-                    )}
-                    {data?.image && (
-                        <div className={cx('img-media')}>
-                            <img
-                                src={'https://toigingiuvedep.vn/wp-content/uploads/2022/04/anh-meme-cheems.jpg'}
-                                alt={'anh'}
-                            />
-                        </div>
-                    )}
+                    {data?.image.length &&
+                        data?.image.map((item, index) => (
+                            <div key={index} className={cx('img-media')}>
+                                <img src={item} onClick={() => handleOpenImage(item)} alt={'Ảnh-đánh-giá'} />
+                            </div>
+                        ))}
                 </div>
                 <div className={cx('others-feature')}>
                     <div>

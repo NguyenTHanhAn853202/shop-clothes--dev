@@ -5,31 +5,31 @@ export const  listBtn = [
     },
     {
         title:'5 Sao',
-        value:'5-sao'
+        value:'5_star'
     },
     {
         title:'4 Sao',
-        value:'4-sao'
+        value:'4_star'
     },
     {
         title:'3 Sao',
-        value:'3-sao'
+        value:'3_star'
     },
     {
         title:'2 Sao',
-        value:'2-sao'
+        value:'2_star'
     },
     {
         title:'1 Sao',
-        value:'1-sao'
+        value:'1_star'
     },
     {
         title:'Có Bình Luận',
-        value:'comment'
+        value:'hasComment'
     },
     {
-        title:'Có Hình Ảnh / Video',
-        value:'media'
+        title:'Có Hình Ảnh',
+        value:'image'
     },
     
 ];

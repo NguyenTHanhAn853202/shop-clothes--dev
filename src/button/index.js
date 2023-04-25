@@ -3,7 +3,19 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
-function Button({ children, classNames, ishover, to, href, disabled, type = 'button', w100 = false, ...props }) {
+function Button({
+    children,
+    classNames,
+    ishover,
+    to,
+    href,
+    disabled,
+    type = 'button',
+    w100 = false,
+    more,
+    center,
+    ...props
+}) {
     let Button = 'button';
     const _props = {};
     if (to) {
@@ -18,7 +30,7 @@ function Button({ children, classNames, ishover, to, href, disabled, type = 'but
             type={type}
             {...props}
             {..._props}
-            className={cx('btn', { [classNames]: classNames, w100, disabled, ishover })}
+            className={cx('btn', { [classNames]: classNames, w100, disabled, ishover, more, center })}
         >
             {children}
         </Button>

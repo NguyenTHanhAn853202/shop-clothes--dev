@@ -1,13 +1,15 @@
 import request from '~/utils/Api/request';
+import { perPageFeedback } from '~/utils/perPage';
 
-export const showFeedback = async (idProduct, page) => {
+export const showFeedback = async (idProduct, page,sort) => {
     try {
         const data = await request.get('feedback/show', {
             params: {
                 userID: localStorage?.id,
                 idProduct: idProduct,
-                perPage: 4,
+                perPage: perPageFeedback,
                 page: page,
+                sort
             },
         });
         return data.data.data;
