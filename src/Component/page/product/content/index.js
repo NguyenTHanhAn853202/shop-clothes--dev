@@ -33,10 +33,10 @@ function Content() {
                 <Introduct />
             </div>
             <div className={cx('information')}>
-                <Information data={states?.product} />
+                <Information  />
             </div>
             <div className={cx('feedback')}>
-                <Other data={states?.product} />
+                <Other  />
             </div>
         </div>
     );

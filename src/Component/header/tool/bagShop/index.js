@@ -8,6 +8,7 @@ import { faCircleXmark, faFrownOpen } from '@fortawesome/free-regular-svg-icons'
 import { Context } from '~/GlobalContext';
 import { remove } from '~/api-server/cartService';
 import { CART, REMOVE_CART } from '~/GlobalContext/key';
+import NotifyContainer, { notify } from '~/utils/notification';
 
 const cx = classNames.bind(styles);
 function Bag({ setAgree, setIsShow, agree }, ref) {
@@ -31,11 +32,16 @@ function Bag({ setAgree, setIsShow, agree }, ref) {
         if (agree) {
             (async function () {
                 // đưa hàm async vào reducer của globalContext
-                const data = await remove(idProduct);
-                dispatch({ key: CART, value: data });
+               try {
+                    const data = await remove(idProduct);
+                    dispatch({ key: CART, value: data });
+                    // notify('success','Xóa thành công')
+               } catch (error) {
+                    // notify('error','Xóa thất bại')
+               }
             })();
+            setAgree(false);
         }
-        setAgree(false);
     }, [agree]);
 
     const total = useMemo(() => {
@@ -46,6 +52,7 @@ function Bag({ setAgree, setIsShow, agree }, ref) {
 
     return (
         <div ref={wrapperRef} className={cx('wrapper')}>
+            {/* <NotifyContainer /> */}
             {cart.length > 0 ? (
                 <>
                     <ul className={cx('list-product')}>

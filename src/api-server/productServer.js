@@ -21,7 +21,7 @@ export const oneProduct = async (slug = '') => {
                 slug,
             },
         });
-        return datas;
+        return datas.data;
     } catch (err) {
         console.log(err);
     }

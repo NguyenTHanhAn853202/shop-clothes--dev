@@ -1,9 +1,13 @@
+.wrapper{
+    position: relative;
+    width: 100%;
+}
 .table-info-product {
     width: 100%;
     border-collapse: collapse;
     th {
         text-align: left;
-        padding: 0 5px;
+        padding: 0 0px;
         font-size: 1.6rem;
         font-weight: 600;
         border-bottom: 2px solid #ccc;

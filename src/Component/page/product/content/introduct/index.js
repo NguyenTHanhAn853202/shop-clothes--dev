@@ -33,6 +33,7 @@ function Introduct() {
     const { product } = datas;
     const { cart } = states;
     const defaultProduct = product.product ? product.product[iColor || 0] : {};
+
     const addIntoCart = (e) => {
         (async function () {
             try {

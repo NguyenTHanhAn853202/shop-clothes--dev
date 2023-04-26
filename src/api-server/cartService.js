@@ -27,7 +27,7 @@ export const get = async (page) => {
 export const remove = async (id = '') => {
     try {
         const datas = await requests.remove('cart/delete', {
-            data: { id },
+            id,userID:localStorage?.id 
         });
         return datas.data;
     } catch (error) {

@@ -2,6 +2,7 @@ import { SHOW } from './key';
 
 export const states = {
     product: {},
+    suggestion: [],
 };
 
 function reducer(props, state) {
@@ -10,7 +11,8 @@ function reducer(props, state) {
         case SHOW:
             return {
                 ...props,
-                product: value,
+                product: value?.data || {},
+                suggestion: value?.suggestion || [],
             };
         default:
             console.log('error at ContextProduct!!');
