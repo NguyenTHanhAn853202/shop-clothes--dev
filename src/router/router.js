@@ -16,6 +16,7 @@ const Register = lazy(() => import('~/Component/page/register'));
 const updateInfoOfUser = lazy(() => import('~/Component/page/updateInfoOfUser'));
 const UploadProduct = lazy(() => import('~/Component/page/uploadProduct'));
 const DisableAccount = lazy(() => import('~/Component/page/disableAccount'));
+const ChangePassword = lazy(() => import('~/Component/page/changePassword'));
 
 export const layoutPrivate = [
     {
@@ -29,6 +30,10 @@ export const layoutPrivate = [
     {
         element: updateInfoOfUser,
         path: '/cap-nhat-thong-tin',
+    },
+    {
+        element: ChangePassword,
+        path: '/doi-mat-khau',
     },
 ];
 

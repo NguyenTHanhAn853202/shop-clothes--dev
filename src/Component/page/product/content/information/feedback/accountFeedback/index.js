@@ -39,7 +39,7 @@ function AccountFeedback({ data }) {
                 <h4 className={cx('date-type')}>{dateString}</h4>
                 <p className={cx('content-feedback')}>{data?.comment}</p>
                 <div className={cx('media')}>
-                    {data?.image.length &&
+                    {data?.image.length===0 &&
                         data?.image.map((item, index) => (
                             <div key={index} className={cx('img-media')}>
                                 <img src={item} onClick={() => handleOpenImage(item)} alt={'Ảnh-đánh-giá'} />

@@ -65,7 +65,7 @@ function Begin() {
                                                 <Link to={'/quan-ly/vo-hieu-hoa-tai-khoan'}>Vô hiệu hóa tài</Link>
                                             </>
                                         )}
-
+                                        <Link to='doi-mat-khau'>Đổi mật khẩu</Link>
                                         <Link>Đăng khi thành viên</Link>
                                         <Link> Đăng kí ví ANPAY</Link>
                                         <Link onClick={handleClickLogout}>Đăng xuất</Link>
