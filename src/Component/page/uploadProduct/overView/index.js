@@ -30,7 +30,7 @@ function OverView({ setOverView }) {
             <Input w70 onBlur={handleChangeName} classNames={cx('input')} placeholder="Tên sản phẩm" />
             <select ref={optionRef} onChange={handleChangeType}>
                 <option value="quan-ao">Quần áo</option>
-                <option value="tui-sach-and-balo">Balo</option>
+                <option value="tui-xach-and-balo">Balo</option>
                 <option value="phu-kien-and-trang-suc">Trang sức và phụ kiện</option>
                 <option value="giay-dep">Giày dép</option>
             </select>

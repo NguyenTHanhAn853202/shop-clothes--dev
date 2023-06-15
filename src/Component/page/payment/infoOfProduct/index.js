@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 const codeDiscount = 'thanhandeptrai';
 
-function InfoOfProduct({ chooseProduct }, ref) {
+function InfoOfProduct({ typePayment, chooseProduct, type }, ref) {
     const [{ cart }, dispatch] = useContext(Context);
     const [choosedProducts, setChoosedProducts] = chooseProduct;
     const [discount, setDiscount] = useState(0);
@@ -41,6 +41,7 @@ function InfoOfProduct({ chooseProduct }, ref) {
             setDiscount(300);
         }
     };
+    console.log(type);
     //
     const cost = useMemo(() => {
         return choosedProducts.reduce((price, item) => price + item?.price * item.number, 0);
@@ -103,11 +104,15 @@ function InfoOfProduct({ chooseProduct }, ref) {
                     <tr>
                         <td colSpan={3}>phương thức thanh toán: </td>
                         <td className={cx('t-r')}>
-                            <select ref={ref.refTypePayment}>
+                            <select
+                                onChange={(e) => {
+                                    typePayment(e.target.value);
+                                }}
+                                // defaultValue={type}
+                                value={type}
+                            >
                                 <option value="after">Khi nhận hàng</option>
-                                <option value="banking" disabled>
-                                    Ngân hàng
-                                </option>
+                                <option value="banking">Ngân hàng</option>
                                 <option value="anpay" disabled>
                                     ANPAY
                                 </option>

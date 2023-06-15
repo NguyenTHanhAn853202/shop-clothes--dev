@@ -5,9 +5,16 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import GlobalContext from '~/GlobalContext';
 import GlobalStyles from '~/globalStyles/index';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     // <React.StrictMode>
+    <PayPalScriptProvider
+        options={{
+            'client-id': 'AfyVExyyQHH231Jsr1zdRcoU1SRDBYXPowxqBhokXJRuev7DVWnxutWkG5v9IZRuirnUzMvwtH67MmdX',
+            currency: 'USD',
+        }}
+    >
         <GlobalContext>
             <BrowserRouter>
                 <GlobalStyles>
@@ -15,6 +22,7 @@ root.render(
                 </GlobalStyles>
             </BrowserRouter>
         </GlobalContext>
+    </PayPalScriptProvider>,
     // </React.StrictMode>,
 );
 

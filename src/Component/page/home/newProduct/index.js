@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom';
 import { func } from './newProduct';
 import { useEffect, useRef, createRef, useState } from 'react';
 import Products from './product';
+import { newProduct } from '~/api-server/suggestProduct';
 
 const cx = classNames.bind(styles);
 
 function NewProduct() {
-    
+    const [type, setType] = useState('');
+    const [data, setData] = useState([]);
     const numberRef = func.length;
     const ref = [];
     const [outerWidth, setOuterWidth] = useState();
@@ -52,6 +54,13 @@ function NewProduct() {
         scrollRef.current.style.left = element.offsetLeft + 'px';
         scrollRef.current.style.width = element.offsetWidth + 'px';
     };
+    useEffect(() => {
+        (async () => {
+            const limit = 8;
+            const data = await newProduct(type, limit);
+            setData(data);
+        })();
+    }, [type]);
     return (
         <div className={cx('wrapper', { wrap: true })}>
             <div className={cx('contain', { grid: true })}>
@@ -62,7 +71,10 @@ function NewProduct() {
                         {func.map((item, index) => {
                             return (
                                 <h4
-                                    onClick={(e) => handleActive(e)}
+                                    onClick={(e) => {
+                                        handleActive(e);
+                                        setType(item.type);
+                                    }}
                                     ref={activeRef.current[index]}
                                     key={index}
                                     className={cx('name-category')}
@@ -74,7 +86,7 @@ function NewProduct() {
                     </div>
                 </div>
                 <div className={cx('product')}>
-                    <Products />
+                    <Products data={data} />
                 </div>
                 <div className={cx('more-product')}>
                     <Link to={'cua-hang'} className={cx('title')}>

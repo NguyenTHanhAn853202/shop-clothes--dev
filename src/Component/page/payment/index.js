@@ -9,6 +9,7 @@ import { Context } from '~/GlobalContext';
 import NotifyContainer, { notify } from '~/utils/notification';
 import { payment } from '~/api-server/payment';
 import { CART } from '~/GlobalContext/key';
+import PaypalButton from './PayPalButton';
 
 const cx = classNames.bind(styles);
 
@@ -17,10 +18,9 @@ function Payment() {
     const [isShow, setIsShow] = useState(false);
     const [choosedProducts, setChoosedProducts] = useState([]);
     const [codeDiscount, setCodeDiscount] = useState('');
-    const [typeOfPayment, setTypeOfPayment] = useState('');
+    const [typeOfPayment, setTypeOfPayment] = useState('after');
     const [{ cart }, dispatch] = useContext(Context);
     const refcodeDiscount = useRef();
-    const refTypePayment = useRef();
     const refInfoUser = useMemo(() => {
         const refs = [];
         for (let index = 0; index < 4; index++) {
@@ -69,10 +69,11 @@ function Payment() {
         if (!mapCheckErrorInput) {
             notify('warning', 'Vui lòng nhập đủ thông tin');
         }
-        setCodeDiscount(refcodeDiscount.current.value);
-        setTypeOfPayment(refTypePayment.current.value);
+        setCodeDiscount(refcodeDiscount.current?.value);
+        setTypeOfPayment(typeOfPayment);
         // call API
     };
+
     return (
         <div className={cx('wrapper', { wrap: true })}>
             <NotifyContainer />
@@ -92,18 +93,25 @@ function Payment() {
                     <span className={cx('line-border')}></span>
                     <div style={{ width: '377px', overflow: 'hidden' }}>
                         <InfoOfProduct
-                            ref={{ refcodeDiscount, refTypePayment }}
+                            ref={{ refcodeDiscount }}
+                            typePayment={setTypeOfPayment}
                             chooseProduct={[choosedProducts, setChoosedProducts]}
+                            type={typeOfPayment}
                         />
                     </div>
                 </div>
                 <div className={cx('payment')}>
-                    <Button
-                        classNames={cx('btn', { disabled: choosedProducts.length <= 0 })}
-                        onClick={handleClickPayment}
-                    >
-                        Thanh Toán
-                    </Button>
+                    {typeOfPayment === 'after' && (
+                        <Button
+                            classNames={cx('btn', { disabled: choosedProducts.length <= 0 })}
+                            onClick={handleClickPayment}
+                        >
+                            Thanh Toán
+                        </Button>
+                    )}
+                    {typeOfPayment === 'banking' && (
+                        <PaypalButton products={choosedProducts} typePayment={setTypeOfPayment} />
+                    )}
                 </div>
             </div>
         </div>
