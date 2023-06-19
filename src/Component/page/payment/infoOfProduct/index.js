@@ -41,7 +41,6 @@ function InfoOfProduct({ typePayment, chooseProduct, type }, ref) {
             setDiscount(300);
         }
     };
-    console.log(type);
     //
     const cost = useMemo(() => {
         return choosedProducts.reduce((price, item) => price + item?.price * item.number, 0);

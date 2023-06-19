@@ -1,6 +1,7 @@
 // import Home from '~/Component/page/home';
 import { lazy } from 'react';
-import CreateAccount from '~/Component/pageManager/createAccount';
+const CreateAccount = lazy(() => import('~/Component/pageManager/createAccount'));
+const SeeOrder = lazy(() => import('~/Component/pageEmployee/seeOrder'));
 const Payment = lazy(() => import('~/Component/page/payment'));
 const Home = lazy(() => import('~/Component/page/home'));
 
@@ -41,6 +42,10 @@ export const layout_employee_manager = [
     {
         element: UploadProduct,
         path: '/upload-product',
+    },
+    {
+        element: SeeOrder,
+        path: '/see-order',
     },
 ];
 
