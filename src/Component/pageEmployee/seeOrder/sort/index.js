@@ -5,18 +5,17 @@ import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-function Sort({ setData }) {
-    const [type, setType] = useState('asc');
+function Sort({ typeSort }) {
+    const [type, setType] = typeSort;
 
     const handleChangeDate = (e) => {
-        
         setType(e.target.value);
     };
     return (
         <div className={cx('wrapper')}>
-            <select defaultValue={date} onChange={handleChangeDate}>
-                <option value="asc">Mới nhất</option>
-                <option value="desc">Cũ nhất</option>
+            <select defaultValue={type} onChange={handleChangeDate}>
+                <option value="desc">Mới nhất</option>
+                <option value="asc">Cũ nhất</option>
             </select>
         </div>
     );
