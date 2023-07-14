@@ -10,7 +10,16 @@ function DisplayOrder({ data }) {
             <ul>
                 <li className={cx('title')}>Thông tin đơn hàng</li>
                 {data.map((item, index) => {
-                    return <Card key={item?._id} user={item?.infoOfUser} order={item?.infoOfOder} />;   
+                    return (
+                        <li key={item._id}>
+                            <Card
+                                key={item?._id}
+                                idOrder={item?._id}
+                                user={item?.infoOfUser}
+                                order={item?.infoOfOder}
+                            />
+                        </li>
+                    );
                 })}
             </ul>
         </div>

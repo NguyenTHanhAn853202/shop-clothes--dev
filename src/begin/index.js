@@ -57,7 +57,10 @@ function Begin() {
                                     <div className={cx('list-items')}>
                                         <Link to={'/cap-nhat-thong-tin'}>Thông tin</Link>
                                         {(localStorage.role === 'manager' || localStorage.role === 'employee') && (
-                                            <Link to={'/upload-product'}>Cập nhật sản phẩm</Link>
+                                            <>
+                                                <Link to={'/upload-product'}>Cập nhật sản phẩm</Link>
+                                                <Link to={'/see-order'}>Xem đơn hàng</Link>
+                                            </>
                                         )}
                                         {localStorage.role === 'manager' && (
                                             <>
@@ -65,7 +68,7 @@ function Begin() {
                                                 <Link to={'/quan-ly/vo-hieu-hoa-tai-khoan'}>Vô hiệu hóa tài</Link>
                                             </>
                                         )}
-                                        <Link to='doi-mat-khau'>Đổi mật khẩu</Link>
+                                        <Link to="doi-mat-khau">Đổi mật khẩu</Link>
                                         <Link>Đăng khi thành viên</Link>
                                         <Link> Đăng kí ví ANPAY</Link>
                                         <Link onClick={handleClickLogout}>Đăng xuất</Link>

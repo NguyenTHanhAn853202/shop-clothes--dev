@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+
+    ul {
+        width: 75%;
+        max-height: 100vh;
+        overflow: hidden;
+        overflow-y: scroll;
+        li{
+            list-style: none;
+            padding: 0 10px;
+        }
+    }
+
+    .title {
+        padding: 10px 0;
+        font-size: 2.2rem;
+    }
+}

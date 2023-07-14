@@ -15,8 +15,6 @@ function SeeOrder() {
         (async () => {
             const data = await showOrder(type);
             setData(data);
-            console.log(type);
-            console.log(data);
         })();
     }, [type]);
     return (
